@@ -1,5 +1,8 @@
 package com.bassstarling.ultimatecraftv2;
 
+import com.bassstarling.ultimatecraftv2.blockentity.SparkGeneratorBlockEntity;
+import com.bassstarling.ultimatecraftv2.registry.ModBlockEntities;
+import com.bassstarling.ultimatecraftv2.registry.ModBlocks;
 import com.bassstarling.ultimatecraftv2.registry.ModItems;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
@@ -11,6 +14,7 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.api.distmarker.Dist;
@@ -64,6 +68,8 @@ public class UltimateCraftV2
     public UltimateCraftV2(FMLJavaModLoadingContext context)
     {
         IEventBus modEventBus = context.getModEventBus();
+
+        ModBlockEntities.BLOCK_ENTITIES.register(modEventBus); // ★これ
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
