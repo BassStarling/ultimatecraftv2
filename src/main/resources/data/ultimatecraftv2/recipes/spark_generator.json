@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PCP",
+    "LWB",
+    "PCP"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:piston"
+    },
+    "W": {
+      "item": "ultimatecraftv2:wire"
+    },
+    "L": {
+      "item": "minecraft:lava_bucket"
+    },
+    "B": {
+      "item": "minecraft:water_bucket"
+    },
+    "C": {
+      "item": "minecraft:cobble_stone"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:spark_generator",
+    "count": 1
+  }
+}

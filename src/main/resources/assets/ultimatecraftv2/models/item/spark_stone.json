@@ -1,0 +1,15 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ultimatecraftv2:item/sparkstone_0"
+  },
+  "overrides": [
+    { "predicate": { "custom_model_data": 1 }, "model": "ultimatecraftv2:item/spark_stone_0" },
+    { "predicate": { "custom_model_data": 2 }, "model": "ultimatecraftv2:item/spark_stone_1" },
+    { "predicate": { "custom_model_data": 3 }, "model": "ultimatecraftv2:item/spark_stone_2" },
+    { "predicate": { "custom_model_data": 4 }, "model": "ultimatecraftv2:item/spark_stone_3" },
+    { "predicate": { "custom_model_data": 5 }, "model": "ultimatecraftv2:item/spark_stone_4" },
+    { "predicate": { "custom_model_data": 6 }, "model": "ultimatecraftv2:item/spark_stone_5" },
+    { "predicate": { "custom_model_data": 6 }, "model": "ultimatecraftv2:item/spark_stone_6" }
+  ]
+}

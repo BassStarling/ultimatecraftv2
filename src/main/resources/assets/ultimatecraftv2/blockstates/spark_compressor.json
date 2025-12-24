@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "ultimatecraftv2:block/spark_compressor" }
+  }
+}

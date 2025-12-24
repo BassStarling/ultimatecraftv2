@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "ultimatecraftv2:wire" },
+    { "item": "minecraft:iron_ingot" },
+    { "item": "minecraft:honeycomb" },
+
+    { "item": "ultimatecraftv2:sparkstone_fragment" },
+    { "item": "ultimatecraftv2:sparkstone_fragment" },
+    { "item": "ultimatecraftv2:sparkstone_fragment" },
+    { "item": "ultimatecraftv2:sparkstone_fragment" },
+    { "item": "ultimatecraftv2:sparkstone_fragment" },
+    { "item": "ultimatecraftv2:sparkstone_fragment" }
+  ],
+  "result": {
+    "item": "ultimatecraftv2:weak_magnet"
+  }
+}

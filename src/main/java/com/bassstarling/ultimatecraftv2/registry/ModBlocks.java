@@ -1,6 +1,7 @@
 package com.bassstarling.ultimatecraftv2.registry;
 
 import com.bassstarling.ultimatecraftv2.UltimateCraftV2;
+import com.bassstarling.ultimatecraftv2.block.SparkCommpressorBlock;
 import com.bassstarling.ultimatecraftv2.block.SparkGeneratorBlock;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.world.level.block.Block;
@@ -23,4 +24,11 @@ public class ModBlocks {
                                     .sound(SoundType.METAL)
                     )
             );
+    public static final RegistryObject<Block> SPARK_COMPRESSOR =
+            BLOCKS.register("spark_compressor",
+                    () -> new SparkCommpressorBlock(
+                            BlockBehaviour.Properties.of()
+                                    .strength(2.0F)
+                                    .requiresCorrectToolForDrops()
+                    ));
 }

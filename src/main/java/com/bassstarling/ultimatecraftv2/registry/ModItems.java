@@ -2,6 +2,7 @@ package com.bassstarling.ultimatecraftv2.registry;
 
 import com.bassstarling.ultimatecraftv2.UltimateCraftV2;
 import com.bassstarling.ultimatecraftv2.item.SoBolt;
+import com.bassstarling.ultimatecraftv2.item.SparkStone;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -21,8 +22,16 @@ public class ModItems {
             ITEMS.register("bolt",
                     () -> new SoBolt(new Item.Properties().stacksTo(64)
                     ));
-    public static final RegistryObject<Item> SPARK_DUST =
-            ITEMS.register("spark_dust",
+    public static final RegistryObject<Item> SPARK_STONE =
+            ITEMS.register("spark_stone",
+                    () -> new SparkStone(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> WIRE =
+            ITEMS.register("wire",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> WEAK_MAGNET =
+            ITEMS.register("weak_magnet",
                     () -> new Item(new Item.Properties()
                     ));
 

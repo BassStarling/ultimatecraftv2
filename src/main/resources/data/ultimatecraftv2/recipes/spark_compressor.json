@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CAC",
+    "CPC",
+    "CRC"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "P": {
+      "item": "minecraft:piston"
+    },
+    "A": {
+      "item": "minecraft:anvil"
+    },"C": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:spark_compressor",
+    "count": 1
+  }
+}
