@@ -3,7 +3,6 @@ package com.bassstarling.ultimatecraftv2.registry;
 import com.bassstarling.ultimatecraftv2.UltimateCraftV2;
 import com.bassstarling.ultimatecraftv2.block.SparkCommpressorBlock;
 import com.bassstarling.ultimatecraftv2.block.SparkGeneratorBlock;
-import net.minecraft.client.resources.model.Material;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;

@@ -18,7 +18,7 @@ public class SparkCommpressorBlock extends Block implements EntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new SparkCompressorBlockEntity(pos, state);;
+        return new SparkCompressorBlockEntity(blockPos, blockState);
     }
 
     @Nullable

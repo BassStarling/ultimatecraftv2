@@ -34,9 +34,14 @@ public class SparkGeneratorBlock extends Block implements EntityBlock {
     }
     @Nullable
     @Override
-    public <T extends BlockEntity> net.minecraft.world.level.block.entity.BlockEntityTicker<T>
-    getTicker(Level level, BlockState state, net.minecraft.world.level.block.entity.BlockEntityType<T> type) {
-        return level.isClientSide ? null : (lvl, pos, st, be) ->
-                SparkGeneratorBlockEntity.tick(lvl, pos, st, (SparkGeneratorBlockEntity) be);
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(
+            Level level, BlockState state, BlockEntityType<T> type
+    ) {
+        if (level.isClientSide) return null;
+        return (lvl, pos, st, be) -> {
+            if (be instanceof SparkGeneratorBlockEntity entity) {
+                entity.tick();
+            }
+        };
     }
 }
