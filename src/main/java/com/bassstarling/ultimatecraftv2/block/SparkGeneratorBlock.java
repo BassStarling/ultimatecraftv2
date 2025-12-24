@@ -2,6 +2,10 @@ package com.bassstarling.ultimatecraftv2.block;
 
 import com.bassstarling.ultimatecraftv2.blockentity.SparkGeneratorBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -10,6 +14,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
 public class SparkGeneratorBlock extends Block implements EntityBlock {
@@ -39,9 +44,19 @@ public class SparkGeneratorBlock extends Block implements EntityBlock {
     ) {
         if (level.isClientSide) return null;
         return (lvl, pos, st, be) -> {
-            if (be instanceof SparkGeneratorBlockEntity entity) {
-                entity.tick();
+            if (be instanceof SparkGeneratorBlockEntity generator) {
+                SparkGeneratorBlockEntity.tick(lvl, pos, st, generator);
             }
         };
+    }
+    @Override
+    public InteractionResult use(BlockState state, Level level, BlockPos pos,
+                                 Player player, InteractionHand hand, BlockHitResult hit) {
+
+        if (!level.isClientSide) {
+            player.sendSystemMessage(
+                    Component.literal(","));
+        }
+        return InteractionResult.SUCCESS;
     }
 }

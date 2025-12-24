@@ -1,5 +1,6 @@
 package com.bassstarling.ultimatecraftv2.item;
 
+import com.bassstarling.ultimatecraftv2.registry.ModItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.Item;
@@ -8,15 +9,15 @@ import net.minecraft.world.level.Level;
 
 public class SparkStone extends Item {
 
-    public static final String TIER_KEY = "sparkstone_tier";
+    public static final String TIER_KEY = "tier";
 
     public SparkStone(Properties p_41383_) {
         super(p_41383_);
     }
 
     public static int getTier(ItemStack stack) {
-        if (!stack.hasTag()) return 0;
-        return stack.getTag().getInt(TIER_KEY);
+        if (!stack.hasTag()) return 1;
+        return stack.getTag().getInt("Tier");
     }
 
     public static void setTier(ItemStack stack, int tier) {
@@ -41,5 +42,10 @@ public class SparkStone extends Item {
         int tier = getTier(stack);
         String key = "item.ultimatecraftv2.sparkstone.tier" + tier;
         return Component.translatable(key);
+    }
+    public static ItemStack createWithTier(int tier) {
+        ItemStack stack = new ItemStack(ModItems.SPARK_STONE.get());
+        stack.getOrCreateTag().putInt("Tier", tier);
+        return stack;
     }
 }

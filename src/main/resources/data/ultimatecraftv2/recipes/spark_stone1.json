@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ultimatecraftv2:spark_stone",
+      "nbt": "{Tier:1}"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:spark_stone",
+    "nbt": "{Tier:2}"
+  }
+}

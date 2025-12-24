@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "ultimatecraftv2:item/spark_stone_1"
+    "layer0": "ultimatecraftv2:item/bolt"
   }
 }

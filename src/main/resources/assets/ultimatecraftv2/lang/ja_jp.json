@@ -1,6 +1,7 @@
 {
   "item.ultimatecraftv2.assembled_cylinder_block": "組み立て済みシリンダーブロック",
   "item.ultimatecraftv2.bolt": "ネジ",
+  "item.ultimatecraftv2.wire": "導線",
   "item.ultimatecraftv2.sparkstone": "スパークストーン",
   "item.ultimatecraftv2.sparkstone.tier0": "スパークストーンの粉",
   "item.ultimatecraftv2.sparkstone.tier1": "スパークストーンの粒",
@@ -8,7 +9,8 @@
   "item.ultimatecraftv2.sparkstone.tier3": "スパークストーンの塊",
   "item.ultimatecraftv2.sparkstone.tier4": "スパークストーン",
   "item.ultimatecraftv2.sparkstone.tier5": "スパークストーンブロック",
-  "item.ultimatecraftv2.sparkstone.tier6": "高密度スパークストーン",
-  "block.ultimatecraftv2.spark_generaotr": "スパーク生成機",
-  "item.ultimatecraftv2.spark_compressor": "スパーク圧縮機"
+  "item.ultimatecraftv2.sparkstone.tier6": "高密度スパークストーンブロック",
+  "block.ultimatecraftv2.spark_generator": "スパーク生成機",
+  "block.ultimatecraftv2.spark_compressor": "スパーク圧縮機",
+  "item.ultimatecraftv2.weak_magnet": "弱い磁石"
 }

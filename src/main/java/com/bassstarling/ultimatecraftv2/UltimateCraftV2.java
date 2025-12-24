@@ -1,6 +1,7 @@
 package com.bassstarling.ultimatecraftv2;
 
 import com.bassstarling.ultimatecraftv2.blockentity.SparkGeneratorBlockEntity;
+import com.bassstarling.ultimatecraftv2.client.ModItemProperties;
 import com.bassstarling.ultimatecraftv2.registry.ModBlockEntities;
 import com.bassstarling.ultimatecraftv2.registry.ModBlocks;
 import com.bassstarling.ultimatecraftv2.registry.ModItems;
@@ -76,9 +77,10 @@ public class UltimateCraftV2
         modEventBus.addListener(this::commonSetup);
 
         // Register the Deferred Register to the mod event bus so blocks get registered
+        ModBlocks.BLOCKS.register(modEventBus);
         BLOCKS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
-        ModItems.register(modEventBus);
+        ModItems.ITEMS.register(modEventBus);
         ITEMS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
         CREATIVE_MODE_TABS.register(modEventBus);
@@ -123,11 +125,12 @@ public class UltimateCraftV2
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents
+    public class ClientModEvents
     {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
+            event.enqueueWork(ModItemProperties::register);
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());

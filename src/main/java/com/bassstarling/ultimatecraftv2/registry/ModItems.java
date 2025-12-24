@@ -3,6 +3,7 @@ package com.bassstarling.ultimatecraftv2.registry;
 import com.bassstarling.ultimatecraftv2.UltimateCraftV2;
 import com.bassstarling.ultimatecraftv2.item.SoBolt;
 import com.bassstarling.ultimatecraftv2.item.SparkStone;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -33,6 +34,19 @@ public class ModItems {
     public static final RegistryObject<Item> WEAK_MAGNET =
             ITEMS.register("weak_magnet",
                     () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> SPARK_GENERATOR =
+            ITEMS.register("spark_generator",
+                    () -> new BlockItem(
+                            ModBlocks.SPARK_GENERATOR.get(),
+                            new Item.Properties()
+                    ));
+
+    public static final RegistryObject<Item> SPARK_COMPRESSOR =
+            ITEMS.register("spark_compressor",
+                    () -> new BlockItem(
+                            ModBlocks.SPARK_COMPRESSOR.get(),
+                            new Item.Properties()
                     ));
 
     public static void register(IEventBus eventBus) {
