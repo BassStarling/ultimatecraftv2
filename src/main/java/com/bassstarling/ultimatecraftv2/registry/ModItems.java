@@ -11,7 +11,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
-            DeferredRegister.create(ForgeRegistries.ITEMS, UltimateCraftV2.MODID);
+            DeferredRegister.create(ForgeRegistries.ITEMS, UltimateCraftV2.MOD_ID);
 
     public static final RegistryObject<Item> ASSEMBLED_CYLINDER_BLOCK =
             ITEMS.register("assembled_cylinder_block",

@@ -13,7 +13,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModBlocks {
 
     public static final DeferredRegister<Block> BLOCKS =
-            DeferredRegister.create(ForgeRegistries.BLOCKS, UltimateCraftV2.MODID);
+            DeferredRegister.create(ForgeRegistries.BLOCKS, UltimateCraftV2.MOD_ID);
 
     public static final RegistryObject<Block> SPARK_GENERATOR =
             BLOCKS.register("spark_generator",

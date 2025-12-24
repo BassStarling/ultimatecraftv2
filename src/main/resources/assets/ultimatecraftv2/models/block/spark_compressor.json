@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "ultimatecraftv2:block/spark_compressor"
+    "all": "ultimatecraftv2:block/spark_generator_top"
   }
 }
