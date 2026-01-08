@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CCC",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:iron_wire"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:heater",
+    "count": 1
+  }
+}

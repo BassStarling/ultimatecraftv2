@@ -1,14 +1,37 @@
 {
   "variants": {
-    "compressing=false": {
+    "facing=north,compressing=false": {
       "model": "ultimatecraftv2:block/spark_compressor_idle"
     },
-    "compressing=true": {
+    "facing=north,compressing=true": {
       "model": "ultimatecraftv2:block/spark_compressor_active"
     },
-    "facing=north": { "model": "ultimatecraftv2:block/spark_generator" },
-    "facing=south": { "model": "ultimatecraftv2:block/spark_generator", "y": 180 },
-    "facing=west":  { "model": "ultimatecraftv2:block/spark_generator", "y": 270 },
-    "facing=east":  { "model": "ultimatecraftv2:block/spark_generator", "y": 90 }
+
+    "facing=south,compressing=false": {
+      "model": "ultimatecraftv2:block/spark_compressor_idle",
+      "y": 180
+    },
+    "facing=south,compressing=true": {
+      "model": "ultimatecraftv2:block/spark_compressor_active",
+      "y": 180
+    },
+
+    "facing=west,compressing=false": {
+      "model": "ultimatecraftv2:block/spark_compressor_idle",
+      "y": 270
+    },
+    "facing=west,compressing=true": {
+      "model": "ultimatecraftv2:block/spark_compressor_active",
+      "y": 270
+    },
+
+    "facing=east,compressing=false": {
+      "model": "ultimatecraftv2:block/spark_compressor_idle",
+      "y": 90
+    },
+    "facing=east,compressing=true": {
+      "model": "ultimatecraftv2:block/spark_compressor_active",
+      "y": 90
+    }
   }
 }

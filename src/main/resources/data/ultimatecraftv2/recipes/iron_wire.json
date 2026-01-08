@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C  ",
+    " C ",
+    "  C"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:iron_wire",
+    "count": 6
+  }
+}

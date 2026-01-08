@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DCD",
+    "DSD",
+    "WHD"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:dropper"
+    },
+    "W": {
+      "item": "ultimatecraftv2:wire"
+    },
+    "H": {
+      "item": "minecraft:hopper"
+    },
+    "C": {
+      "item": "minecraft:obsidian"
+    },
+    "S": {
+      "tag": "minecraft:stairs"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:washing_machine",
+    "count": 1
+  }
+}

@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "ultimatecraftv2:item/spark_stone_6"
-  }
+  "parent": "ultimatecraftv2:block/bauxite_ore"
 }

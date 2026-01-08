@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AWA",
+    "MTC",
+    "ABA"
+  ],
+  "key": {
+    "A": {
+      "tag": "minecraft:stone_crafting_materials"
+    },
+    "T": {
+      "item": "ultimatecraftv2:propeller"
+    },
+    "B": {
+      "item": "minecraft:water_bucket"
+    },
+    "M": {
+      "item": "ultimatecraftv2:weak_magnet"
+    },
+    "C": {
+      "item": "ultimatecraftv2:coil"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:heat_generator",
+    "count": 1
+  }
+}

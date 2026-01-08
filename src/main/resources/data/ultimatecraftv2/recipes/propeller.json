@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " I",
+    "IWI",
+    " I"
+  ],
+  "key": {
+    "I": {
+      "item": "ultimatecraftv2:iron_plate"
+    },
+    "W": {
+      "item": "ultimatecraftv2:wire"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:propeller",
+    "count": 1
+  }
+}

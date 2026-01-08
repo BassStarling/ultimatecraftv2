@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "minecraft:obsidian"
+  },
+  "result": "minecraft:magma_block",
+  "experience": 1000.0,
+  "cookingtime": 8640000
+}

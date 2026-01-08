@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "INI",
+    "IBI",
+    "IWI"
+  ],
+  "key": {
+    "W": {
+      "item": "ultimatecraftv2:wire"
+    },
+    "I": {
+      "item": "minecraft:obsidian"
+    },
+    "N": {
+      "item": "ultimatecraftv2:heater"
+    },
+    "B": {
+      "item": "minecraft:bucket"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:eletriccalciner",
+    "count": 1
+  }
+}

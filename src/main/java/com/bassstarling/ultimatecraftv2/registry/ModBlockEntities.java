@@ -1,8 +1,7 @@
 package com.bassstarling.ultimatecraftv2.registry;
 
 import com.bassstarling.ultimatecraftv2.UltimateCraftV2;
-import com.bassstarling.ultimatecraftv2.blockentity.SparkCompressorBlockEntity;
-import com.bassstarling.ultimatecraftv2.blockentity.SparkGeneratorBlockEntity;
+import com.bassstarling.ultimatecraftv2.blockentity.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -24,5 +23,36 @@ public class ModBlockEntities {
                     () -> BlockEntityType.Builder.of(
                             SparkCompressorBlockEntity::new,
                             ModBlocks.SPARK_COMPRESSOR.get()
+                    ).build(null));
+
+    public static final RegistryObject<BlockEntityType<HeatGeneratorBlockEntity>> HEAT_GENERATOR =
+            BLOCK_ENTITIES.register("heat_generator",
+                    () -> BlockEntityType.Builder.of(
+                            HeatGeneratorBlockEntity::new,
+                            ModBlocks.HEAT_GENERATOR.get()
+                    ).build(null));
+    public static final RegistryObject<BlockEntityType<CrusherBlockEntity>> CRUSHER =
+            BLOCK_ENTITIES.register("crusher",
+                    () -> BlockEntityType.Builder.of(
+                            CrusherBlockEntity::new,
+                            ModBlocks.CRUSHER_BLOCK.get()
+                    ).build(null));
+    public static final RegistryObject<BlockEntityType<WashingMachineBlockEntity>> WASHING_MACHINE =
+            BLOCK_ENTITIES.register("washing_machine",
+                    () -> BlockEntityType.Builder.of(
+                            WashingMachineBlockEntity::new,
+                            ModBlocks.WASHING_MACHINE.get()
+                    ).build(null));
+    public static final RegistryObject<BlockEntityType<EletricCalcinerBlockEntity>> ELETRIC_CALCINER =
+            BLOCK_ENTITIES.register("eletric_calciner",
+                    () -> BlockEntityType.Builder.of(
+                            EletricCalcinerBlockEntity::new,
+                            ModBlocks.ELETRICCALCINER.get()
+                    ).build(null));
+    public static final RegistryObject<BlockEntityType<ElectrolyticFurnaceBlockEntity>> ELECTROLYTIC_FURNACE =
+            BLOCK_ENTITIES.register("electrolytic_furnace",
+                    () -> BlockEntityType.Builder.of(
+                            ElectrolyticFurnaceBlockEntity::new,
+                            ModBlocks.ELECTROLYTICFURNACE.get()
                     ).build(null));
 }

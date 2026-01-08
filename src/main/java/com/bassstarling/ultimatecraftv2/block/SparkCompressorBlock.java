@@ -41,8 +41,9 @@ public class SparkCompressorBlock extends Block implements EntityBlock {
     public SparkCompressorBlock(Properties p_49795_) {
         super(p_49795_);
         this.registerDefaultState(
-                this.stateDefinition.any().setValue(COMPRESSING, false)
+                this.stateDefinition.any()
                         .setValue(FACING, Direction.NORTH)
+                        .setValue(COMPRESSING, false)
         );
     }
 
@@ -84,7 +85,7 @@ public class SparkCompressorBlock extends Block implements EntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(COMPRESSING,FACING);
+        builder.add(FACING,COMPRESSING);
     }
 
     @Override
@@ -92,6 +93,4 @@ public class SparkCompressorBlock extends Block implements EntityBlock {
         return this.defaultBlockState()
                 .setValue(FACING, ctx.getHorizontalDirection().getOpposite());
     }
-
-
 }
