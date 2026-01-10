@@ -29,6 +29,15 @@ public class ElectrolyticFurnaceScreen extends AbstractContainerScreen<Electroly
         this.imageHeight = 166;
     }
 
+    private int getProgressArrowScale() {
+        int progress = menu.getProgress();
+        int max = menu.getMaxProgress();
+
+        if (max <= 0 || progress <= 0) return 0;
+
+        return progress * 24 / max; // 24 = 矢印の最大幅
+    }
+
     @Override
     protected void renderBg(
             GuiGraphics guiGraphics,
@@ -36,8 +45,6 @@ public class ElectrolyticFurnaceScreen extends AbstractContainerScreen<Electroly
             int mouseX,
             int mouseY
     ) {
-        RenderSystem.setShaderTexture(0, TEXTURE);
-
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
@@ -45,16 +52,10 @@ public class ElectrolyticFurnaceScreen extends AbstractContainerScreen<Electroly
 
         // 矢印（進捗）
         if (menu.isProcessing()) {
-            int progress = menu.getScaledProgress(24);
-            guiGraphics.blit(
-                    TEXTURE,
-                    x + 79,
-                    y + 34,
-                    176,
-                    14,
-                    progress,
-                    17
-            );
+        int progressWidth = getProgressArrowScale();
+            if (progressWidth > 0) {
+                guiGraphics.blit(TEXTURE, x + 79, y + 34, 176, 14, progressWidth, 16);
+            }
         }
     }
 

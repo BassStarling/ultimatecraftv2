@@ -143,6 +143,10 @@ public class ModItems {
                             ModBlocks.USED_ELECTROLYTICFURNACE.get(),
                             new Item.Properties()
                     ));
+    public static final  RegistryObject<Item> ALUMINIUM_INGOT =
+            ITEMS.register("aluminium_ingot",
+                    () -> new Item(new Item.Properties()
+                    ));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

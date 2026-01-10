@@ -26,26 +26,23 @@ public class ElectrolyticFurnaceMenu extends AbstractContainerMenu {
                 id,
                 playerInv,
                 (ElectrolyticFurnaceBlockEntity)
-                        playerInv.player.level().getBlockEntity(buf.readBlockPos()),
-                        new SimpleContainerData(2)
+                        playerInv.player.level().getBlockEntity(buf.readBlockPos())
         );
     }
 
     public ElectrolyticFurnaceMenu(
             int id,
             Inventory playerInv,
-            ElectrolyticFurnaceBlockEntity blockEntity,
-            ContainerData data
+            ElectrolyticFurnaceBlockEntity blockEntity
     ) {
         super(ModMenuTypes.ELECTROLYTIC_FURNACE_MENU.get(), id);
+
         this.blockEntity = blockEntity;
-        this.data = data;
+        this.data = blockEntity.getData();
+
+        this.addDataSlots(this.data);
 
         IItemHandler items = blockEntity.getItemHandler();
-
-        //this.level = inv.player.level();
-
-        //addSlots(inv);
 
         // ===== 電解炉スロット =====
         this.addSlot(new SlotItemHandler(items, 0, 56, 17));
@@ -55,7 +52,6 @@ public class ElectrolyticFurnaceMenu extends AbstractContainerMenu {
         // ===== プレイヤーインベントリ =====
         addPlayerInventory(playerInv);
         addPlayerHotbar(playerInv);
-        addDataSlots(data);
     }
 
     private void addPlayerInventory(Inventory inv) {
@@ -134,7 +130,7 @@ public class ElectrolyticFurnaceMenu extends AbstractContainerMenu {
     }
 
     public boolean isProcessing() {
-        return data.get(0) > 0;
+        return data.get(2) == ElectrolyticFurnaceBlockEntity.FurnaceState.PROCESSING.ordinal();
     }
 
     public int getScaledProgress() {
