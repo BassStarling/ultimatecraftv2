@@ -1,6 +1,8 @@
 package com.bassstarling.ultimatecraftv2.registry;
 
 import com.bassstarling.ultimatecraftv2.UltimateCraftV2;
+import com.bassstarling.ultimatecraftv2.init.ModTiers;
+import com.bassstarling.ultimatecraftv2.item.PipeItem;
 import com.bassstarling.ultimatecraftv2.item.SoBolt;
 import com.bassstarling.ultimatecraftv2.item.SparkStone;
 import net.minecraft.world.item.BlockItem;
@@ -69,84 +71,99 @@ public class ModItems {
             ITEMS.register("raw_bauxite",
                     () -> new Item(new Item.Properties()
                     ));
-    public static final  RegistryObject<Item> BAUXITE_ORE =
+    public static final RegistryObject<Item> BAUXITE_ORE =
             ITEMS.register("bauxite_ore",
                     () -> new BlockItem(
                             ModBlocks.BAUXITE_ORE.get(),
                             new Item.Properties()
                     ));
-    public static final  RegistryObject<Item> COARSE_BAUXITE_POWDER =
+    public static final RegistryObject<Item> COARSE_BAUXITE_POWDER =
             ITEMS.register("coarse_bauxite_powder",
                     () -> new Item(new Item.Properties()
                     ));
-    public static final  RegistryObject<Item> CRUSHER_BLOCK =
+    public static final RegistryObject<Item> CRUSHER_BLOCK =
             ITEMS.register("crusher_block",
                     () -> new BlockItem(
                             ModBlocks.CRUSHER_BLOCK.get(),
                             new Item.Properties()
                     ));
-    public static final  RegistryObject<Item> WASHED_BAUXITE_POWDER =
+    public static final RegistryObject<Item> WASHED_BAUXITE_POWDER =
             ITEMS.register("washed_bauxite_powder",
                     () -> new Item(new Item.Properties()
                     ));
-    public static final  RegistryObject<Item> WASHING_MACHINE =
+    public static final RegistryObject<Item> WASHING_MACHINE =
             ITEMS.register("washing_machine",
                     () -> new BlockItem(
                             ModBlocks.WASHING_MACHINE.get(),
                             new Item.Properties()
                     ));
-    public static final  RegistryObject<Item> ALUMINA =
+    public static final RegistryObject<Item> ALUMINA =
             ITEMS.register("alumina",
                     () -> new Item(new Item.Properties()
                     ));
-    public static final  RegistryObject<Item> ELETRICCALCINER =
+    public static final RegistryObject<Item> ELETRICCALCINER =
             ITEMS.register("eletriccalciner",
                     () -> new BlockItem(
                             ModBlocks.ELETRICCALCINER.get(),
                             new Item.Properties()
                     ));
-    public static final  RegistryObject<Item> IRON_WIRE =
+    public static final RegistryObject<Item> IRON_WIRE =
             ITEMS.register("iron_wire",
                     () -> new Item(new Item.Properties()
                     ));
-    public static final  RegistryObject<Item> HEATER =
+    public static final RegistryObject<Item> HEATER =
             ITEMS.register("heater",
                     () -> new Item(new Item.Properties()
                     ));
-    public static final  RegistryObject<Item> CRYOLITE_ORE =
+    public static final RegistryObject<Item> CRYOLITE_ORE =
             ITEMS.register("cryolite_ore",
                     () -> new BlockItem(
                             ModBlocks.CRYOLITE_ORE.get(),
                             new Item.Properties()
                     ));
-    public static final  RegistryObject<Item> CRYOLITE =
+    public static final RegistryObject<Item> CRYOLITE =
             ITEMS.register("cryolite",
                     () -> new Item(new Item.Properties()
                     ));
-    public static final  RegistryObject<Item> ELECTROLYTICFURNACE =
+    public static final RegistryObject<Item> ELECTROLYTICFURNACE =
             ITEMS.register("electrolyticfurnace",
                     () -> new BlockItem(
                             ModBlocks.ELECTROLYTICFURNACE.get(),
                             new Item.Properties()
                     ));
-    public static final  RegistryObject<Item> MOLTEN_CRYOLITE =
+    public static final RegistryObject<Item> MOLTEN_CRYOLITE =
             ITEMS.register("molten_cryolite",
                     () -> new Item(new Item.Properties()
                     ));
-    public static final  RegistryObject<Item> MOLTEN_CRYOLITE_WITH_ALUMINA =
+    public static final RegistryObject<Item> MOLTEN_CRYOLITE_WITH_ALUMINA =
             ITEMS.register("molten_cryolite_with_alumina",
                     () -> new Item(new Item.Properties()
                     ));
-    public static final  RegistryObject<Item> USED_ELECTROLYTICFURNACE =
+    public static final RegistryObject<Item> USED_ELECTROLYTICFURNACE =
             ITEMS.register("used_electrolyticfurnace",
                     () -> new BlockItem(
                             ModBlocks.USED_ELECTROLYTICFURNACE.get(),
                             new Item.Properties()
                     ));
-    public static final  RegistryObject<Item> ALUMINIUM_INGOT =
+    public static final RegistryObject<Item> ALUMINIUM_INGOT =
             ITEMS.register("aluminium_ingot",
                     () -> new Item(new Item.Properties()
                     ));
+    public static final RegistryObject<Item> ELECTRODE =
+            ITEMS.register("electrode",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> MOLTEN_ALUMINIUM_IN_BUCKET =
+            ITEMS.register("molten_aluminium_in_bucket",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> PIPE = ITEMS.register("pipe",
+            () -> new PipeItem(
+                    ModTiers.PIPE,  // 上で作った素材 (耐久500)
+                    4,              // 追加攻撃力: 4 (合計: 1+2+5 = 7ダメージ = ハート3.5個分)
+                    -1.6f,          // 攻撃速度補正: -1.6 (合計: 4.0 - 1.6 = 2.4)
+                    new Item.Properties()
+            ));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

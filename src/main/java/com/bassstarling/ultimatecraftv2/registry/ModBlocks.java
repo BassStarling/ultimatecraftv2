@@ -86,7 +86,7 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> USED_ELECTROLYTICFURNACE =
             BLOCKS.register("used_electrolyticfurnace",
-                    () -> new Block(BlockBehaviour.Properties
+                    () -> new UsedEF(BlockBehaviour.Properties
                             .of()
                             .mapColor(MapColor.STONE)
                             .strength(3.0F, 3.0F)
