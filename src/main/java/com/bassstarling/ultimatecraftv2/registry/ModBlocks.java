@@ -79,7 +79,6 @@ public class ModBlocks {
             BLOCKS.register("electrolyticfurnace",
                     () -> new ElectrolyticFurnaceBlock(BlockBehaviour.Properties
                             .of()
-                            .mapColor(MapColor.STONE)
                             .strength(3.0F, 3.0F)
                             .requiresCorrectToolForDrops()
                     ));
@@ -88,7 +87,13 @@ public class ModBlocks {
             BLOCKS.register("used_electrolyticfurnace",
                     () -> new UsedEF(BlockBehaviour.Properties
                             .of()
-                            .mapColor(MapColor.STONE)
+                            .strength(3.0F, 3.0F)
+                            .requiresCorrectToolForDrops()
+                    ));
+    public static final RegistryObject<Block> INDUSTRIAL_WORKBENCH =
+            BLOCKS.register("industrial_workbench",
+                    () -> new IWBenchBlock(BlockBehaviour.Properties
+                            .of()
                             .strength(3.0F, 3.0F)
                             .requiresCorrectToolForDrops()
                     ));

@@ -33,6 +33,11 @@
   "item.ultimatecraftv2.washed_bauxite_powder": "ボーキサイトの粉",
   "item.ultimatecraftv2.weak_magnet": "弱い磁石",
   "item.ultimatecraftv2.wire": "導線",
+  "item.ultimatecraftv2.aluminium_ingot": "アルミニウムインゴット",
   "container.ultimatecraftv2.electrolytic_furnace": "電解炉",
-  "item.ultimatecraftv2.molten_cryolite_with_alumina": "融解した氷晶石とアルミナ"
+  "item.ultimatecraftv2.molten_cryolite_with_alumina": "融解した氷晶石とアルミナ",
+  "item.ultimatecraftv2.pipe": "パイプ",
+  "block.ultimatecraftv2.industrial_workbench": "業務用作業台",
+  "item.ultimatecraftv2.molten_aluminium_in_bucket": "融解アルミニウム入りバケツ",
+  "item.ultimatecraftv2.electrode": "電極"
 }

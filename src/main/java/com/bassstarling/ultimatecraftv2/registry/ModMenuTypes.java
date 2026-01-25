@@ -2,6 +2,7 @@ package com.bassstarling.ultimatecraftv2.registry;
 
 import com.bassstarling.ultimatecraftv2.UltimateCraftV2;
 import com.bassstarling.ultimatecraftv2.menu.ElectrolyticFurnaceMenu;
+import com.bassstarling.ultimatecraftv2.menu.IndustrialWorkbenchMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.registries.DeferredRegister;
@@ -16,5 +17,10 @@ public class ModMenuTypes {
             ELECTROLYTIC_FURNACE_MENU =
             MENUS.register("electrolytic_furnace_menu",
                     () -> IForgeMenuType.create(ElectrolyticFurnaceMenu::new));
+
+    public static final RegistryObject<MenuType<IndustrialWorkbenchMenu>>
+            INDUSTRIAL_WORKBENCH_MENU =
+            MENUS.register("industrial_workbench_menu",
+                    () -> IForgeMenuType.create(IndustrialWorkbenchMenu::new));
 
 }

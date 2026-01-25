@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    { "item": "minecraft:wire" },
-    { "item": "minecraft:wire" }
+    { "item": "ultimatecraftv2:wire" },
+    { "item": "ultimatecraftv2:wire" }
   ],
   "result": {
     "item": "ultimatecraftv2:coil"

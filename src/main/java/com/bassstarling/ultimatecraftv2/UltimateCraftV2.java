@@ -1,7 +1,9 @@
 package com.bassstarling.ultimatecraftv2;
 
 import com.bassstarling.ultimatecraftv2.client.ModItemProperties;
+import com.bassstarling.ultimatecraftv2.client.screen.IndustrialWorkbenchScreen;
 import com.bassstarling.ultimatecraftv2.init.ModCreativeTabs;
+import com.bassstarling.ultimatecraftv2.recipe.ModRecipes;
 import com.bassstarling.ultimatecraftv2.registry.ModBlockEntities;
 import com.bassstarling.ultimatecraftv2.registry.ModBlocks;
 import com.bassstarling.ultimatecraftv2.registry.ModItems;
@@ -51,6 +53,8 @@ public class UltimateCraftV2
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
+
+        ModRecipes.register(modEventBus);
 
         // Register the Deferred Register to the mod event bus so blocks get registered
         ModBlocks.BLOCKS.register(modEventBus);

@@ -2,7 +2,9 @@ package com.bassstarling.ultimatecraftv2.registry;
 
 import com.bassstarling.ultimatecraftv2.UltimateCraftV2;
 import com.bassstarling.ultimatecraftv2.blockentity.*;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -54,5 +56,11 @@ public class ModBlockEntities {
                     () -> BlockEntityType.Builder.of(
                             ElectrolyticFurnaceBlockEntity::new,
                             ModBlocks.ELECTROLYTICFURNACE.get()
+                    ).build(null));
+    public static final RegistryObject<BlockEntityType<IndustrialWorkbenchBlockEntity>> INDUSTRIAL_WORKBENCH =
+            BLOCK_ENTITIES.register("industrial_workbench",
+                    () -> BlockEntityType.Builder.of(
+                            IndustrialWorkbenchBlockEntity::new,
+                            ModBlocks.INDUSTRIAL_WORKBENCH.get()
                     ).build(null));
 }

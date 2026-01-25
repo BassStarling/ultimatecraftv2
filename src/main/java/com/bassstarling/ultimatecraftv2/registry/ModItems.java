@@ -164,6 +164,12 @@ public class ModItems {
                     -1.6f,          // 攻撃速度補正: -1.6 (合計: 4.0 - 1.6 = 2.4)
                     new Item.Properties()
             ));
+    public static final RegistryObject<Item> INDUSTRIAL_WORKBENCH =
+            ITEMS.register("industrial_workbench",
+                    () -> new BlockItem(
+                            ModBlocks.INDUSTRIAL_WORKBENCH.get(),
+                            new Item.Properties()
+                    ));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

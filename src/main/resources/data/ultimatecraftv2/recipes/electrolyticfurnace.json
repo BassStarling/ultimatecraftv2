@@ -1,0 +1,14 @@
+{
+  "type": "ultimatecraftv2:industrial_crafting",
+  "ingredients": [
+    {}, {}, {}, {}, { "item": "ultimatecraftv2:aluminium_ingot" },
+    {}, {}, {}, { "item": "ultimatecraftv2:aluminium_ingot" }, {},
+    {}, {}, { "item": "ultimatecraftv2:aluminium_ingot" }, {}, {},
+    {}, { "item": "ultimatecraftv2:aluminium_ingot" }, {}, {}, {},
+    { "item": "ultimatecraftv2:aluminium_ingot" }, {}, {}, {}, {}
+  ],
+  "result": {
+    "item": "ultimatecraftv2:electrolyticfurnace",
+    "count": 1
+  }
+}
