@@ -1,9 +1,14 @@
 package com.bassstarling.ultimatecraftv2.registry;
 
 import com.bassstarling.ultimatecraftv2.UltimateCraftV2;
+import com.bassstarling.ultimatecraftv2.blockentity.CokeOvenBlockEntity;
+import com.bassstarling.ultimatecraftv2.menu.CokeOvenMenu;
 import com.bassstarling.ultimatecraftv2.menu.ElectrolyticFurnaceMenu;
 import com.bassstarling.ultimatecraftv2.menu.IndustrialWorkbenchMenu;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -22,5 +27,17 @@ public class ModMenuTypes {
             INDUSTRIAL_WORKBENCH_MENU =
             MENUS.register("industrial_workbench_menu",
                     () -> IForgeMenuType.create(IndustrialWorkbenchMenu::new));
+
+    public static final RegistryObject<MenuType<CokeOvenMenu>> COKE_OVEN_MENU =
+            MENUS.register("coke_oven_menu",
+                    () -> IForgeMenuType.create((windowId, inv, data) -> {
+                        BlockPos pos = data.readBlockPos(); // サーバーが書いた pos を読み取る
+                        BlockEntity be = inv.player.level().getBlockEntity(pos);
+                        if (be instanceof CokeOvenBlockEntity cokeBE) {
+                            return new CokeOvenMenu(windowId, inv, cokeBE, cokeBE.getData());
+                        }
+                        // ここで null を返すと、クライアント側は Menu を維持できず画面を閉じます
+                        return null;
+                    }));
 
 }

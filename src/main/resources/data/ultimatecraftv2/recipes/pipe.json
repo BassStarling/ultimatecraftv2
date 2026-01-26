@@ -1,7 +1,8 @@
 {
   "type": "ultimatecraftv2:industrial_crafting",
   "ingredients": [
-    {}, {}, {}, {}, { "item": "ultimatecraftv2:aluminium_ingot" },
+    {"item": "ultimatecraftv2:spark_stone",
+      "nbt": "{Tier:3}"}, {}, {}, {}, { "item": "ultimatecraftv2:aluminium_ingot" },
     {}, {}, {}, { "item": "ultimatecraftv2:aluminium_ingot" }, {},
     {}, {}, { "item": "ultimatecraftv2:aluminium_ingot" }, {}, {},
     {}, { "item": "ultimatecraftv2:aluminium_ingot" }, {}, {}, {},

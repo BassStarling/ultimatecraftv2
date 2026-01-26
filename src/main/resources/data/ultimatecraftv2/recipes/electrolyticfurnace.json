@@ -1,14 +1,14 @@
 {
   "type": "ultimatecraftv2:industrial_crafting",
   "ingredients": [
-    {}, {}, {}, {}, { "item": "ultimatecraftv2:aluminium_ingot" },
-    {}, {}, {}, { "item": "ultimatecraftv2:aluminium_ingot" }, {},
-    {}, {}, { "item": "ultimatecraftv2:aluminium_ingot" }, {}, {},
-    {}, { "item": "ultimatecraftv2:aluminium_ingot" }, {}, {}, {},
-    { "item": "ultimatecraftv2:aluminium_ingot" }, {}, {}, {}, {}
+    { "item": "ultimatecraftv2:refractory_brick" }, { "item": "ultimatecraftv2:wire" }, { "item": "ultimatecraftv2:electrode" }, { "item": "ultimatecraftv2:wire" }, { "item": "ultimatecraftv2:refractory_brick" },
+    { "item": "ultimatecraftv2:refractory_brick" }, { "item": "ultimatecraftv2:electrode" }, { "item": "ultimatecraftv2:electrode" }, { "item": "ultimatecraftv2:electrode" }, { "item": "ultimatecraftv2:refractory_brick" },
+    { "item": "minecraft:glass_pane" }, {}, { "item": "ultimatecraftv2:refractory_brick" }, { "item": "ultimatecraftv2:cryolite_powder" }, { "item": "minecraft:glass_pane" },
+    { "item": "ultimatecraftv2:refractory_brick" }, { "item": "ultimatecraftv2:carbon_block" }, { "item": "ultimatecraftv2:carbon_block" }, { "item": "ultimatecraftv2:carbon_block" }, { "item": "ultimatecraftv2:refractory_brick" },
+    { "item": "ultimatecraftv2:refractory_brick" }, { "item": "ultimatecraftv2:heater" }, { "item": "ultimatecraftv2:heater" }, { "item": "ultimatecraftv2:heater" }, { "item": "ultimatecraftv2:refractory_brick" }
   ],
   "result": {
-    "item": "ultimatecraftv2:electrolyticfurnace",
+    "item": "ultimatecraftv2:electrolytic_furnace",
     "count": 1
   }
 }

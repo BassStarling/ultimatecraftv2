@@ -97,4 +97,11 @@ public class ModBlocks {
                             .strength(3.0F, 3.0F)
                             .requiresCorrectToolForDrops()
                     ));
+    public static final RegistryObject<Block> COKEOVEN =
+            BLOCKS.register("cokeoven",
+                    () -> new CokeOvenBlock(BlockBehaviour.Properties
+                            .of()
+                            .strength(3.0F, 3.0F)
+                            .requiresCorrectToolForDrops()
+                    ));
 }

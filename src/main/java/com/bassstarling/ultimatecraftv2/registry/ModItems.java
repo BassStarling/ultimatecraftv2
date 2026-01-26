@@ -7,6 +7,7 @@ import com.bassstarling.ultimatecraftv2.item.SoBolt;
 import com.bassstarling.ultimatecraftv2.item.SparkStone;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -169,6 +170,30 @@ public class ModItems {
                     () -> new BlockItem(
                             ModBlocks.INDUSTRIAL_WORKBENCH.get(),
                             new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> TAR_BUCKET =
+            ITEMS.register("tar_bucket",
+                    () -> new Item(new Item.Properties()
+                            .craftRemainder(Items.BUCKET) // クラフト後に空バケツを返す設定
+                            .stacksTo(1)
+                    ));
+    public static final RegistryObject<Item> IRON_PIPE =
+            ITEMS.register("iron_pipe",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> COKE =
+            ITEMS.register("coke",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> COKEOVEN =
+            ITEMS.register("cokeoven",
+                    () -> new BlockItem(
+                            ModBlocks.COKEOVEN.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> COKE_DUST =
+            ITEMS.register("coke_dust",
+                    () -> new Item(new Item.Properties()
                     ));
 
     public static void register(IEventBus eventBus) {

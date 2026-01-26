@@ -22,64 +22,58 @@ public class CrusherBlockEntity extends BlockEntity {
     public void tick() {
         if (level == null || level.isClientSide) return;
 
-        if (level.getGameTime() % 20 == 0) {
-            System.out.println("Crusher ticking at " + worldPosition);
-        }
-
         AABB box = new AABB(
-                worldPosition.getX() - 0.2,
-                worldPosition.getY(),
-                worldPosition.getZ() - 0.2,
-                worldPosition.getX() + 1.2,
-                worldPosition.getY() + 1.5,
-                worldPosition.getZ() + 1.2
+                worldPosition.getX() - 0.2, worldPosition.getY(), worldPosition.getZ() - 0.2,
+                worldPosition.getX() + 1.2, worldPosition.getY() + 1.5, worldPosition.getZ() + 1.2
         );
 
         List<ItemEntity> items = level.getEntitiesOfClass(ItemEntity.class, box);
 
-        ItemEntity bauxite = null;
-        ItemEntity spark = null;
+        ItemEntity targetInput = null; // 粉砕対象（ボーキサイト or コークス）
+        ItemEntity spark = null;       // スパークストーン
+        ItemStack resultStack = ItemStack.EMPTY; // 生成されるアイテムのスタック
 
         for (ItemEntity item : items) {
             ItemStack stack = item.getItem();
 
-            if (stack.is(ModItems.RAW_BAUXITE.get())) {
-                bauxite = item;
-            } else if (stack.is(ModItems.SPARK_STONE.get())
-                    && SparkStone.getTier(stack) == 1) {
+            // 1. スパークストーンの判定（共通）
+            if (stack.is(ModItems.SPARK_STONE.get()) && SparkStone.getTier(stack) == 1) {
                 spark = item;
+            }
+            // 2. 原料の判定：ボーキサイト
+            else if (stack.is(ModItems.RAW_BAUXITE.get())) {
+                targetInput = item;
+                resultStack = new ItemStack(ModItems.COARSE_BAUXITE_POWDER.get());
+            }
+            // 3. 原料の判定：コークス（今回の追加分）
+            else if (stack.is(ModItems.COKE.get())) {
+                targetInput = item;
+                resultStack = new ItemStack(ModItems.COKE_DUST.get());
             }
         }
 
-        if (bauxite != null && spark != null) {
+        // 両方の素材が揃っていて、かつ結果が定義されている場合のみ実行
+        if (targetInput != null && spark != null && !resultStack.isEmpty()) {
 
-            // 消費
-            bauxite.getItem().shrink(1);
+            // 素材を消費
+            targetInput.getItem().shrink(1);
             spark.getItem().shrink(1);
 
-            // 空なら消す
-            if (bauxite.getItem().isEmpty()) bauxite.discard();
+            // エンティティのクリーンアップ
+            if (targetInput.getItem().isEmpty()) targetInput.discard();
             if (spark.getItem().isEmpty()) spark.discard();
 
-            ItemStack result =
-                    new ItemStack(ModItems.COARSE_BAUXITE_POWDER.get());
+            // 結果アイテムを放出
+            level.addFreshEntity(new ItemEntity(
+                    level,
+                    worldPosition.getX() + 0.5,
+                    worldPosition.getY() + 1.1, // 少し高くして重なりを防ぐ
+                    worldPosition.getZ() + 0.5, // 中央付近に落とす
+                    resultStack
+            ));
 
-    level.addFreshEntity(new ItemEntity(
-            level,
-            worldPosition.getX() + 0.5,
-            worldPosition.getY() + 1.0,
-            worldPosition.getZ() + 1.2,
-            result
-    ));
-
-            level.playSound(
-                    null,
-                    worldPosition,
-                    SoundEvents.GRAVEL_BREAK,
-                    SoundSource.BLOCKS,
-                    0.7F,
-                    1.0F
-            );
+            // エフェクト
+            level.playSound(null, worldPosition, SoundEvents.GRAVEL_BREAK, SoundSource.BLOCKS, 0.7F, 0.8F);
         }
     }
 }

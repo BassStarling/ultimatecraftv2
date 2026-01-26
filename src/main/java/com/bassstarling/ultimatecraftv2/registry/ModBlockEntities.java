@@ -63,4 +63,10 @@ public class ModBlockEntities {
                             IndustrialWorkbenchBlockEntity::new,
                             ModBlocks.INDUSTRIAL_WORKBENCH.get()
                     ).build(null));
+    public static final RegistryObject<BlockEntityType<CokeOvenBlockEntity>> COKE_OVEN =
+            BLOCK_ENTITIES.register("coke_oven",
+                    () -> BlockEntityType.Builder.of(
+                            CokeOvenBlockEntity::new,
+                            ModBlocks.COKEOVEN.get()
+                    ).build(null));
 }

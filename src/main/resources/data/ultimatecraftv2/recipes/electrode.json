@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IWI",
+    "CTC",
+    "CCC"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "W": {
+      "item": "ultimatecraftv2:wire"
+    },
+    "C": {
+      "item": "ultimatecraftv2:coke_dust"
+    },
+    "T": {
+      "item": "ultimatecraftv2:tar_bucket"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:electrode",
+    "count": 1
+  }
+}

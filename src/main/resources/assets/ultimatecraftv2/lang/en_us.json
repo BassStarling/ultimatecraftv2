@@ -39,5 +39,10 @@
   "block.ultimatecraftv2.industrial_workbench": "Industrial Workbench",
   "item.ultimatecraftv2.molten_aluminium_in_bucket": "融解アルミニウム入りバケツ",
   "item.ultimatecraftv2.electrode": "電極",
-  "item.ultimatecraftv2.aluminium_ingot": "アルミニウムインゴット"
+  "item.ultimatecraftv2.aluminium_ingot": "アルミニウムインゴット",
+  "item.ultimatecraftv2.iron_pipe": "Iron pipe",
+  "item.ultimatecraftv2.coke": "Coke",
+  "item.ultimatecraftv2.coke_dust": "Coke dust",
+  "item.ultimatecraftv2.tar_bucket": "Tar in bucket",
+  "block.ultimatecraftv2.cokeoven": "Coke oven"
 }
