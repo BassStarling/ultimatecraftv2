@@ -1,5 +1,6 @@
 package com.bassstarling.ultimatecraftv2;
 
+import com.bassstarling.ultimatecraftv2.client.screen.ArcFurnaceScreen;
 import com.bassstarling.ultimatecraftv2.client.screen.CokeOvenScreen;
 import com.bassstarling.ultimatecraftv2.client.screen.ElectrolyticFurnaceScreen;
 import com.bassstarling.ultimatecraftv2.client.screen.IndustrialWorkbenchScreen;
@@ -32,6 +33,10 @@ public class ClientModEvents {
             MenuScreens.register(
                     ModMenuTypes.COKE_OVEN_MENU.get(),
                     CokeOvenScreen::new
+            );
+            MenuScreens.register(
+                    ModMenuTypes.ARC_FURNACE_MENU.get(),
+                    ArcFurnaceScreen::new
             );
         });
     }

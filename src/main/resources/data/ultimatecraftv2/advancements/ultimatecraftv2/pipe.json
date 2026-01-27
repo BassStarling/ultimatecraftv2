@@ -1,0 +1,33 @@
+{
+  "parent": "ultimatecraftv2:ultimatecraftv2/arc_furnace",
+  "display": {
+    "icon": {
+      "item": "ultimatecraftv2:pipe"
+    },
+    "title": {
+      "translate": "advancements.ultimatecraftv2.ultimatecraftv2.pipe.title"
+    },
+    "description": {
+      "translate": "advancements.ultimatecraftv2.ultimatecraftv2.pipe.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "rewards": {
+    "experience": 500
+  },
+  "criteria": {
+    "has_graphite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["ultimatecraftv2:pipe"]
+          }
+        ]
+      }
+    }
+  }
+}

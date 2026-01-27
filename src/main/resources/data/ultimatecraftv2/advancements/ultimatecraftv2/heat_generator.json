@@ -1,0 +1,23 @@
+{
+  "parent": "ultimatecraftv2:ultimatecraftv2/compressor",
+  "display": {
+    "icon": {
+      "item": "ultimatecraftv2:heat_generator"
+    },
+    "title": { "translate": "advancements.ultimatecraftv2.ultimatecraftv2.heat_generator.title" },
+    "description": { "translate": "advancements.ultimatecraftv2.ultimatecraftv2.heat_generator.description" },
+    "frame": "goal"
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["ultimatecraftv2:heat_generator"]
+          }
+        ]
+      }
+    }
+  }
+}

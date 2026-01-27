@@ -1,0 +1,33 @@
+{
+  "parent": "ultimatecraftv2:ultimatecraftv2/arc_furnace",
+  "display": {
+    "icon": {
+      "item": "ultimatecraftv2:aluminium_ingot"
+    },
+    "title": {
+      "translate":"advancements.ultimatecraftv2.ultimatecraftv2.aluminium_ingot.title"
+    },
+    "description": {
+      "translate":"advancements.ultimatecraftv2.ultimatecraftv2.aluminium_ingot.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 500
+  },
+  "criteria": {
+    "has_graphite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["ultimatecraftv2:aluminium_ingot"]
+          }
+        ]
+      }
+    }
+  }
+}

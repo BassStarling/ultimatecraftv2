@@ -69,4 +69,10 @@ public class ModBlockEntities {
                             CokeOvenBlockEntity::new,
                             ModBlocks.COKEOVEN.get()
                     ).build(null));
+    public static final RegistryObject<BlockEntityType<ArcFurnaceBlockEntity>> ARC__FURNACE =
+            BLOCK_ENTITIES.register("arc__furnace",
+                    () -> BlockEntityType.Builder.of(
+                            ArcFurnaceBlockEntity::new,
+                            ModBlocks.ARC_FURNACE.get()
+                    ).build(null));
 }

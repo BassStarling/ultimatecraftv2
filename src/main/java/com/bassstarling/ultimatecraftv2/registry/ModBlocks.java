@@ -104,4 +104,11 @@ public class ModBlocks {
                             .strength(3.0F, 3.0F)
                             .requiresCorrectToolForDrops()
                     ));
+    public static final RegistryObject<Block> ARC_FURNACE =
+            BLOCKS.register("arc_furnace",
+                    () -> new ArcFurnaceBlock(BlockBehaviour.Properties
+                            .of()
+                            .strength(3.0F, 3.0F)
+                            .requiresCorrectToolForDrops()
+                    ));
 }

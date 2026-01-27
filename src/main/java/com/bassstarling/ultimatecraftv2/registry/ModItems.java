@@ -150,10 +150,6 @@ public class ModItems {
             ITEMS.register("aluminium_ingot",
                     () -> new Item(new Item.Properties()
                     ));
-    public static final RegistryObject<Item> ELECTRODE =
-            ITEMS.register("electrode",
-                    () -> new Item(new Item.Properties()
-                    ));
     public static final RegistryObject<Item> MOLTEN_ALUMINIUM_IN_BUCKET =
             ITEMS.register("molten_aluminium_in_bucket",
                     () -> new Item(new Item.Properties()
@@ -194,6 +190,24 @@ public class ModItems {
     public static final RegistryObject<Item> COKE_DUST =
             ITEMS.register("coke_dust",
                     () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> UNFIRED_GRAPHITE_ELECTRODE =
+            ITEMS.register("unfired_graphite_electrode",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> BAKED_CARBON_ELECTRODE =
+            ITEMS.register("baked_carbon_electrode",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> GRAPHITE_ELECTRODE =
+            ITEMS.register("graphite_electrode",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> ARC_FURNACE =
+            ITEMS.register("arc_furnace",
+                    () -> new BlockItem(
+                            ModBlocks.ARC_FURNACE.get(),
+                            new Item.Properties()
                     ));
 
     public static void register(IEventBus eventBus) {

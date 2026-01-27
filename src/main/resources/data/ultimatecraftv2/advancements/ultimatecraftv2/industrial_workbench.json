@@ -1,0 +1,29 @@
+{
+  "parent": "ultimatecraftv2:ultimatecraftv2/root",
+  "display": {
+    "icon": {
+      "item": "ultimatecraftv2:industrial_workbench"
+    },
+    "title": {
+      "translate": "advancements.ultimatecraftv2.ultimatecraftv2.industrial_workbench.title"
+    },
+    "description": {
+      "translate": "advancements.ultimatecraftv2.ultimatecraftv2.industrial_workbench.description"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ultimatecraftv2:industrial_workbench"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

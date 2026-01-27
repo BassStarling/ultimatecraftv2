@@ -1,0 +1,23 @@
+{
+  "parent": "ultimatecraftv2:ultimatecraftv2/root",
+  "display": {
+    "icon": {
+      "item": "ultimatecraftv2:spark_compressor"
+    },
+    "title": { "translate": "advancements.ultimatecraftv2.ultimatecraftv2.compressor.title" },
+    "description": { "translate": "advancements.ultimatecraftv2.ultimatecraftv2.compressor.description" },
+    "frame": "goal"
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["ultimatecraftv2:spark_compressor"]
+          }
+        ]
+      }
+    }
+  }
+}

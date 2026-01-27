@@ -1,0 +1,23 @@
+{
+  "parent": "ultimatecraftv2:ultimatecraftv2/root",
+  "display": {
+    "icon": {
+      "item": "ultimatecraftv2:arc_furnace"
+    },
+    "title": { "translate": "advancements.ultimatecraftv2.ultimatecraftv2.arc_furnace.title" },
+    "description": { "translate": "advancements.ultimatecraftv2.ultimatecraftv2.arc_furnace.description" },
+    "frame": "goal"
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["ultimatecraftv2:arc_furnace"]
+          }
+        ]
+      }
+    }
+  }
+}

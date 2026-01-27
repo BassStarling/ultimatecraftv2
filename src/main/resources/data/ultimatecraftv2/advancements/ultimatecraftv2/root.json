@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "ultimatecraftv2:spark_generator"
+    },
+    "title": { "translate": "advancements.ultimatecraftv2.ultimatecraftv2.root.title" },
+    "description": { "translate": "advancements.ultimatecraftv2.ultimatecraftv2.root.description" },
+    "background": "minecraft:textures/gui/advancements/backgrounds/stone.png",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_spark_generator": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["ultimatecraftv2:spark_generator"]
+          }
+        ]
+      }
+    }
+  }
+}

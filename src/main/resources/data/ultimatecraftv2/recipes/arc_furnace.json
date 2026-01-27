@@ -1,0 +1,20 @@
+{
+  "type": "ultimatecraftv2:industrial_crafting",
+  "pattern": [
+    "SSWSS",
+    "SCHCS",
+    "WHHHW",
+    "SCHCS",
+    "SSWSS"
+  ],
+  "key": {
+    "S": { "item": "ultimatecraftv2:iron_sheet" },
+    "H": { "item": "ultimatecraftv2:heater" },
+    "W": { "item": "ultimatecraftv2:copper_wire" },
+    "C": { "item": "ultimatecraftv2:basic_circuit" }
+  },
+  "result": {
+    "item": "ultimatecraftv2:arc_furnace",
+    "count": 1
+  }
+}

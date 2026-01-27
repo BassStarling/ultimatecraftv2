@@ -3,6 +3,7 @@ package com.bassstarling.ultimatecraftv2.blockentity;
 import com.bassstarling.ultimatecraftv2.fluid.ModFluids;
 import com.bassstarling.ultimatecraftv2.menu.CokeOvenMenu;
 import com.bassstarling.ultimatecraftv2.registry.ModBlockEntities;
+import com.bassstarling.ultimatecraftv2.registry.ModBlocks;
 import com.bassstarling.ultimatecraftv2.registry.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -45,7 +46,7 @@ public class CokeOvenBlockEntity extends BlockEntity implements MenuProvider {
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             return switch (slot) {
-                case 0 -> stack.is(Items.COAL); // 原料は石炭のみ
+                case 0 -> stack.is(Items.COAL)|| stack.is(ModItems.UNFIRED_GRAPHITE_ELECTRODE.get());
                 case 1 -> ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0; // 燃料
                 case 2 -> true; // 出力スロットには入れられない
                 case 3 -> stack.is(Items.BUCKET); // バケツスロット
@@ -134,27 +135,43 @@ public class CokeOvenBlockEntity extends BlockEntity implements MenuProvider {
         return this.data;
     }
 
+// CokeOvenBlockEntity.java
+
     private boolean canProcess() {
         ItemStack input = itemHandler.getStackInSlot(0);
         ItemStack output = itemHandler.getStackInSlot(2);
 
-        // 条件: 入力が石炭 且つ 出力に空きあり 且つ タンクに空き(250mB以上)あり
-        return input.is(Items.COAL) &&
-                (output.isEmpty() || (output.is(ModItems.COKE.get()) && output.getCount() < 64)) &&
-                fluidTank.getSpace() >= 250;
+        if (input.isEmpty()) return false;
+
+        // A: 石炭の場合
+        if (input.is(Items.COAL)) {
+            return (output.isEmpty() || (output.is(ModItems.COKE.get()) && output.getCount() < 64)) &&
+                    fluidTank.getSpace() >= 250;
+        }
+
+        // B: 未焼成電極の場合（液体は出ない・消費もしない設定）
+        if (input.is(ModItems.UNFIRED_GRAPHITE_ELECTRODE.get())) {
+            return (output.isEmpty() || (output.is(ModItems.BAKED_CARBON_ELECTRODE.get()) && output.getCount() < 64));
+        }
+
+        return false;
     }
 
     private void processItem() {
-        // 石炭を1つ減らす
-        itemHandler.extractItem(0, 1, false);
-        // コークスを1つ出す
-        ItemStack remainder =itemHandler.insertItem(2, new ItemStack(ModItems.COKE.get()), false);
+        ItemStack input = itemHandler.getStackInSlot(0);
 
-        if (!remainder.isEmpty()) {
-            System.out.println("コークスの生成に失敗：スロットが拒否しました");
+        if (input.is(Items.COAL)) {
+            // 石炭の処理
+            itemHandler.extractItem(0, 1, false);
+            itemHandler.insertItem(2, new ItemStack(ModItems.COKE.get()), false);
+            fluidTank.fill(new FluidStack(ModFluids.SOURCE_TAR.get(), 250), IFluidHandler.FluidAction.EXECUTE);
         }
-        // タールを250mB増やす
-        fluidTank.fill(new FluidStack(ModFluids.SOURCE_TAR.get(), 250), IFluidHandler.FluidAction.EXECUTE);
+        else if (input.is(ModItems.UNFIRED_GRAPHITE_ELECTRODE.get())) {
+            // 電極の処理（ベーク）
+            itemHandler.extractItem(0, 1, false);
+            itemHandler.insertItem(2, new ItemStack(ModItems.BAKED_CARBON_ELECTRODE.get()), false);
+            // 電極を焼くときはタールは出ない（むしろタールが固まる工程なので）
+        }
     }
 
     private void handleBucketConversion() {
@@ -187,7 +204,7 @@ public class CokeOvenBlockEntity extends BlockEntity implements MenuProvider {
 
     @Override
     public Component getDisplayName() {
-        return Component.literal("Coke Oven");
+        return Component.translatable(ModBlocks.COKEOVEN.get().getDescriptionId());
     }
 
     @Nullable

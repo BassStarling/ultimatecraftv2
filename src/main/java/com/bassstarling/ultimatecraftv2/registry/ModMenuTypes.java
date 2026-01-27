@@ -2,6 +2,7 @@ package com.bassstarling.ultimatecraftv2.registry;
 
 import com.bassstarling.ultimatecraftv2.UltimateCraftV2;
 import com.bassstarling.ultimatecraftv2.blockentity.CokeOvenBlockEntity;
+import com.bassstarling.ultimatecraftv2.menu.ArcFurnaceMenu;
 import com.bassstarling.ultimatecraftv2.menu.CokeOvenMenu;
 import com.bassstarling.ultimatecraftv2.menu.ElectrolyticFurnaceMenu;
 import com.bassstarling.ultimatecraftv2.menu.IndustrialWorkbenchMenu;
@@ -39,5 +40,8 @@ public class ModMenuTypes {
                         // ここで null を返すと、クライアント側は Menu を維持できず画面を閉じます
                         return null;
                     }));
+
+    public static final RegistryObject<MenuType<ArcFurnaceMenu>> ARC_FURNACE_MENU =
+            MENUS.register("arc_furnace_menu", () -> IForgeMenuType.create(ArcFurnaceMenu::new));
 
 }
