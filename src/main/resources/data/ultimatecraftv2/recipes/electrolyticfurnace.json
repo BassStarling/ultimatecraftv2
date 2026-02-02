@@ -8,7 +8,7 @@
     { "item": "ultimatecraftv2:refractory_brick" }, { "item": "ultimatecraftv2:heater" }, { "item": "ultimatecraftv2:heater" }, { "item": "ultimatecraftv2:heater" }, { "item": "ultimatecraftv2:refractory_brick" }
   ],
   "result": {
-    "item": "ultimatecraftv2:electrolytic_furnace",
+    "item": "ultimatecraftv2:electrolyticfurnace",
     "count": 1
   }
 }

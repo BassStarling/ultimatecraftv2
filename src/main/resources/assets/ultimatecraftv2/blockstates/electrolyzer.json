@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "ultimatecraftv2:block/electrolyzer", "y": 180 },
+    "facing=south": { "model": "ultimatecraftv2:block/electrolyzer"},
+    "facing=west":  { "model": "ultimatecraftv2:block/electrolyzer", "y": 90 },
+    "facing=east":  { "model": "ultimatecraftv2:block/electrolyzer", "y": 270 }
+  }
+}

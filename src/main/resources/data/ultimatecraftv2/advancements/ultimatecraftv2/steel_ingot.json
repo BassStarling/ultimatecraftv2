@@ -1,0 +1,23 @@
+{
+  "parent": "ultimatecraftv2:ultimatecraftv2/arc_furnace",
+  "display": {
+    "icon": {
+      "item": "ultimatecraftv2:steel_ingot"
+    },
+    "title": { "translate": "advancements.ultimatecraftv2.ultimatecraftv2.steel_ingot.title" },
+    "description": { "translate": "advancements.ultimatecraftv2.ultimatecraftv2.steel_ingot.description" },
+    "frame": "goal"
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["ultimatecraftv2:steel_ingot"]
+          }
+        ]
+      }
+    }
+  }
+}

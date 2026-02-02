@@ -19,6 +19,7 @@ license="${mod_license}"
 [[mods]] #mandatory
 # The modid of the mod
 modId="ultimatecraftv2" #mandatory
+class="com.bassstarling.ultimatecraftv2.compat.emi.IndustrialEmiPlugin"
 # The version number of the mod
 version="${mod_version}" #mandatory
 # A display name for the mod

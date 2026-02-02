@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "ultimatecraftv2:unfired_pig_iron"
+  },
+  "result": "ultimatecraftv2:pig_iron",
+  "experience": 1.0,
+  "cookingtime": 100
+}

@@ -26,6 +26,14 @@ public class ModRecipes {
     public static final RegistryObject<RecipeType<IndustrialRecipe>> INDUSTRIAL_TYPE =
             TYPES.register("industrial_crafting", () -> IndustrialRecipe.Type.INSTANCE);
 
+    // Serializerの登録
+    public static final RegistryObject<RecipeSerializer<CastingRecipe>> CASTING_SERIALIZER =
+            SERIALIZERS.register("casting_crafting", () -> CastingRecipe.Serializer.INSTANCE);
+
+    // Typeの登録
+    public static final RegistryObject<RecipeType<CastingRecipe>> CASTING_TYPE =
+            TYPES.register("casting_crafting", () -> CastingRecipe.Type.INSTANCE);
+
 
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);

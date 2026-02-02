@@ -1,5 +1,5 @@
 {
-  "parent": "ultimatecraftv2:ultimatecraftv2/arc_furnace",
+  "parent": "ultimatecraftv2:ultimatecraftv2/steel_ingot",
   "display": {
     "icon": {
       "item": "ultimatecraftv2:aluminium_ingot"

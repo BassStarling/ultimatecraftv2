@@ -2,6 +2,8 @@ package com.bassstarling.ultimatecraftv2;
 
 import com.bassstarling.ultimatecraftv2.client.ModItemProperties;
 import com.bassstarling.ultimatecraftv2.client.screen.IndustrialWorkbenchScreen;
+import com.bassstarling.ultimatecraftv2.datagen.ModItemModelProvider;
+import com.bassstarling.ultimatecraftv2.datagen.ModItemTagProvider;
 import com.bassstarling.ultimatecraftv2.fluid.ModFluids;
 import com.bassstarling.ultimatecraftv2.init.ModCreativeTabs;
 import com.bassstarling.ultimatecraftv2.recipe.ModRecipes;
@@ -13,7 +15,10 @@ import com.bassstarling.ultimatecraftv2.registry.ModMenuTypes;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
@@ -22,6 +27,9 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.data.BlockTagsProvider;
+import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -35,6 +43,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
+
+import java.util.concurrent.CompletableFuture;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(UltimateCraftV2.MOD_ID)
@@ -54,6 +64,8 @@ public class UltimateCraftV2
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
+
+        modEventBus.addListener(this::gatherData);
 
         ModRecipes.register(modEventBus);
 
@@ -93,6 +105,25 @@ public class UltimateCraftV2
     {
         // Do something when the server starts
         LOGGER.info("HELLO from server starting");
+    }
+
+    private void gatherData(GatherDataEvent event) {
+        DataGenerator generator = event.getGenerator();
+        PackOutput output = generator.getPackOutput();
+        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
+        ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+
+        // 1. まずブロックタグプロバイダーを作成（アイテムタグがこれを利用するため）
+        BlockTagsProvider blockTags = new BlockTagsProvider(output, lookupProvider, "ultimatecraftv2", existingFileHelper) {
+            @Override
+            protected void addTags(HolderLookup.Provider pProvider) {
+                // ブロックタグが必要なければ空でOK
+            }
+        };
+        generator.addProvider(event.includeServer(), blockTags);
+
+        // 2. アイテムタグプロバイダーを登録（blockTags.contentsGetter() を渡すのがコツ）
+        generator.addProvider(event.includeServer(), new ModItemTagProvider(output, lookupProvider, blockTags.contentsGetter(), existingFileHelper));
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent

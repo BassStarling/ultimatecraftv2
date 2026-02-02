@@ -111,4 +111,25 @@ public class ModBlocks {
                             .strength(3.0F, 3.0F)
                             .requiresCorrectToolForDrops()
                     ));
+    public static final RegistryObject<Block> ELECTROLYZER =
+            BLOCKS.register("electrolyzer",
+                    () -> new ElectrolyzerBlock(BlockBehaviour.Properties
+                            .of()
+                            .strength(3.0F, 3.0F)
+                            .requiresCorrectToolForDrops()
+                    ));
+    public static final RegistryObject<Block> OXYGEN_CONVERTER =
+            BLOCKS.register("oxygen_converter",
+                    () -> new OxygenConverterBlock(BlockBehaviour.Properties
+                            .of()
+                            .strength(3.0F, 3.0F)
+                            .requiresCorrectToolForDrops()
+                    ));
+    public static final RegistryObject<Block> CASTING_MACHINE =
+            BLOCKS.register("casting_machine",
+                    () -> new CastingMachineBlock(BlockBehaviour.Properties
+                            .of()
+                            .strength(3.0F, 3.0F)
+                            .requiresCorrectToolForDrops()
+                    ));
 }

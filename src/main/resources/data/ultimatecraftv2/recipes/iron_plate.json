@@ -1,0 +1,9 @@
+{
+  "type": "ultimatecraftv2:casting_crafting",
+  "inputA": { "item": "minecraft:iron_ingot" },
+  "inputB": { "item": "ultimatecraftv2:mold_plate" },
+  "output": {
+    "item": "ultimatecraftv2:iron_plate",
+    "count": 1
+  }
+}

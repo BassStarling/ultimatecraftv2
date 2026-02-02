@@ -13,9 +13,20 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, UltimateCraftV2.MOD_ID);
+
+    public enum MoldType {
+        PLATE("plate");
+
+        private final String name;
+        MoldType(String name) { this.name = name; }
+        public String getName() { return name; }
+    }
 
     public static final RegistryObject<Item> ASSEMBLED_CYLINDER_BLOCK =
             ITEMS.register("assembled_cylinder_block",
@@ -209,6 +220,65 @@ public class ModItems {
                             ModBlocks.ARC_FURNACE.get(),
                             new Item.Properties()
                     ));
+    public static final RegistryObject<Item> PIG_IRON =
+            ITEMS.register("pig_iron",
+                    () -> new Item(new Item.Properties()
+                    ));
+
+    public static final RegistryObject<Item> UNFIRED_PIG_IRON =
+            ITEMS.register("unfired_pig_iron",
+                    () -> new Item(new Item.Properties()
+                    ));
+
+    public static final RegistryObject<Item> STEEL_INGOT =
+            ITEMS.register("steel_ingot",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> ELECTROLYZER =
+            ITEMS.register("electrolyzer",
+                    () -> new BlockItem(
+                            ModBlocks.ELECTROLYZER.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> OXYGEN_BOTTLE =
+            ITEMS.register("oxygen_bottle",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> OXYGEN_CONVERTER =
+            ITEMS.register("oxygen_converter",
+                    () -> new BlockItem(
+                            ModBlocks.OXYGEN_CONVERTER.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> CASTING_MACHINE =
+            ITEMS.register("casting_machine",
+                    () -> new BlockItem(
+                            ModBlocks.CASTING_MACHINE.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> STEEL_PLATE =
+            ITEMS.register("steel_plate",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> ALUMINIUM_PLATE =
+            ITEMS.register("aluminium_plate",
+                    () -> new Item(new Item.Properties()
+                    ));
+
+    // --- 型（Mold）の自動登録システム ---
+    // 生成されたアイテムを保存しておくMap（後で他からアクセスするため）
+    public static final Map<MoldType, RegistryObject<Item>> MOLDS = new HashMap<>();
+
+    static {
+        for (MoldType type : MoldType.values()) {
+            String id = "mold_" + type.getName(); // 例: mold_plate, mold_gear
+
+            RegistryObject<Item> moldItem = ITEMS.register(id,
+                    () -> new Item(new Item.Properties().stacksTo(1))); // 型はスタックしない設定など
+
+            MOLDS.put(type, moldItem);
+        }
+    }
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

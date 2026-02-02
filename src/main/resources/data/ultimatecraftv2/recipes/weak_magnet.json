@@ -5,12 +5,18 @@
     { "item": "minecraft:iron_ingot" },
     { "item": "minecraft:honeycomb" },
 
-    { "item": "ultimatecraftv2:sparkstone_fragment" },
-    { "item": "ultimatecraftv2:sparkstone_fragment" },
-    { "item": "ultimatecraftv2:sparkstone_fragment" },
-    { "item": "ultimatecraftv2:sparkstone_fragment" },
-    { "item": "ultimatecraftv2:sparkstone_fragment" },
-    { "item": "ultimatecraftv2:sparkstone_fragment" }
+    {"item": "ultimatecraftv2:spark_stone",
+      "nbt": "{Tier:3}"},
+    {"item": "ultimatecraftv2:spark_stone",
+      "nbt": "{Tier:3}"},
+    {"item": "ultimatecraftv2:spark_stone",
+      "nbt": "{Tier:3}"},
+    {"item": "ultimatecraftv2:spark_stone",
+      "nbt": "{Tier:3}"},
+    {"item": "ultimatecraftv2:spark_stone",
+      "nbt": "{Tier:3}"},
+    {"item": "ultimatecraftv2:spark_stone",
+      "nbt": "{Tier:3}"}
   ],
   "result": {
     "item": "ultimatecraftv2:weak_magnet"

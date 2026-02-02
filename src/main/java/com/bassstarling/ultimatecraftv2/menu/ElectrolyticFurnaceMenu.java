@@ -110,7 +110,6 @@ public class ElectrolyticFurnaceMenu extends AbstractContainerMenu {
     public int getScaledProgress(int arrowWidth) {
         int progress = data.get(0);
         int maxProgress = data.get(1);
-
         if (maxProgress == 0) return 0;
         return progress * arrowWidth / maxProgress;
     }

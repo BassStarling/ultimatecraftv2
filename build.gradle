@@ -1,4 +1,5 @@
 plugins {
+    id 'java'
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
@@ -10,6 +11,10 @@ group = mod_group_id
 
 base {
     archivesName = mod_id
+}
+
+test {
+    useJUnitPlatform()
 }
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
@@ -82,6 +87,9 @@ minecraft {
         }
 
         client {
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             property 'forge.enabledGameTestNamespaces', mod_id
         }
@@ -112,6 +120,18 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
+    // これらが REI と Architectury をダウンロードするために必要です
+    maven { url "https://maven.shedaniel.me/" }      // REI 本体の配布元
+    maven { url "https://maven.architectury.dev/" } // Architectury の配布元
+    maven { url "https://maven.minecraftforge.net/" }
+
+    maven {
+        name = "TerraformersMC"
+        url = "https://maven.terraformersmc.com/"
+    }
+
+    mavenCentral()
+    mavenLocal()
     // Put repositories for dependencies here
     // ForgeGradle automatically adds the Forge maven and Maven Central for you
 
@@ -123,6 +143,12 @@ repositories {
 }
 
 dependencies {
+    // Forge (see below block as well if you use Forge Gradle)
+    compileOnly fg.deobf("dev.emi:emi-forge:${emi_version}:api")
+    runtimeOnly fg.deobf("dev.emi:emi-forge:${emi_version}")
+
+    // Architectury
+//    modCompileOnly "dev.emi:emi-xplat-intermediary:${emi_version}:api"
     // Specify the version of Minecraft to use.
     // Any artifact can be supplied so long as it has a "userdev" classifier artifact and is a compatible patcher artifact.
     // The "userdev" classifier will be requested and setup by ForgeGradle.

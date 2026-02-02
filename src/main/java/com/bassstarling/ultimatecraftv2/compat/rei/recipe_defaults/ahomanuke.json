@@ -1,0 +1,10 @@
+{
+  "added": [
+    "ultimatecraftv2:industrial_crafting/aluminium_pipe",
+    "ultimatecraftv2:industrial_crafting/pipe",
+    "ultimatecraftv2:casting_crafting/iron_plate",
+    "ultimatecraftv2:casting_crafting/steel_plate",
+    "ultimatecraftv2:casting_crafting/aluminium_plate",
+    "ultimatecraftv2:converter"
+  ]
+}

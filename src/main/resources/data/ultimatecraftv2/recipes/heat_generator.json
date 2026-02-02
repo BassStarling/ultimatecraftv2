@@ -20,6 +20,9 @@
     },
     "C": {
       "item": "ultimatecraftv2:coil"
+    },
+    "W": {
+      "item": "minecraft:water_bucket"
     }
   },
   "result": {

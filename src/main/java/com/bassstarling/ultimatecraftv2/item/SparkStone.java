@@ -17,12 +17,13 @@ public class SparkStone extends Item {
 
     public static int getTier(ItemStack stack) {
         if (!stack.hasTag()) return 1;
-        return stack.getTag().getInt("Tier");
+        return stack.getTag().getInt(TIER_KEY);
     }
 
     public static void setTier(ItemStack stack, int tier) {
         stack.getOrCreateTag().putInt(TIER_KEY, tier);
     }
+
     @Override
     public void inventoryTick(
             ItemStack stack,
@@ -31,11 +32,12 @@ public class SparkStone extends Item {
             int slotId,
             boolean isSelected
     ) {
-        if (level.isClientSide) {
-            int tier = getTier(stack);
-            stack.getOrCreateTag().putInt("CustomModelData", tier);
-        }
+        if (!level.isClientSide()) return;
+
+        int tier = getTier(stack);
+        stack.getOrCreateTag().putInt("CustomModelData", tier);
     }
+
 
     @Override
     public Component getName(ItemStack stack) {
@@ -45,7 +47,7 @@ public class SparkStone extends Item {
     }
     public static ItemStack createWithTier(int tier) {
         ItemStack stack = new ItemStack(ModItems.SPARK_STONE.get());
-        stack.getOrCreateTag().putInt("Tier", tier);
+        setTier(stack, tier);
         return stack;
     }
 }

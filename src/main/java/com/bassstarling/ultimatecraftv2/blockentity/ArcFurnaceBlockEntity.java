@@ -61,11 +61,13 @@ public class ArcFurnaceBlockEntity extends BlockEntity implements MenuProvider {
 
             // 指定したエネルギー量を代入
             int energyToAdd = switch (tier) {
-                case 1  -> 1000;
-                case 2  -> 4000;
-                case 3  -> 16000;
-                case 4  -> 32000; // 必要に応じて追加
-                default -> 250;   // Tier 0 または NBTなし
+                case 1  -> 20;
+                case 2  -> 40;
+                case 3  -> 80;
+                case 4  -> 160;
+                case 5  -> 320;
+                case 6  -> 640;
+                default -> 10;   // Tier 0 または NBTなし
             };
 
             this.energyBuffer = energyToAdd;
@@ -86,12 +88,6 @@ public class ArcFurnaceBlockEntity extends BlockEntity implements MenuProvider {
             }
         } else {
             progress = 0;
-        }
-
-        // 3. 点灯(LIT)状態の更新
-        boolean isProcessing = progress > 0; // 進捗が進んでいればON
-        if (level.getBlockState(worldPosition).getValue(ArcFurnaceBlock.LIT) != isProcessing) {
-            level.setBlock(worldPosition, level.getBlockState(worldPosition).setValue(ArcFurnaceBlock.LIT, isProcessing), 3);
         }
     }
 

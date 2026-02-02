@@ -75,4 +75,22 @@ public class ModBlockEntities {
                             ArcFurnaceBlockEntity::new,
                             ModBlocks.ARC_FURNACE.get()
                     ).build(null));
+    public static final RegistryObject<BlockEntityType<ElectrolyzerBlockEntity>> ELECTROLYZER_ =
+            BLOCK_ENTITIES.register("electrolyzer_",
+                    () -> BlockEntityType.Builder.of(
+                            ElectrolyzerBlockEntity::new,
+                            ModBlocks.ELECTROLYZER.get()
+                    ).build(null));
+    public static final RegistryObject<BlockEntityType<OxygenConverterBlockEntity>> OXYGEN_CONVERTER_BE =
+            BLOCK_ENTITIES.register("oxygen_converter_be",
+                    () -> BlockEntityType.Builder.of(
+                            OxygenConverterBlockEntity::new,
+                            ModBlocks.OXYGEN_CONVERTER.get()
+                    ).build(null));
+    public static final RegistryObject<BlockEntityType<CastingMachineBlockEntity>> CASTING_MACHINE_BE =
+            BLOCK_ENTITIES.register("casting_machine_be",
+                    () -> BlockEntityType.Builder.of(
+                            CastingMachineBlockEntity::new,
+                            ModBlocks.CASTING_MACHINE.get()
+                    ).build(null));
 }

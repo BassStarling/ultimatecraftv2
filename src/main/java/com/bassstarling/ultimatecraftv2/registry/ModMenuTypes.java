@@ -2,10 +2,7 @@ package com.bassstarling.ultimatecraftv2.registry;
 
 import com.bassstarling.ultimatecraftv2.UltimateCraftV2;
 import com.bassstarling.ultimatecraftv2.blockentity.CokeOvenBlockEntity;
-import com.bassstarling.ultimatecraftv2.menu.ArcFurnaceMenu;
-import com.bassstarling.ultimatecraftv2.menu.CokeOvenMenu;
-import com.bassstarling.ultimatecraftv2.menu.ElectrolyticFurnaceMenu;
-import com.bassstarling.ultimatecraftv2.menu.IndustrialWorkbenchMenu;
+import com.bassstarling.ultimatecraftv2.menu.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.Level;
@@ -40,8 +37,14 @@ public class ModMenuTypes {
                         // ここで null を返すと、クライアント側は Menu を維持できず画面を閉じます
                         return null;
                     }));
+    public static final RegistryObject<MenuType<CastingMachineMenu>>
+            CASTING_MACHINE_MENU =
+            MENUS.register("casting_machine_menu",
+                    () -> IForgeMenuType.create(CastingMachineMenu::new));
 
-    public static final RegistryObject<MenuType<ArcFurnaceMenu>> ARC_FURNACE_MENU =
-            MENUS.register("arc_furnace_menu", () -> IForgeMenuType.create(ArcFurnaceMenu::new));
+    public static final RegistryObject<MenuType<ArcFurnaceMenu>>
+            ARC_FURNACE_MENU =
+            MENUS.register("arc_furnace_menu",
+                    () -> IForgeMenuType.create(ArcFurnaceMenu::new));
 
 }
