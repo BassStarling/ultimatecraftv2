@@ -5,6 +5,10 @@
     "ultimatecraftv2:casting_crafting/iron_plate",
     "ultimatecraftv2:casting_crafting/steel_plate",
     "ultimatecraftv2:casting_crafting/aluminium_plate",
-    "ultimatecraftv2:converter"
+    "ultimatecraftv2:converter",
+    "ultimatecraftv2:iron_pig",
+    "ultimatecraftv2:unfired_pig_iron",
+    "ultimatecraftv2:coke_oven/coal_coke",
+    "ultimatecraftv2:coke_oven/tar_bucket"
   ]
 }

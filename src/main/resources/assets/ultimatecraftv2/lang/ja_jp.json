@@ -1,12 +1,12 @@
 {
-  "advancements.ultimatecraftv2.ultimatecraftv2.aluminium_ingot.description": "アルミニウムを精製する",
-  "advancements.ultimatecraftv2.ultimatecraftv2.aluminium_ingot.title": "チュートリアル修了",
+  "advancements.ultimatecraftv2.ultimatecraftv2.aluminium_ingot.description": "チュートリアルを修了する",
+  "advancements.ultimatecraftv2.ultimatecraftv2.aluminium_ingot.title": "電気の缶詰",
   "advancements.ultimatecraftv2.ultimatecraftv2.arc_furnace.description": "アーク炉を作成する",
   "advancements.ultimatecraftv2.ultimatecraftv2.arc_furnace.title": "俺の最高火力をぶつける",
   "advancements.ultimatecraftv2.ultimatecraftv2.compressor.description": "”電力”を圧縮してコンパクトにまとめる",
-  "advancements.ultimatecraftv2.ultimatecraftv2.compressor.title": "”電力”は圧縮される",
+  "advancements.ultimatecraftv2.ultimatecraftv2.compressor.title": "あくまで石を圧縮しているのだよ",
   "advancements.ultimatecraftv2.ultimatecraftv2.heat_generator.description": "熱発電機を作成する",
-  "advancements.ultimatecraftv2.ultimatecraftv2.heat_generator.title": "スパークのインフレ",
+  "advancements.ultimatecraftv2.ultimatecraftv2.heat_generator.title": "まるで噴水の如く",
   "advancements.ultimatecraftv2.ultimatecraftv2.industrial_workbench.description": "業務用作業台を作成する",
   "advancements.ultimatecraftv2.ultimatecraftv2.industrial_workbench.title": "業者の作業台",
   "advancements.ultimatecraftv2.ultimatecraftv2.pipe.description": "パイプを作成する",
@@ -35,6 +35,7 @@
   "creativetab.ultimatecraftv2": "UltimateCraft V2",
   "emi.category.ultimatecraftv2.industrial_crafting": "工業用クラフト",
   "emi.category.ultimatecraftv2.casting_crafting": "鋳造",
+  "emi.category.ultimatecraftv2.coke_oven": "コークオーブン",
   "item.ultimatecraftv2.alumina": "アルミナ",
   "item.ultimatecraftv2.aluminium_ingot": "アルミニウムインゴット",
   "item.ultimatecraftv2.aluminium_plate": "アルミニウムの板",
@@ -76,5 +77,6 @@
   "item.ultimatecraftv2.unfired_pig_iron": "未焼成銑鉄",
   "item.ultimatecraftv2.washed_bauxite_powder": "ボーキサイトの粉",
   "item.ultimatecraftv2.weak_magnet": "弱い磁石",
-  "item.ultimatecraftv2.wire": "導線"
+  "item.ultimatecraftv2.wire": "導線",
+  "fluid.ultimatecraftv2.tar": "タール"
 }
