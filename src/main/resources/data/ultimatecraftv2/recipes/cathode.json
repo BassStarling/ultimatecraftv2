@@ -1,0 +1,14 @@
+{
+  "type": "ultimatecraftv2:industrial_crafting",
+  "ingredients": [
+    {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {},
+    {}, {}, {}, {}, {},
+    { "item": "ultimatecraftv2:wire" }, { "item": "minecraft:iron_ingot" }, { "item": "ultimatecraftv2:graphite_electrode" }, { "item": "ultimatecraftv2:graphite_electrode" }, { "item": "ultimatecraftv2:graphite_electrode" }
+  ],
+  "result": {
+    "item": "ultimatecraftv2:cathode",
+    "count": 1
+  }
+}

@@ -202,12 +202,12 @@ public class ModItems {
             ITEMS.register("coke_dust",
                     () -> new Item(new Item.Properties()
                     ));
-    public static final RegistryObject<Item> UNFIRED_GRAPHITE_ELECTRODE =
-            ITEMS.register("unfired_graphite_electrode",
+    public static final RegistryObject<Item> UNFIRED_ELECTRODE =
+            ITEMS.register("unfired_electrode",
                     () -> new Item(new Item.Properties()
                     ));
-    public static final RegistryObject<Item> BAKED_CARBON_ELECTRODE =
-            ITEMS.register("baked_carbon_electrode",
+    public static final RegistryObject<Item> COKE_ELECTRODE =
+            ITEMS.register("coke_electrode",
                     () -> new Item(new Item.Properties()
                     ));
     public static final RegistryObject<Item> GRAPHITE_ELECTRODE =
@@ -264,6 +264,46 @@ public class ModItems {
             ITEMS.register("aluminium_plate",
                     () -> new Item(new Item.Properties()
                     ));
+    public static final RegistryObject<Item> HIGH_PURITY_ALUMINA =
+            ITEMS.register("high_purity_alumina",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> SINTERED_CERAMIC =
+            ITEMS.register("sintered_ceramic",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> POWER_SUPPLY =
+            ITEMS.register("power_supply",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> WELDING_MACHINE =
+            ITEMS.register("welding_machine",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> HAMMER =
+            ITEMS.register("hammer",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> FORMED_CERAMIC =
+            ITEMS.register("formed_ceramic",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> ADDITIVE_PROCESSED_SINTERED_CERAMIC =
+            ITEMS.register("additive_processed_sintered_ceramic",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> ELECTROLYTIC_LAYER =
+            ITEMS.register("electrolytic_layer",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> CATHODE =
+            ITEMS.register("cathode",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> ANODE =
+            ITEMS.register("anode",
+                    () -> new Item(new Item.Properties()
+                    ));
 
     // --- 型（Mold）の自動登録システム ---
     // 生成されたアイテムを保存しておくMap（後で他からアクセスするため）
@@ -284,3 +324,25 @@ public class ModItems {
         ITEMS.register(eventBus);
     }
 }
+//石灰岩(limestone)は比較的風化されにくいので、山脈中の高いピークや大きな山となっている場合が多い。ヒマラヤ山脈のエベレストの頂上や、アルプス山脈のアイガー等は石灰岩でできている。日本では伊吹山や藤原岳や武甲山が全山、石灰岩である。
+//（quick lime）生石灰
+//（slaked lime）消石灰。酸化カルシウムに加水すると生成する。
+//水酸化ナトリウム（sodium hydroxide）は消石灰と炭酸ナトリウムの複分解反応（2つの水溶液を混ぜる)。
+//炭酸ナトリウム（sodium carbonate）炭酸水素ナトリウムを熱すると得られる。
+//炭酸水素ナトリウム(sodium bicarbonate）塩化ナトリウム溶液の電気分解で得られた水酸化ナトリウム溶液に、二酸化炭素を反応させて製造する。
+//塩化ナトリウム=塩(salt)
+
+//高純度アルミナ
+//+ 炭酸ナトリウム
+//→ 発泡アルミナ(Foamed alumina)
+
+//発泡アルミナ
+//+ 高温焼成
+//→ 多孔質断熱ブロック(Porous Insulation Block)
+
+//電解機の材料に必要とする電極でチタンやプラチナを使用するらしい。
+//↑工場とかでの話で完全にオーバースペックらしい
+//プラチナのレア度はダイヤの4万倍ほど。
+//結局電極にはより一般的なニッケルを使用する
+//ニッケル(nickel)は抽出冶金によって得られます。鉱石から従来の焙焼および還元プロセスによって抽出され、純度75%以上の金属が得られます。
+//ニッケル鉱石(nickel_ore)を還元焙焼(使用するのはコークオーブンとする)すると不純ながら(約75%)ニッケルを得ることができる。十分運用可能である。

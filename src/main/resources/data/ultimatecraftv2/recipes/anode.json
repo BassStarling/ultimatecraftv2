@@ -1,0 +1,14 @@
+{
+  "type": "ultimatecraftv2:industrial_crafting",
+  "ingredients": [
+    { "item": "ultimatecraftv2:coke_electrode" }, { "item": "ultimatecraftv2:coke_electrode" }, { "item": "minecraft:iron_ingot" }, { "item": "ultimatecraftv2:coke_electrode" }, { "item": "ultimatecraftv2:coke_electrode" },
+    { "item": "ultimatecraftv2:coke_electrode" }, { "item": "minecraft:iron_ingot" }, { "item": "minecraft:iron_ingot" }, { "item": "minecraft:iron_ingot" }, { "item": "ultimatecraftv2:coke_electrode" },
+    { "item": "ultimatecraftv2:coke_electrode" }, { "item": "minecraft:iron_ingot" }, { "item": "ultimatecraftv2:coke_electrode" }, { "item": "minecraft:iron_ingot" }, { "item": "ultimatecraftv2:coke_electrode" },
+    { "item": "ultimatecraftv2:coke_electrode" }, { "item": "minecraft:iron_ingot" }, { "item": "ultimatecraftv2:coke_electrode" }, { "item": "minecraft:iron_ingot" }, { "item": "ultimatecraftv2:coke_electrode" },
+    { "item": "ultimatecraftv2:coke_electrode" }, { "item": "ultimatecraftv2:coke_electrode" }, { "item": "ultimatecraftv2:coke_electrode" }, { "item": "ultimatecraftv2:coke_electrode" }, { "item": "ultimatecraftv2:coke_electrode" }
+  ],
+  "result": {
+    "item": "ultimatecraftv2:anode",
+    "count": 1
+  }
+}

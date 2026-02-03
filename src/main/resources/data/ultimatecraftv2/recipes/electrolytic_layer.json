@@ -1,0 +1,14 @@
+{
+  "type": "ultimatecraftv2:industrial_crafting",
+  "ingredients": [
+    { "item": "ultimatecraftv2:additive_processed_sintered_ceramic" }, {}, { "item": "ultimatecraftv2:wire" }, {}, { "item": "ultimatecraftv2:additive_processed_sintered_ceramic" },
+    { "item": "ultimatecraftv2:additive_processed_sintered_ceramic" }, {}, { "item": "ultimatecraftv2:anode" }, {}, { "item": "ultimatecraftv2:additive_processed_sintered_ceramic" },
+    { "item": "ultimatecraftv2:additive_processed_sintered_ceramic" }, {}, {}, {}, { "item": "ultimatecraftv2:additive_processed_sintered_ceramic" },
+    { "item": "ultimatecraftv2:wire" }, { "item": "ultimatecraftv2:cathode" }, { "item": "ultimatecraftv2:cathode" }, { "item": "ultimatecraftv2:cathode" }, { "item": "ultimatecraftv2:additive_processed_sintered_ceramic" },
+    { "item": "ultimatecraftv2:additive_processed_sintered_ceramic" }, { "item": "ultimatecraftv2:additive_processed_sintered_ceramic" }, { "item": "ultimatecraftv2:additive_processed_sintered_ceramic" }, { "item": "ultimatecraftv2:additive_processed_sintered_ceramic" }, { "item": "ultimatecraftv2:additive_processed_sintered_ceramic" }
+  ],
+  "result": {
+    "item": "ultimatecraftv2:electrolytic_layer",
+    "count": 1
+  }
+}

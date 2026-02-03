@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "ultimatecraftv2:high_purity_alumina" },
+    { "item": "ultimatecraftv2:tar_bucket" },
+    { "item": "minecraft:clay_ball" },
+    { "item": "minecraft:clay_ball" }
+  ],
+  "result": {
+    "item": "ultimatecraftv2:formed_ceramic"
+  }
+}

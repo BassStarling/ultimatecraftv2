@@ -35,7 +35,7 @@ public class ArcFurnaceBlockEntity extends BlockEntity implements MenuProvider {
     };
 
     // 2. エネルギー貯蔵（FE: Forge Energy）
-    private final EnergyStorage energyStorage = new EnergyStorage(10000, 500); // 最大10000FE, 毎tick 500受電
+    private final EnergyStorage energyStorage = new EnergyStorage(10000, 10); // 最大10000FE, 毎tick 10受電
     private LazyOptional<IItemHandler> inventoryOptional = LazyOptional.empty();
     private int progress = 0;
     private final int maxProgress = 200; // 10秒(20tick * 10)で1個加工
@@ -72,12 +72,10 @@ public class ArcFurnaceBlockEntity extends BlockEntity implements MenuProvider {
 
             this.energyBuffer = energyToAdd;
 
-            // アイテムを1個減らす
             sparkStack.shrink(1);
             setChanged();
         }
 
-        // 2. 加工ロジック (energyStorage ではなく energyBuffer を参照)
         if (canProcess() && energyBuffer > 0) {
             energyBuffer -= 2; // FEの代わりにバッファを消費
             progress++;
@@ -95,17 +93,13 @@ public class ArcFurnaceBlockEntity extends BlockEntity implements MenuProvider {
         ItemStack input = itemHandler.getStackInSlot(0);
         ItemStack output = itemHandler.getStackInSlot(1);
 
-        // ベーク済みカーボン電極が入っているかチェック
-        return input.is(ModItems.BAKED_CARBON_ELECTRODE.get()) &&
+        return input.is(ModItems.COKE_ELECTRODE.get()) &&
                 (output.isEmpty() || (output.is(ModItems.GRAPHITE_ELECTRODE.get()) && output.getCount() < 64));
     }
 
     private void processItem() {
         itemHandler.extractItem(0, 1, false);
         itemHandler.insertItem(1, new ItemStack(ModItems.GRAPHITE_ELECTRODE.get()), false);
-
-        // アーク放電の音を鳴らす
-//        level.playSound(null, worldPosition, SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.BLOCKS, 0.5f, 2.0f);
     }
 
     protected final ContainerData data = new ContainerData() {

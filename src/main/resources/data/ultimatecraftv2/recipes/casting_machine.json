@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "P P",
+    "AWA"
+  ],
+  "key": {
+    "A": {
+      "tag": "minecraft:stone_crafting_materials"
+    },
+    "W": {
+      "item": "ultimatecraftv2:wire"
+    },
+    "P": {
+      "item": "minecraft:piston"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:casting_machine",
+    "count": 1
+  }
+}

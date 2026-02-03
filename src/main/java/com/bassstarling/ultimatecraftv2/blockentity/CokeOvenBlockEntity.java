@@ -46,7 +46,7 @@ public class CokeOvenBlockEntity extends BlockEntity implements MenuProvider {
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             return switch (slot) {
-                case 0 -> stack.is(Items.COAL)|| stack.is(ModItems.UNFIRED_GRAPHITE_ELECTRODE.get());
+                case 0 -> stack.is(Items.COAL)|| stack.is(ModItems.UNFIRED_ELECTRODE.get());
                 case 1 -> ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0; // 燃料
                 case 2 -> true; // 出力スロットには入れられない
                 case 3 -> stack.is(Items.BUCKET); // バケツスロット
@@ -143,15 +143,13 @@ public class CokeOvenBlockEntity extends BlockEntity implements MenuProvider {
 
         if (input.isEmpty()) return false;
 
-        // A: 石炭の場合
         if (input.is(Items.COAL)) {
             return (output.isEmpty() || (output.is(ModItems.COKE.get()) && output.getCount() < 64)) &&
                     fluidTank.getSpace() >= 250;
         }
 
-        // B: 未焼成電極の場合（液体は出ない・消費もしない設定）
-        if (input.is(ModItems.UNFIRED_GRAPHITE_ELECTRODE.get())) {
-            return (output.isEmpty() || (output.is(ModItems.BAKED_CARBON_ELECTRODE.get()) && output.getCount() < 64));
+        if (input.is(ModItems.UNFIRED_ELECTRODE.get())) {
+            return (output.isEmpty() || (output.is(ModItems.COKE_ELECTRODE.get()) && output.getCount() < 64));
         }
 
         return false;
@@ -161,16 +159,13 @@ public class CokeOvenBlockEntity extends BlockEntity implements MenuProvider {
         ItemStack input = itemHandler.getStackInSlot(0);
 
         if (input.is(Items.COAL)) {
-            // 石炭の処理
             itemHandler.extractItem(0, 1, false);
             itemHandler.insertItem(2, new ItemStack(ModItems.COKE.get()), false);
             fluidTank.fill(new FluidStack(ModFluids.SOURCE_TAR.get(), 250), IFluidHandler.FluidAction.EXECUTE);
         }
-        else if (input.is(ModItems.UNFIRED_GRAPHITE_ELECTRODE.get())) {
-            // 電極の処理（ベーク）
+        else if (input.is(ModItems.UNFIRED_ELECTRODE.get())) {
             itemHandler.extractItem(0, 1, false);
-            itemHandler.insertItem(2, new ItemStack(ModItems.BAKED_CARBON_ELECTRODE.get()), false);
-            // 電極を焼くときはタールは出ない（むしろタールが固まる工程なので）
+            itemHandler.insertItem(2, new ItemStack(ModItems.COKE_ELECTRODE.get()), false);
         }
     }
 
@@ -210,11 +205,9 @@ public class CokeOvenBlockEntity extends BlockEntity implements MenuProvider {
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
-        // サーバー側でMenuをインスタンス化
         return new CokeOvenMenu(pContainerId, pPlayerInventory, this, this.data);
     }
 
-    // CokeOvenBlockEntity.java 内
     public Container getItemHandlerAsSimpleContainer() {
         SimpleContainer container = new SimpleContainer(itemHandler.getSlots());
         for (int i = 0; i < itemHandler.getSlots(); i++) {
@@ -223,12 +216,7 @@ public class CokeOvenBlockEntity extends BlockEntity implements MenuProvider {
         return container;
     }
 
-    // ネットワーク経由でBlockPosをクライアントに送る（MenuType登録時のdata.readBlockPos用）
-    // これを忘れるとクライアント側でBEが見つからずクラッシュします
-    // これが NetworkHooks.openScreen の第3引数で呼ばれます
     public void writeMenuGuideData(FriendlyByteBuf buffer) {
         buffer.writeBlockPos(this.worldPosition);
     }
-
-    // NBT保存, Capability等の定型文は省略
 }

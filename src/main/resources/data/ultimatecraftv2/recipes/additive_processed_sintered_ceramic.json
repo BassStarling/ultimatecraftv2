@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "ultimatecraftv2:cryolite" },
+    { "item": "ultimatecraftv2:sintered_ceramic" },
+    { "item": "ultimatecraftv2:sintered_ceramic" },
+    { "item": "ultimatecraftv2:sintered_ceramic" }
+  ],
+  "result": {
+    "item": "ultimatecraftv2:additive_processed_sintered_ceramic",
+    "count": 4
+  }
+}

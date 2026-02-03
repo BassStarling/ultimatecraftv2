@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BHB",
+    "IWI",
+    "BPB"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:iron_block"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "W": {
+      "item": "ultimatecraftv2:welding_machine"
+    },
+    "H": {
+      "item": "ultimatecraftv2:hammer"
+    },
+    "P": {
+      "item": "ultimatecraftv2:power_supply"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:industrial_workbench",
+    "count": 1
+  }
+}
