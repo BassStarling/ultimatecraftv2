@@ -29,7 +29,7 @@ public class CastingEmiRecipe implements EmiRecipe {
 
     @Override
     public EmiRecipeCategory getCategory() {
-        return IndustrialEmiPlugin.CASTING_CATEGORY;
+        return IndustrialEmiPlugin.CASTING_CRAFTING_CATEGORY;
     }
 
     @Override

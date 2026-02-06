@@ -133,8 +133,12 @@ public class IndustrialWorkbenchMenu extends AbstractContainerMenu {
         @Override
         public void onTake(Player player, ItemStack stack) {
             entity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
+                // 現在の盤面でバニラレシピが成立しているか再確認
+                // (簡易的には、アイテムが入っているスロットを各1つ減らす)
                 for (int i = 0; i < 25; i++) {
-                    handler.extractItem(i, 1, false);
+                    if (!handler.getStackInSlot(i).isEmpty()) {
+                        handler.extractItem(i, 1, false);
+                    }
                 }
             });
             super.onTake(player, stack);

@@ -15,9 +15,13 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.inventory.TransientCraftingContainer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.CraftingRecipe;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -56,27 +60,56 @@ public class IndustrialWorkbenchBlockEntity extends BlockEntity implements MenuP
         super(ModBlockEntities.INDUSTRIAL_WORKBENCH.get(), p_155229_, p_155230_);
     }
 
-    // ★重要: これが作業台の「核」となる処理です
     public void updateRecipe() {
         if (this.level == null || this.level.isClientSide) return;
 
-        // 25スロット分のコンテナを作る（レシピ判定用）
-        SimpleContainer container = new SimpleContainer(25);
+        // 1. まずは 5x5 (Industrial Recipe) の判定
+        SimpleContainer industrialContainer = new SimpleContainer(25);
         for (int i = 0; i < 25; i++) {
-            container.setItem(i, itemHandler.getStackInSlot(i));
+            industrialContainer.setItem(i, itemHandler.getStackInSlot(i));
         }
 
-        // レシピマネージャーから、登録した Type に一致するものを探す
-        Optional<IndustrialRecipe> recipe = this.level.getRecipeManager()
-                .getRecipeFor(ModRecipes.INDUSTRIAL_CRAFTING_TYPE.get(), container, level);
+        Optional<IndustrialRecipe> industrialRecipe = this.level.getRecipeManager()
+                .getRecipeFor(ModRecipes.INDUSTRIAL_CRAFTING_TYPE.get(), industrialContainer, level);
 
-        if (recipe.isPresent()) {
-            // 見つかったらクラフト結果を取得してセット
-            itemHandler.setStackInSlot(25, recipe.get().assemble(container, level.registryAccess()));
-        } else {
-            // レシピがなければ完成品スロットを空にする
-            itemHandler.setStackInSlot(25, ItemStack.EMPTY);
+        if (industrialRecipe.isPresent()) {
+            itemHandler.setStackInSlot(25, industrialRecipe.get().assemble(industrialContainer, level.registryAccess()));
+            return; // 業務用レシピが見つかればここで終了
         }
+
+        // 2. 業務用が見つからない場合、バニラの 3x3 レシピを判定
+        // ここでは 5x5 の「左上 3x3」を判定に使用する例です（中央にしたい場合はオフセットを変更）
+        CraftingContainer vanillaContainer = new TransientCraftingContainer(new AbstractContainerMenu(null, -1) {
+            @Override public ItemStack quickMoveStack(Player p_38941_, int p_38942_) { return ItemStack.EMPTY; }
+            @Override public boolean stillValid(Player p_38943_) { return false; }
+        }, 3, 3);
+
+        boolean hasItemOutside3x3 = false;
+        for (int row = 0; row < 5; row++) {
+            for (int col = 0; col < 5; col++) {
+                ItemStack stack = itemHandler.getStackInSlot(col + row * 5);
+                if (row < 3 && col < 3) {
+                    // 左上 3x3 の範囲内
+                    vanillaContainer.setItem(col + row * 3, stack);
+                } else if (!stack.isEmpty()) {
+                    // 3x3 の外側にアイテムがある場合はバニラレシピを無効化する（誤作動防止）
+                    hasItemOutside3x3 = true;
+                }
+            }
+        }
+
+        if (!hasItemOutside3x3) {
+            Optional<CraftingRecipe> vanillaRecipe = this.level.getRecipeManager()
+                    .getRecipeFor(RecipeType.CRAFTING, vanillaContainer, level);
+
+            if (vanillaRecipe.isPresent()) {
+                itemHandler.setStackInSlot(25, vanillaRecipe.get().assemble(vanillaContainer, level.registryAccess()));
+                return;
+            }
+        }
+
+        // どちらも見つからなければ空にする
+        itemHandler.setStackInSlot(25, ItemStack.EMPTY);
     }
 
     // --- データの保存・読み込み (必須) ---

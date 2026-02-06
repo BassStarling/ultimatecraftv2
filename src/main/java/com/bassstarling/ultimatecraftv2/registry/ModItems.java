@@ -5,15 +5,19 @@ import com.bassstarling.ultimatecraftv2.init.ModTiers;
 import com.bassstarling.ultimatecraftv2.item.PipeItem;
 import com.bassstarling.ultimatecraftv2.item.SoBolt;
 import com.bassstarling.ultimatecraftv2.item.SparkStone;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ModItems {
@@ -53,20 +57,68 @@ public class ModItems {
             ITEMS.register("spark_generator",
                     () -> new BlockItem(
                             ModBlocks.SPARK_GENERATOR.get(),
-                            new Item.Properties()
-                    ));
+                            new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+                            // シフトキーを押している間だけ詳細を表示する設定
+                            if (Screen.hasShiftDown()) {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.spark_generator.details")
+                                        .withStyle(ChatFormatting.AQUA));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.spark_generator.usage")
+                                        .withStyle(ChatFormatting.GRAY));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.wiki")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            } else {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.hold_shift")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            }
+                            super.appendHoverText(stack, level, tooltip, flag);
+                        }
+                    });
     public static final RegistryObject<Item> SPARK_COMPRESSOR =
             ITEMS.register("spark_compressor",
                     () -> new BlockItem(
                             ModBlocks.SPARK_COMPRESSOR.get(),
-                            new Item.Properties()
-                    ));
+                            new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+                            // シフトキーを押している間だけ詳細を表示する設定
+                            if (Screen.hasShiftDown()) {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.spark_compressor.details")
+                                        .withStyle(ChatFormatting.AQUA));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.spark_compressor.usage")
+                                        .withStyle(ChatFormatting.GRAY));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.wiki")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            } else {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.hold_shift")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            }
+                            super.appendHoverText(stack, level, tooltip, flag);
+                        }
+                    });
     public static final RegistryObject<Item> HEATE_GENERATOR =
             ITEMS.register("heat_generator",
                     () -> new BlockItem(
                             ModBlocks.HEAT_GENERATOR.get(),
-                            new Item.Properties()
-                    ));
+                            new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+                            // シフトキーを押している間だけ詳細を表示する設定
+                            if (Screen.hasShiftDown()) {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.heat_generator.details")
+                                        .withStyle(ChatFormatting.AQUA));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.heat_generator.usage")
+                                        .withStyle(ChatFormatting.GRAY));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.wiki")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            } else {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.hold_shift")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            }
+                            super.appendHoverText(stack, level, tooltip, flag);
+                        }
+                    });
     public static final RegistryObject<Item> IRON_PLATE =
             ITEMS.register("iron_plate",
                     () -> new Item(new Item.Properties()
@@ -97,8 +149,24 @@ public class ModItems {
             ITEMS.register("crusher_block",
                     () -> new BlockItem(
                             ModBlocks.CRUSHER_BLOCK.get(),
-                            new Item.Properties()
-                    ));
+                            new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+                            // シフトキーを押している間だけ詳細を表示する設定
+                            if (Screen.hasShiftDown()) {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.crusher_block.details")
+                                        .withStyle(ChatFormatting.AQUA));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.crusher_block.usage")
+                                        .withStyle(ChatFormatting.GRAY));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.wiki")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            } else {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.hold_shift")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            }
+                            super.appendHoverText(stack, level, tooltip, flag);
+                        }
+                    });
     public static final RegistryObject<Item> WASHED_BAUXITE_POWDER =
             ITEMS.register("washed_bauxite_powder",
                     () -> new Item(new Item.Properties()
@@ -107,8 +175,24 @@ public class ModItems {
             ITEMS.register("washing_machine",
                     () -> new BlockItem(
                             ModBlocks.WASHING_MACHINE.get(),
-                            new Item.Properties()
-                    ));
+                            new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+                            // シフトキーを押している間だけ詳細を表示する設定
+                            if (Screen.hasShiftDown()) {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.washing_machine.details")
+                                        .withStyle(ChatFormatting.AQUA));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.washing_machine.usage")
+                                        .withStyle(ChatFormatting.GRAY));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.wiki")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            } else {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.hold_shift")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            }
+                            super.appendHoverText(stack, level, tooltip, flag);
+                        }
+                    });
     public static final RegistryObject<Item> ALUMINA =
             ITEMS.register("alumina",
                     () -> new Item(new Item.Properties()
@@ -117,8 +201,24 @@ public class ModItems {
             ITEMS.register("eletriccalciner",
                     () -> new BlockItem(
                             ModBlocks.ELETRICCALCINER.get(),
-                            new Item.Properties()
-                    ));
+                            new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+                            // シフトキーを押している間だけ詳細を表示する設定
+                            if (Screen.hasShiftDown()) {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.eletriccalciner.details")
+                                        .withStyle(ChatFormatting.AQUA));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.eletriccalciner.usage")
+                                        .withStyle(ChatFormatting.GRAY));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.wiki")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            } else {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.hold_shift")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            }
+                            super.appendHoverText(stack, level, tooltip, flag);
+                        }
+                    });
     public static final RegistryObject<Item> IRON_WIRE =
             ITEMS.register("iron_wire",
                     () -> new Item(new Item.Properties()
@@ -141,8 +241,24 @@ public class ModItems {
             ITEMS.register("electrolyticfurnace",
                     () -> new BlockItem(
                             ModBlocks.ELECTROLYTICFURNACE.get(),
-                            new Item.Properties()
-                    ));
+                            new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+                            // シフトキーを押している間だけ詳細を表示する設定
+                            if (Screen.hasShiftDown()) {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.electrolyticfurnace.details")
+                                        .withStyle(ChatFormatting.AQUA));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.electrolyticfurnace.usage")
+                                        .withStyle(ChatFormatting.GRAY));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.wiki")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            } else {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.hold_shift")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            }
+                            super.appendHoverText(stack, level, tooltip, flag);
+                        }
+                    });
     public static final RegistryObject<Item> MOLTEN_CRYOLITE =
             ITEMS.register("molten_cryolite",
                     () -> new Item(new Item.Properties()
@@ -155,8 +271,24 @@ public class ModItems {
             ITEMS.register("used_electrolyticfurnace",
                     () -> new BlockItem(
                             ModBlocks.USED_ELECTROLYTICFURNACE.get(),
-                            new Item.Properties()
-                    ));
+                            new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+                            // シフトキーを押している間だけ詳細を表示する設定
+                            if (Screen.hasShiftDown()) {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.used_electrolyticfurnace.details")
+                                        .withStyle(ChatFormatting.AQUA));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.used_electrolyticfurnace.usage")
+                                        .withStyle(ChatFormatting.GRAY));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.wiki")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            } else {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.hold_shift")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            }
+                            super.appendHoverText(stack, level, tooltip, flag);
+                        }
+                    });
     public static final RegistryObject<Item> ALUMINIUM_INGOT =
             ITEMS.register("aluminium_ingot",
                     () -> new Item(new Item.Properties()
@@ -218,18 +350,32 @@ public class ModItems {
             ITEMS.register("arc_furnace",
                     () -> new BlockItem(
                             ModBlocks.ARC_FURNACE.get(),
-                            new Item.Properties()
-                    ));
+                            new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+                            // シフトキーを押している間だけ詳細を表示する設定
+                            if (Screen.hasShiftDown()) {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.arc_furnace.details")
+                                        .withStyle(ChatFormatting.AQUA));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.arc_furnace.usage")
+                                        .withStyle(ChatFormatting.GRAY));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.wiki")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            } else {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.hold_shift")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            }
+                            super.appendHoverText(stack, level, tooltip, flag);
+                        }
+                    });
     public static final RegistryObject<Item> PIG_IRON =
             ITEMS.register("pig_iron",
                     () -> new Item(new Item.Properties()
                     ));
-
     public static final RegistryObject<Item> UNFIRED_PIG_IRON =
             ITEMS.register("unfired_pig_iron",
                     () -> new Item(new Item.Properties()
                     ));
-
     public static final RegistryObject<Item> STEEL_INGOT =
             ITEMS.register("steel_ingot",
                     () -> new Item(new Item.Properties()
@@ -238,8 +384,24 @@ public class ModItems {
             ITEMS.register("electrolyzer",
                     () -> new BlockItem(
                             ModBlocks.ELECTROLYZER.get(),
-                            new Item.Properties()
-                    ));
+                            new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+                            // シフトキーを押している間だけ詳細を表示する設定
+                            if (Screen.hasShiftDown()) {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.electrolyzer.details")
+                                        .withStyle(ChatFormatting.AQUA));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.electrolyzer.usage")
+                                        .withStyle(ChatFormatting.GRAY));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.wiki")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            } else {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.hold_shift")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            }
+                            super.appendHoverText(stack, level, tooltip, flag);
+                        }
+                    });
     public static final RegistryObject<Item> OXYGEN_BOTTLE =
             ITEMS.register("oxygen_bottle",
                     () -> new Item(new Item.Properties()
@@ -248,14 +410,46 @@ public class ModItems {
             ITEMS.register("oxygen_converter",
                     () -> new BlockItem(
                             ModBlocks.OXYGEN_CONVERTER.get(),
-                            new Item.Properties()
-                    ));
+                            new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+                            // シフトキーを押している間だけ詳細を表示する設定
+                            if (Screen.hasShiftDown()) {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.oxygen_converter.details")
+                                        .withStyle(ChatFormatting.AQUA));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.oxygen_converter.usage")
+                                        .withStyle(ChatFormatting.GRAY));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.wiki")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            } else {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.hold_shift")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            }
+                            super.appendHoverText(stack, level, tooltip, flag);
+                        }
+                    });
     public static final RegistryObject<Item> CASTING_MACHINE =
             ITEMS.register("casting_machine",
                     () -> new BlockItem(
                             ModBlocks.CASTING_MACHINE.get(),
-                            new Item.Properties()
-                    ));
+                            new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+                            // シフトキーを押している間だけ詳細を表示する設定
+                            if (Screen.hasShiftDown()) {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.casting_machine.details")
+                                        .withStyle(ChatFormatting.AQUA));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.casting_machine.usage")
+                                        .withStyle(ChatFormatting.GRAY));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.wiki")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            } else {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.hold_shift")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            }
+                            super.appendHoverText(stack, level, tooltip, flag);
+                        }
+                    });
     public static final RegistryObject<Item> STEEL_PLATE =
             ITEMS.register("steel_plate",
                     () -> new Item(new Item.Properties()
@@ -274,12 +468,44 @@ public class ModItems {
                     ));
     public static final RegistryObject<Item> POWER_SUPPLY =
             ITEMS.register("power_supply",
-                    () -> new Item(new Item.Properties()
-                    ));
+                    () -> new Item(new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+                            // シフトキーを押している間だけ詳細を表示する設定
+                            if (Screen.hasShiftDown()) {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.power_supply.details")
+                                        .withStyle(ChatFormatting.AQUA));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.power_supply.usage")
+                                        .withStyle(ChatFormatting.GRAY));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.wiki")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            } else {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.hold_shift")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            }
+                            super.appendHoverText(stack, level, tooltip, flag);
+                        }
+                    });
     public static final RegistryObject<Item> WELDING_MACHINE =
             ITEMS.register("welding_machine",
-                    () -> new Item(new Item.Properties()
-                    ));
+                    () -> new Item(new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+                            // シフトキーを押している間だけ詳細を表示する設定
+                            if (Screen.hasShiftDown()) {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.welding_machine.details")
+                                        .withStyle(ChatFormatting.AQUA));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.welding_machine.usage")
+                                        .withStyle(ChatFormatting.GRAY));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.wiki")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            } else {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.hold_shift")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            }
+                            super.appendHoverText(stack, level, tooltip, flag);
+                        }
+                    });
     public static final RegistryObject<Item> HAMMER =
             ITEMS.register("hammer",
                     () -> new Item(new Item.Properties()

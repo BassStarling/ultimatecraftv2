@@ -10,6 +10,7 @@ import dev.emi.emi.api.EmiEntrypoint;
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
+import dev.emi.emi.api.recipe.VanillaEmiRecipeCategories;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import net.minecraft.resources.ResourceLocation;
@@ -29,7 +30,7 @@ public class IndustrialEmiPlugin implements EmiPlugin {
             EmiStack.of(ModBlocks.INDUSTRIAL_WORKBENCH.get())
     );
 
-    public static final EmiRecipeCategory CASTING_CATEGORY = new EmiRecipeCategory(
+    public static final EmiRecipeCategory CASTING_CRAFTING_CATEGORY = new EmiRecipeCategory(
             new ResourceLocation("ultimatecraftv2", "casting_crafting"),
             EmiStack.of(ModBlocks.CASTING_MACHINE.get())
     );
@@ -60,6 +61,14 @@ public class IndustrialEmiPlugin implements EmiPlugin {
             new EmiRecipeCategory(new ResourceLocation("ultimatecraftv2", "calciner"),
                     EmiStack.of(ModBlocks.ELETRICCALCINER.get()));
 
+    public static final EmiRecipeCategory ELECTROLYTIC_CATEGORY =
+            new EmiRecipeCategory(new ResourceLocation("ultimatecraftv2", "electrolytic"),
+                    EmiStack.of(ModBlocks.ELECTROLYTICFURNACE.get()));
+
+    public static final EmiRecipeCategory CASTING_CATEGORY =
+            new EmiRecipeCategory(new ResourceLocation("ultimatecraftv2", "casting"),
+                    EmiStack.of(ModBlocks.CASTING_MACHINE.get()));
+
     @Override
     public void register(EmiRegistry registry) {
 
@@ -77,9 +86,9 @@ public class IndustrialEmiPlugin implements EmiPlugin {
             registry.addRecipe(new IndustrialEmiRecipe(recipe));
         }
 
-        registry.addCategory(CASTING_CATEGORY);
+        registry.addCategory(CASTING_CRAFTING_CATEGORY);
 
-        registry.addWorkstation(CASTING_CATEGORY, EmiStack.of(ModBlocks.CASTING_MACHINE.get()));
+        registry.addWorkstation(CASTING_CRAFTING_CATEGORY, EmiStack.of(ModBlocks.CASTING_MACHINE.get()));
 
         for (CastingRecipe recipe : manager.getAllRecipesFor(ModRecipes.CASTING_TYPE.get())) {
             registry.addRecipe(new CastingEmiRecipe(recipe));
@@ -174,5 +183,27 @@ public class IndustrialEmiPlugin implements EmiPlugin {
                 EmiStack.of(ModItems.WASHED_BAUXITE_POWDER.get()),
                 EmiStack.of(ModItems.ALUMINA.get())
         ));
+
+        registry.addCategory(ELECTROLYTIC_CATEGORY);
+        registry.addWorkstation(ELECTROLYTIC_CATEGORY, EmiStack.of(ModBlocks.ELECTROLYTICFURNACE.get()));
+
+        // 電解精錬レシピの登録
+        registry.addRecipe(new ElectrolyticFurnaceEmiRecipe(
+                new ResourceLocation("ultimatecraftv2", "electrolytic/aluminum_smelting")
+        ));
+
+        registry.addRecipe(new MoltenAluminumExtractionEmiRecipe(
+                new ResourceLocation("ultimatecraftv2", "electrolytic/collect_aluminum")
+        ));
+
+        registry.addCategory(CASTING_CATEGORY);
+        registry.addWorkstation(CASTING_CATEGORY, EmiStack.of(ModBlocks.CASTING_MACHINE.get()));
+
+        // アルミニウムの鋳造レシピ
+        registry.addRecipe(new CastingMachineEmiRecipe(
+                new ResourceLocation("ultimatecraftv2", "casting/aluminum_ingot")
+        ));
+
+        registry.addWorkstation(VanillaEmiRecipeCategories.CRAFTING, EmiStack.of(ModBlocks.INDUSTRIAL_WORKBENCH.get()));
     }
 }

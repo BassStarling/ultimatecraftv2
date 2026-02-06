@@ -43,6 +43,9 @@
     "ultimatecraftv2:crusher/coke_dust",
     "ultimatecraftv2:washing/washed_bauxite_powder",
     "ultimatecraftv2:washing/high_purity_alumina",
-    "ultimatecraftv2:calciner/alumina"
+    "ultimatecraftv2:calciner/alumina",
+    "ultimatecraftv2:electrolytic/aluminum_smelting",
+    "ultimatecraftv2:electrolytic/collect_aluminum",
+    "ultimatecraftv2:casting/aluminum_ingot"
   ]
 }
