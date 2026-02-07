@@ -16,7 +16,6 @@
     "ultimatecraftv2:crafting_shaped/casting_machine",
     "ultimatecraftv2:crafting_shapeless/coil",
     "ultimatecraftv2:crafting_shaped/crusher_block",
-    "ultimatecraftv2:crafting_shaped/electrolyticfurnace",
     "ultimatecraftv2:crafting_shaped/eletric_calciner",
     "ultimatecraftv2:crafting_shaped/formed_ceramic",
     "ultimatecraftv2:crafting_shaped/hammer",
@@ -46,6 +45,19 @@
     "ultimatecraftv2:calciner/alumina",
     "ultimatecraftv2:electrolytic/aluminum_smelting",
     "ultimatecraftv2:electrolytic/collect_aluminum",
-    "ultimatecraftv2:casting/aluminum_ingot"
+    "ultimatecraftv2:casting/aluminum_ingot",
+    "ultimatecraftv2:chemical/slaked_lime",
+    "ultimatecraftv2:electrolysis/sodium_hydroxide",
+    "ultimatecraftv2:chemical/carbonation",
+    "ultimatecraftv2:calciner/porous_insulation",
+    "ultimatecraftv2:industrial_crafting/arc_furnace",
+    "ultimatecraftv2:industrial_crafting/electrolyticfurnace",
+    "ultimatecraftv2:industrial_crafting/electrolyzer",
+    "ultimatecraftv2:crafting_shapeless/brine_bottle",
+    "ultimatecraftv2:industrial_crafting/thermal_control_circuit",
+    "ultimatecraftv2:industrial_crafting/sodium_carbonate_solution_bottle",
+    "ultimatecraftv2:industrial_crafting/sodium_hydroxide_regeneration",
+    "ultimatecraftv2:crafting_shapeless/foamed_alumina",
+    "ultimatecraftv2:coke_oven/nickel_smelting"
   ]
 }

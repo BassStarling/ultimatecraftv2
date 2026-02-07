@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ultimatecraftv2:sodium_carbonate_solution_bottle"
+    },
+    {
+      "item": "ultimatecraftv2:slaked_lime"
+    }
+  ],
+  "result": {
+    "item": "ultimatecraftv2:sodium_hydroxide_solution_bottle",
+    "count": 1
+  }
+}

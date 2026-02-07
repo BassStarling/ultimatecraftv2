@@ -1,18 +1,12 @@
 {
   "type": "ultimatecraftv2:industrial_crafting",
-  "pattern": [
-    "SSWSS",
-    "SCHCS",
-    "WHHHW",
-    "SCHCS",
-    "SSWSS"
+  "ingredients": [
+    { "item": "ultimatecraftv2:steel_plate" }, { "item": "ultimatecraftv2:steel_plate" }, { "item": "ultimatecraftv2:wire" }, { "item": "ultimatecraftv2:steel_plate" }, { "item": "ultimatecraftv2:steel_plate" },
+    { "item": "ultimatecraftv2:steel_plate" }, { "item": "ultimatecraftv2:porous_insulation_block" }, { "item": "ultimatecraftv2:graphite_electrode" }, { "item": "ultimatecraftv2:porous_insulation_block" }, { "item": "ultimatecraftv2:steel_plate" },
+    { "item": "ultimatecraftv2:wire" }, { "item": "ultimatecraftv2:graphite_electrode" }, { "item": "ultimatecraftv2:thermal_control_circuit" }, { "item": "ultimatecraftv2:graphite_electrode" }, { "item": "ultimatecraftv2:wire" },
+    { "item": "ultimatecraftv2:steel_plate" }, { "item": "ultimatecraftv2:porous_insulation_block" }, { "item": "ultimatecraftv2:graphite_electrode" }, { "item": "ultimatecraftv2:porous_insulation_block" }, { "item": "ultimatecraftv2:steel_plate" },
+    { "item": "ultimatecraftv2:steel_plate" }, { "item": "ultimatecraftv2:steel_plate" }, { "item": "ultimatecraftv2:wire" }, { "item": "ultimatecraftv2:steel_plate" }, { "item": "ultimatecraftv2:steel_plate" }
   ],
-  "key": {
-    "S": { "item": "ultimatecraftv2:iron_sheet" },
-    "H": { "item": "ultimatecraftv2:heater" },
-    "W": { "item": "ultimatecraftv2:copper_wire" },
-    "C": { "item": "ultimatecraftv2:basic_circuit" }
-  },
   "result": {
     "item": "ultimatecraftv2:arc_furnace",
     "count": 1

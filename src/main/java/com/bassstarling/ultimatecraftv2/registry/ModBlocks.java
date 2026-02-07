@@ -132,4 +132,39 @@ public class ModBlocks {
                             .strength(3.0F, 3.0F)
                             .requiresCorrectToolForDrops()
                     ));
+    public static final RegistryObject<Block> LIMESTONE =
+            BLOCKS.register("limestone",
+                    () -> new Block(BlockBehaviour.Properties
+                            .of().mapColor(MapColor.STONE)
+                            .requiresCorrectToolForDrops()
+                            .strength(1.5F, 6.0F)));
+
+    public static final RegistryObject<Block> SALT_BLOCK =
+            BLOCKS.register("salt_block",
+                    () -> new Block(BlockBehaviour.Properties
+                            .of().mapColor(MapColor.QUARTZ)
+                            .requiresCorrectToolForDrops()
+                            .strength(0.5F, 0.5F)
+                            .sound(SoundType.SAND)));
+    public static final RegistryObject<Block> POROUS_INSULATION_BLOCK =
+            BLOCKS.register("porous_insulation_block",
+                    () -> new Block(BlockBehaviour.Properties
+                            .of()
+                            .strength(1.0F, 1.0F)
+                            .requiresCorrectToolForDrops()
+                    ));
+    public static final RegistryObject<Block> NICKEL_ORE =
+            BLOCKS.register("nickel_ore",
+                    () -> new Block(BlockBehaviour.Properties
+                            .of()
+                            .strength(2.0F, 2.0F)
+                            .requiresCorrectToolForDrops()
+                    ));
+    public static final RegistryObject<Block> DEEPSLATE_NICKEL_ORE =
+            BLOCKS.register("deepslate_nickel_ore",
+                    () -> new Block(BlockBehaviour.Properties
+                            .of()
+                            .strength(2.0F, 2.0F)
+                            .requiresCorrectToolForDrops()
+                    ));
 }

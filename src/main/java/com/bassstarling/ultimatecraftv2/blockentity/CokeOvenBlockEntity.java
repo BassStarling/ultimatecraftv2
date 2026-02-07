@@ -1,6 +1,7 @@
 package com.bassstarling.ultimatecraftv2.blockentity;
 
 import com.bassstarling.ultimatecraftv2.fluid.ModFluids;
+import com.bassstarling.ultimatecraftv2.item.SparkStone;
 import com.bassstarling.ultimatecraftv2.menu.CokeOvenMenu;
 import com.bassstarling.ultimatecraftv2.registry.ModBlockEntities;
 import com.bassstarling.ultimatecraftv2.registry.ModBlocks;
@@ -46,10 +47,13 @@ public class CokeOvenBlockEntity extends BlockEntity implements MenuProvider {
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             return switch (slot) {
-                case 0 -> stack.is(Items.COAL)|| stack.is(ModItems.UNFIRED_ELECTRODE.get());
-                case 1 -> ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0; // 燃料
-                case 2 -> true; // 出力スロットには入れられない
-                case 3 -> stack.is(Items.BUCKET); // バケツスロット
+                // 入力スロットに 粗ニッケル を許可
+                case 0 -> stack.is(Items.COAL)
+                        || stack.is(ModItems.UNFIRED_ELECTRODE.get())
+                        || stack.is(ModItems.RAW_NICKEL.get());
+                case 1 -> ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
+                case 2 -> true;
+                case 3 -> stack.is(Items.BUCKET);
                 default -> super.isItemValid(slot, stack);
             };
         }
@@ -140,9 +144,18 @@ public class CokeOvenBlockEntity extends BlockEntity implements MenuProvider {
     private boolean canProcess() {
         ItemStack input = itemHandler.getStackInSlot(0);
         ItemStack output = itemHandler.getStackInSlot(2);
+        ItemStack fuel = itemHandler.getStackInSlot(1); // 燃料スロット
 
         if (input.isEmpty()) return false;
 
+        // ニッケル精錬の判定: スパークストーン T4 が燃料スロットにあること
+        if (input.is(ModItems.RAW_NICKEL.get())) {
+            boolean hasSparkT4 = !fuel.isEmpty() && fuel.is(ModItems.SPARK_STONE.get()) && SparkStone.getTier(fuel) == 4;
+            // スパークストーンがある場合、出力スロットが空かニッケルインゴットであること
+            return hasSparkT4 && (output.isEmpty() || (output.is(ModItems.NICKEL_INGOT.get()) && output.getCount() < 64));
+        }
+
+        // 既存のコークス・電極の判定
         if (input.is(Items.COAL)) {
             return (output.isEmpty() || (output.is(ModItems.COKE.get()) && output.getCount() < 64)) &&
                     fluidTank.getSpace() >= 250;
@@ -158,7 +171,15 @@ public class CokeOvenBlockEntity extends BlockEntity implements MenuProvider {
     private void processItem() {
         ItemStack input = itemHandler.getStackInSlot(0);
 
-        if (input.is(Items.COAL)) {
+        // ニッケルの処理
+        if (input.is(ModItems.RAW_NICKEL.get())) {
+            itemHandler.extractItem(0, 1, false);
+            itemHandler.insertItem(2, new ItemStack(ModItems.NICKEL_INGOT.get()), false);
+            // 副産物としてタールを少し出す設定にすると、現実の不純物分離っぽくなります（任意）
+            fluidTank.fill(new FluidStack(ModFluids.SOURCE_TAR.get(), 100), IFluidHandler.FluidAction.EXECUTE);
+        }
+        // 既存の処理
+        else if (input.is(Items.COAL)) {
             itemHandler.extractItem(0, 1, false);
             itemHandler.insertItem(2, new ItemStack(ModItems.COKE.get()), false);
             fluidTank.fill(new FluidStack(ModFluids.SOURCE_TAR.get(), 250), IFluidHandler.FluidAction.EXECUTE);

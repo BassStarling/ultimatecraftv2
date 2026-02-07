@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ultimatecraftv2:item/sodium_hydroxide_solution_bottle"
+  }
+}

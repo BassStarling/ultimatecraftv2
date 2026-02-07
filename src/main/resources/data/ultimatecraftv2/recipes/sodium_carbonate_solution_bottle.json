@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "ultimatecraftv2:sodium_bicarbonate_solution_bottle"
+  },
+  "result": "ultimatecraftv2:sodium_carbonate_solution_bottle",
+  "experience": 0.1,
+  "cookingtime": 200
+}

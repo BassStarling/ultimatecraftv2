@@ -2,6 +2,9 @@
   "replace": false,
   "values": [
     "ultimatecraftv2:bauxite_ore",
-    "ultimatecraftv2:cryolite_ore"
+    "ultimatecraftv2:cryolite_ore",
+    "ultimatecraftv2:limestone",
+    "ultimatecraftv2:nickel_ore",
+    "ultimatecraftv2:deepslate_nickel_ore"
   ]
 }

@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": "ultimatecraftv2:nickel_ore",
+  "step": "underground_ores"
+}

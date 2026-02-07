@@ -124,5 +124,22 @@
   "tooltip.ultimatecraftv2.power_supply.details": "",
   "tooltip.ultimatecraftv2.power_supply.usage": "",
   "tooltip.ultimatecraftv2.welding_machine.details": "",
-  "tooltip.ultimatecraftv2.welding_machine.usage": ""
+  "tooltip.ultimatecraftv2.welding_machine.usage": "",
+  "block.ultimatecraftv2.salt_block": "塩ブロック",
+  "item.ultimatecraftv2.salt": "塩",
+  "emi.category.ultimatecraftv2.chemical_reaction": "化学反応",
+  "item.ultimatecraftv2.quick_lime": "生石灰",
+  "item.ultimatecraftv2.slaked_lime": "消石灰",
+  "block.ultimatecraftv2.limestone": "石灰岩",
+  "item.ultimatecraftv2.brine_bottle": "塩水入り瓶",
+  "item.ultimatecraftv2.thermal_control_circuit": "耐熱制御基盤",
+  "item.ultimatecraftv2.nickel_ingot": "ニッケルインゴット",
+  "item.ultimatecraftv2.raw_nickel": "ニッケルの原石",
+  "block.ultimatecraftv2.deepslate_nickel_ore": "深層ニッケル鉱石",
+  "block.ultimatecraftv2.nickel_ore": "ニッケル鉱石",
+  "item.ultimatecraftv2.porous_insulation_block": "多孔質断熱ブロック",
+  "item.ultimatecraftv2.foamed_alumina": "泡状アルミナ",
+  "item.ultimatecraftv2.sodium_carbonate_solution_bottle": "炭酸ナトリウム溶液入り瓶",
+  "item.ultimatecraftv2.sodium_bicarbonate_solution_bottle": "炭酸水素ナトリウム溶液入り瓶",
+  "item.ultimatecraftv2.sodium_hydroxide_solution_bottle": "水酸化ナトリウム溶液入り瓶"
 }

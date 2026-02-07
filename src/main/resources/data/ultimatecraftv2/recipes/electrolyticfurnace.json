@@ -5,7 +5,7 @@
     {}, { "item": "ultimatecraftv2:steel_plate" }, { "item": "minecraft:iron_ingot" }, { "item": "ultimatecraftv2:steel_plate" }, {},
     {}, { "item": "minecraft:iron_ingot" }, { "item": "ultimatecraftv2:electrolytic_layer" }, { "item": "ultimatecraftv2:steel_plate" }, {},
     {}, { "item": "ultimatecraftv2:steel_plate" }, { "item": "ultimatecraftv2:steel_plate" }, { "item": "ultimatecraftv2:steel_plate" }, {},
-    {}, {}, {}, {}, {}
+    { "item": "ultimatecraftv2:porous_insulation_block" }, { "item": "ultimatecraftv2:porous_insulation_block" }, { "item": "ultimatecraftv2:porous_insulation_block" }, { "item": "ultimatecraftv2:porous_insulation_block" }, { "item": "ultimatecraftv2:porous_insulation_block" }
   ],
   "result": {
     "item": "ultimatecraftv2:electrolyticfurnace",

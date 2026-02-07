@@ -1,0 +1,14 @@
+{
+  "type": "ultimatecraftv2:industrial_crafting",
+  "ingredients": [
+    {"item": "ultimatecraftv2:iron_plate"},{"item": "ultimatecraftv2:wire"},{"item": "ultimatecraftv2:iron_plate"},{"item": "ultimatecraftv2:wire"},{"item": "ultimatecraftv2:iron_plate"},
+    {"item": "ultimatecraftv2:iron_plate"},{"item": "ultimatecraftv2:nickel_ingot"},{"item": "ultimatecraftv2:additive_processed_sintered_ceramic"},{"item": "ultimatecraftv2:nickel_ingot"},{"item": "ultimatecraftv2:iron_plate"},
+    {"item": "ultimatecraftv2:iron_plate"},{"item": "ultimatecraftv2:nickel_ingot"},{},{"item": "ultimatecraftv2:nickel_ingot"},{"item": "ultimatecraftv2:iron_plate"},
+    {"item": "ultimatecraftv2:iron_plate"},{},{},{},{"item": "ultimatecraftv2:iron_plate"},
+    {"item": "ultimatecraftv2:iron_plate"},{"item": "ultimatecraftv2:additive_processed_sintered_ceramic"},{"item": "ultimatecraftv2:additive_processed_sintered_ceramic"},{"item": "ultimatecraftv2:additive_processed_sintered_ceramic"},{"item": "ultimatecraftv2:iron_plate"}
+  ],
+  "result": {
+    "item": "ultimatecraftv2:electrolyzer",
+    "count": 1
+  }
+}

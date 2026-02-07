@@ -5,12 +5,26 @@ import com.bassstarling.ultimatecraftv2.init.ModTiers;
 import com.bassstarling.ultimatecraftv2.item.PipeItem;
 import com.bassstarling.ultimatecraftv2.item.SoBolt;
 import com.bassstarling.ultimatecraftv2.item.SparkStone;
+import dev.emi.emi.api.stack.EmiStack;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -530,6 +544,139 @@ public class ModItems {
             ITEMS.register("anode",
                     () -> new Item(new Item.Properties()
                     ));
+    public static final RegistryObject<Item> SALT_BLOCK =
+            ITEMS.register("salt_block",
+                    () -> new BlockItem(
+                            ModBlocks.SALT_BLOCK.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> LIMESTONE =
+            ITEMS.register("limestone",
+                    () -> new BlockItem(
+                            ModBlocks.LIMESTONE.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> SALT =
+            ITEMS.register("salt",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> QUICK_LIME =
+            ITEMS.register("quick_lime",
+                    () -> new Item(new Item.Properties()) {
+                        @Override
+                        public InteractionResult useOn(UseOnContext context) {
+                            Level level = context.getLevel();
+                            BlockPos pos = context.getClickedPos();
+                            BlockState state = level.getBlockState(pos);
+                            Player player = context.getPlayer();
+
+                            // 水源ブロック（あるいは水を含むブロック）を右クリックしたか判定
+                            if (state.getFluidState().is(FluidTags.WATER)) {
+                                if (!level.isClientSide) {
+                                    // 1. 生石灰を消費
+                                    context.getItemInHand().shrink(1);
+
+                                    // 2. 消石灰をドロップ
+                                    ItemStack result = new ItemStack(ModItems.SLAKED_LIME.get());
+                                    ItemHandlerHelper.giveItemToPlayer(player, result);
+
+                                    // 3. 演出（湯気とジュッという音）
+                                    level.playSound(null, pos, SoundEvents.LAVA_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
+                                    ((ServerLevel) level).sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE,
+                                            pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, 5, 0.1, 0.1, 0.1, 0.05);
+                                }
+                                return InteractionResult.sidedSuccess(level.isClientSide);
+                            }
+                            return InteractionResult.PASS;
+                        }
+                    });
+    public static final RegistryObject<Item> SLAKED_LIME =
+            ITEMS.register("slaked_lime",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> BRINE_BOTTLE =
+            ITEMS.register("brine_bottle",
+            () -> new Item(new Item.Properties()
+                    .stacksTo(1)
+            ));
+    public static final RegistryObject<Item> SODIUM_HYDROXIDE_SOLUTION_BOTTLE =
+            ITEMS.register("sodium_hydroxide_solution_bottle",
+                    () -> new Item(new Item.Properties()
+                            .stacksTo(1)){@Override
+                    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
+                        ItemStack itemstack = pPlayer.getItemInHand(pHand);
+
+                        // サーバーサイドでのみ処理を行う
+                        if (!pLevel.isClientSide) {
+                            // 1. パーティクルや音の演出（空気を吸い込んでいるような演出）
+                            pLevel.playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(),
+                                    SoundEvents.BREWING_STAND_BREW, SoundSource.PLAYERS, 0.5F, 1.0F);
+
+                            // 2. 新しいアイテム（炭酸水素ナトリウム溶液入り瓶）の作成
+                            ItemStack resultStack = new ItemStack(ModItems.SODIUM_BICARBONATE_SOLUTION_BOTTLE.get());
+
+                            // 3. アイテムの消費と付与（クリエイティブモードを考慮）
+                            if (!pPlayer.getAbilities().instabuild) {
+                                itemstack.shrink(1);
+                            }
+
+                            if (itemstack.isEmpty()) {
+                                return InteractionResultHolder.success(resultStack);
+                            } else {
+                                if (!pPlayer.getInventory().add(resultStack)) {
+                                    pPlayer.drop(resultStack, false);
+                                }
+                            }
+                        }
+
+                        return InteractionResultHolder.sidedSuccess(itemstack, pLevel.isClientSide());
+                    }}
+                    );
+    public static final RegistryObject<Item> SODIUM_BICARBONATE_SOLUTION_BOTTLE =
+            ITEMS.register("sodium_bicarbonate_solution_bottle",
+                    () -> new Item(new Item.Properties()
+                            .stacksTo(1)
+                    ));
+    public static final RegistryObject<Item> SODIUM_CARBONATE_SOLUTION_BOTTLE =
+            ITEMS.register("sodium_carbonate_solution_bottle",
+                    () -> new Item(new Item.Properties()
+                            .stacksTo(1)
+                            .craftRemainder(Items.GLASS_BOTTLE)
+                    ));
+    public static final RegistryObject<Item> FOAMED_ALUMINA =
+            ITEMS.register("foamed_alumina",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> POROUS_INSULATION_BLOCK =
+            ITEMS.register("porous_insulation_block",
+                    () -> new BlockItem(
+                            ModBlocks.POROUS_INSULATION_BLOCK.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> NICKEL_ORE =
+            ITEMS.register("nickel_ore",
+                    () -> new BlockItem(
+                            ModBlocks.NICKEL_ORE.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> DEEPSLATE_NICKEL_ORE =
+            ITEMS.register("deepslate_nickel_ore",
+                    () -> new BlockItem(
+                            ModBlocks.DEEPSLATE_NICKEL_ORE.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> RAW_NICKEL =
+            ITEMS.register("raw_nickel",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> NICKEL_INGOT =
+            ITEMS.register("nickel_ingot",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> THERMAL_CONTROL_CIRCUIT =
+            ITEMS.register("thermal_control_circuit",
+                    () -> new Item(new Item.Properties()
+                    ));
 
     // --- 型（Mold）の自動登録システム ---
     // 生成されたアイテムを保存しておくMap（後で他からアクセスするため）
@@ -550,25 +697,5 @@ public class ModItems {
         ITEMS.register(eventBus);
     }
 }
-//石灰岩(limestone)は比較的風化されにくいので、山脈中の高いピークや大きな山となっている場合が多い。ヒマラヤ山脈のエベレストの頂上や、アルプス山脈のアイガー等は石灰岩でできている。日本では伊吹山や藤原岳や武甲山が全山、石灰岩である。
-//（quick lime）生石灰
-//（slaked lime）消石灰。酸化カルシウムに加水すると生成する。
-//水酸化ナトリウム（sodium hydroxide）は消石灰と炭酸ナトリウムの複分解反応（2つの水溶液を混ぜる)。
-//炭酸ナトリウム（sodium carbonate）炭酸水素ナトリウムを熱すると得られる。
-//炭酸水素ナトリウム(sodium bicarbonate）塩化ナトリウム溶液の電気分解で得られた水酸化ナトリウム溶液に、二酸化炭素を反応させて製造する。
-//塩化ナトリウム=塩(salt)
-
-//高純度アルミナ
-//+ 炭酸ナトリウム
-//→ 発泡アルミナ(Foamed alumina)
-
-//発泡アルミナ
-//+ 高温焼成
-//→ 多孔質断熱ブロック(Porous Insulation Block)
-
 //電解機の材料に必要とする電極でチタンやプラチナを使用するらしい。
-//↑工場とかでの話で完全にオーバースペックらしい
 //プラチナのレア度はダイヤの4万倍ほど。
-//結局電極にはより一般的なニッケルを使用する
-//ニッケル(nickel)は抽出冶金によって得られます。鉱石から従来の焙焼および還元プロセスによって抽出され、純度75%以上の金属が得られます。
-//ニッケル鉱石(nickel_ore)を還元焙焼(使用するのはコークオーブンとする)すると不純ながら(約75%)ニッケルを得ることができる。十分運用可能である。

@@ -9,15 +9,20 @@ import com.bassstarling.ultimatecraftv2.registry.ModItems;
 import dev.emi.emi.api.EmiEntrypoint;
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
+import dev.emi.emi.api.recipe.EmiCraftingRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.recipe.VanillaEmiRecipeCategories;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
+import dev.emi.emi.api.widget.WidgetHolder;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeManager;
+
+import java.util.List;
 
 @EmiEntrypoint
 public class IndustrialEmiPlugin implements EmiPlugin {
@@ -46,7 +51,7 @@ public class IndustrialEmiPlugin implements EmiPlugin {
     );
 
     public static final EmiRecipeCategory ELECTROLYZER_CATEGORY = new EmiRecipeCategory(
-            new ResourceLocation("ultimatecraftv2", "electrolyzer"),
+            new ResourceLocation("ultimatecraftv2", "electrolyzer.json"),
                     EmiStack.of(ModBlocks.ELECTROLYZER.get()));
 
     public static final EmiRecipeCategory ARC_FURNACE_CATEGORY =
@@ -68,6 +73,10 @@ public class IndustrialEmiPlugin implements EmiPlugin {
     public static final EmiRecipeCategory CASTING_CATEGORY =
             new EmiRecipeCategory(new ResourceLocation("ultimatecraftv2", "casting"),
                     EmiStack.of(ModBlocks.CASTING_MACHINE.get()));
+
+    public static final EmiRecipeCategory CHEMICAL_CATEGORY =
+            new EmiRecipeCategory(new ResourceLocation("ultimatecraftv2", "chemical_reaction"),
+                    EmiStack.of(ModItems.QUICK_LIME.get())); // カテゴリアイコンを生石灰に
 
     @Override
     public void register(EmiRegistry registry) {
@@ -121,7 +130,7 @@ public class IndustrialEmiPlugin implements EmiPlugin {
 
         // レシピ登録
         registry.addRecipe(new ElectrolyzerEmiRecipe(
-                new ResourceLocation("ultimatecraftv2", "electrolyzer/oxygen_bottle")
+                new ResourceLocation("ultimatecraftv2", "electrolyzer.json/oxygen_bottle")
         ));
 
         registry.addCategory(ARC_FURNACE_CATEGORY);
@@ -202,6 +211,49 @@ public class IndustrialEmiPlugin implements EmiPlugin {
         // アルミニウムの鋳造レシピ
         registry.addRecipe(new CastingMachineEmiRecipe(
                 new ResourceLocation("ultimatecraftv2", "casting/aluminum_ingot")
+        ));
+
+        registry.addCategory(CHEMICAL_CATEGORY);
+
+        // レシピ登録
+        registry.addRecipe(new SlakedLimeEmiRecipe(
+                new ResourceLocation("ultimatecraftv2", "chemical/slaked_lime")
+        ));
+
+        registry.addRecipe(new ElectrolyzerEmiRecipe(
+                new ResourceLocation("ultimatecraftv2", "electrolysis/sodium_hydroxide"),
+                EmiStack.of(ModItems.BRINE_BOTTLE.get()),
+                EmiStack.of(ModItems.SPARK_STONE.get()), // ここでティア4であることをアイコン等で示すと親切です
+                EmiStack.of(ModItems.SODIUM_HYDROXIDE_SOLUTION_BOTTLE.get())
+        ));
+
+        registry.addRecipe(new EmiCraftingRecipe(
+                List.of(EmiStack.of(ModItems.SODIUM_HYDROXIDE_SOLUTION_BOTTLE.get())),
+                EmiStack.of(ModItems.SODIUM_BICARBONATE_SOLUTION_BOTTLE.get()),
+                new ResourceLocation("ultimatecraftv2", "chemical/carbonation"),
+                false // シャッフルなし
+        ) {
+            @Override
+            public void addWidgets(WidgetHolder widgets) {
+                super.addWidgets(widgets);
+                // 右クリックが必要であることをアイコンやテキストで補足
+                widgets.addText(Component.literal("右クリックで空気と反応"), 0, 0, 0xAAAAAA, false);
+            }
+        });
+
+        registry.addRecipe(new ElectrolyzerEmiRecipe(
+                new ResourceLocation("ultimatecraftv2", "calciner/porous_insulation"),
+                EmiStack.of(ModItems.FOAMED_ALUMINA.get()),
+                EmiStack.of(ModItems.SPARK_STONE.get()),
+                EmiStack.of(ModBlocks.POROUS_INSULATION_BLOCK.get())
+        ));
+
+        registry.addRecipe(new CokeOvenEmiRecipe(
+                new ResourceLocation("ultimatecraftv2", "coke_oven/nickel_smelting"), // id
+                EmiStack.of(ModItems.RAW_NICKEL.get()),                             // input
+                EmiStack.of(ModItems.NICKEL_INGOT.get()),                           // resultItem
+                EmiStack.of(ModFluids.SOURCE_TAR.get(), 0),                       // resultFluid
+                false                                                               // isBucket (boolean)
         ));
 
         registry.addWorkstation(VanillaEmiRecipeCategories.CRAFTING, EmiStack.of(ModBlocks.INDUSTRIAL_WORKBENCH.get()));

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ultimatecraftv2:high_purity_alumina"
+    },
+    {
+      "item": "ultimatecraftv2:sodium_carbonate_solution_bottle"
+    },
+    {
+      "item": "ultimatecraftv2:high_purity_alumina"
+    },
+    {
+      "item": "ultimatecraftv2:high_purity_alumina"
+    }
+  ],
+  "result": {
+    "item": "ultimatecraftv2:foamed_alumina",
+    "count": 4
+  }
+}

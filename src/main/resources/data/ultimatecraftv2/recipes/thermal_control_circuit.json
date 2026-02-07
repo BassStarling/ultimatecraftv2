@@ -1,0 +1,14 @@
+{
+  "type": "ultimatecraftv2:industrial_crafting",
+  "ingredients": [
+    { "item": "ultimatecraftv2:wire" }, { "item": "ultimatecraftv2:wire" }, { "item": "ultimatecraftv2:wire" }, { "item": "ultimatecraftv2:wire" }, { "item": "ultimatecraftv2:wire" },
+    { "item": "ultimatecraftv2:wire" }, { "item": "minecraft:redstone" }, { "item": "minecraft:gold_ingot" }, { "item": "minecraft:redstone" }, { "item": "ultimatecraftv2:wire" },
+    { "item": "ultimatecraftv2:wire" }, { "item": "minecraft:gold_ingot" }, { "item": "minecraft:quartz" }, { "item": "minecraft:gold_ingot" }, { "item": "ultimatecraftv2:wire" },
+    { "item": "ultimatecraftv2:wire" }, { "item": "minecraft:redstone" }, { "item": "minecraft:gold_ingot" }, { "item": "minecraft:redstone" }, { "item": "ultimatecraftv2:wire" },
+    { "item": "ultimatecraftv2:additive_processed_sintered_ceramic" }, { "item": "ultimatecraftv2:additive_processed_sintered_ceramic" }, { "item": "ultimatecraftv2:additive_processed_sintered_ceramic" }, { "item": "ultimatecraftv2:additive_processed_sintered_ceramic" }, { "item": "ultimatecraftv2:additive_processed_sintered_ceramic" }
+  ],
+  "result": {
+    "item": "ultimatecraftv2:thermal_control_circuit",
+    "count": 1
+  }
+}

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "ultimatecraftv2:item/bolt"
+    "layer0": "ultimatecraftv2:item/coil"
   }
 }

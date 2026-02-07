@@ -20,20 +20,27 @@ public class ElectrolyzerEmiRecipe implements EmiRecipe {
     private final List<EmiIngredient> inputs;
     private final List<EmiStack> outputs;
 
+    // --- パターンA: 引数1つの既存コンストラクタ（酸素ボトル用など） ---
     public ElectrolyzerEmiRecipe(ResourceLocation id) {
         this.id = id;
-        // 入力: Tier 3の火打石(Spark Stone) + ガラス瓶 + 水(1000mB相当として表示)
+        // 酸素ボトルのデフォルト設定
         this.inputs = List.of(
-                EmiStack.of(ModItems.SPARK_STONE.get()), // 本来はNBTでTier判定が必要
                 EmiStack.of(Items.GLASS_BOTTLE),
-                EmiStack.of(Fluids.WATER, 1000)
+                EmiStack.of(ModItems.SPARK_STONE.get()) // ティア3
         );
         this.outputs = List.of(EmiStack.of(ModItems.OXYGEN_BOTTLE.get()));
     }
 
+    // --- パターンB: 引数4つの新しいコンストラクタ（今回追加分） ---
+    public ElectrolyzerEmiRecipe(ResourceLocation id, EmiIngredient input, EmiIngredient catalyst, EmiStack output) {
+        this.id = id;
+        this.inputs = List.of(input, catalyst);
+        this.outputs = List.of(output);
+    }
+
     @Override
     public EmiRecipeCategory getCategory() {
-        return IndustrialEmiPlugin.ELECTROLYZER_CATEGORY; // カテゴリは別途定義
+        return IndustrialEmiPlugin.ELECTROLYZER_CATEGORY;
     }
 
     @Override public @Nullable ResourceLocation getId() { return id; }
@@ -44,21 +51,18 @@ public class ElectrolyzerEmiRecipe implements EmiRecipe {
 
     @Override
     public void addWidgets(WidgetHolder widgets) {
-        // ガラス瓶と火打石（入力アイテム）
-        widgets.addSlot(inputs.get(0), 0, 12);
-        widgets.addSlot(inputs.get(1), 18, 12);
+        // 下に水があることを示す背景やアイコン（任意）
+        widgets.addSlot(EmiStack.of(Fluids.WATER), 40, 25).drawBack(false);
 
-        // 下にあるべき「水」を背景っぽく配置（またはプラス記号などで表現）
-        widgets.addSlot(inputs.get(2), 36, 12).drawBack(false);
-        widgets.addText(Component.literal("+"), 40, 2, 0xFFFFFF, true);
+        // 入力アイテム
+        widgets.addSlot(inputs.get(0), 10, 12);
+        // スパークストーン
+        widgets.addSlot(inputs.get(1), 30, 12);
 
         // 矢印
-        widgets.addTexture(EmiTexture.EMPTY_ARROW, 60, 12);
+        widgets.addTexture(EmiTexture.EMPTY_ARROW, 55, 12);
 
-        // 出力：酸素入り瓶
-        widgets.addSlot(outputs.get(0), 90, 12).recipeContext(this);
-
-        // 特殊条件の注釈
-        widgets.addText(Component.literal("Place 💧 under block"), 0, 32, 0xAAAAAA, false);
+        // 結果
+        widgets.addSlot(outputs.get(0), 85, 12).recipeContext(this);
     }
 }
