@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "facing=north,waterlogged=false": { "model": "ultimatecraftv2:block/arc_furnace" },
+    "facing=north,waterlogged=true":  { "model": "ultimatecraftv2:block/arc_furnace" },
+    "facing=south,waterlogged=false": { "model": "ultimatecraftv2:block/arc_furnace", "y": 180 },
+    "facing=south,waterlogged=true":  { "model": "ultimatecraftv2:block/arc_furnace", "y": 180 },
+    "facing=west,waterlogged=false":  { "model": "ultimatecraftv2:block/arc_furnace", "y": 270 },
+    "facing=west,waterlogged=true":   { "model": "ultimatecraftv2:block/arc_furnace", "y": 270 },
+    "facing=east,waterlogged=false":  { "model": "ultimatecraftv2:block/arc_furnace", "y": 90 },
+    "facing=east,waterlogged=true":   { "model": "ultimatecraftv2:block/arc_furnace", "y": 90 }
+  }
+}

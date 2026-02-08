@@ -36,7 +36,7 @@ public class ArcFurnaceBlock extends BaseEntityBlock implements SimpleWaterlogge
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 2.0D, 16.0D, 15.0D, 14.0D);
+    private static final VoxelShape SHAPE = Block.box(1.0D, 1.0D, 1.0D, 15.0D, 15.0D, 15.0D);
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public ArcFurnaceBlock(Properties pProperties) {

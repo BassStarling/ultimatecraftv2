@@ -5,6 +5,22 @@
     "ultimatecraftv2:cryolite_ore",
     "ultimatecraftv2:limestone",
     "ultimatecraftv2:nickel_ore",
-    "ultimatecraftv2:deepslate_nickel_ore"
+    "ultimatecraftv2:deepslate_nickel_ore",
+    "ultimatecraftv2:electrolyticfurnace",
+    "ultimatecraftv2:arc_furnace",
+    "ultimatecraftv2:disposable_arc_furnace",
+    "ultimatecraftv2:casting_machine",
+    "ultimatecraftv2:cokeoven",
+    "ultimatecraftv2:crusher_block",
+    "ultimatecraftv2:electrolyzer",
+    "ultimatecraftv2:eletriccalciner",
+    "ultimatecraftv2:heat_generator",
+    "ultimatecraftv2:industrial_workbench",
+    "ultimatecraftv2:oxygen_converter",
+    "ultimatecraftv2:porous_insulation_block",
+    "ultimatecraftv2:spark_compressor",
+    "ultimatecraftv2:spark_generator",
+    "ultimatecraftv2:used_electrolyticfurnace",
+    "ultimatecraftv2:washing_machine"
   ]
 }

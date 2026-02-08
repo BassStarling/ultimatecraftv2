@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "ultimatecraftv2:tar_bucket"}
+  ],
+  "result": {
+    "item": "minecraft:bucket"
+  }
+}

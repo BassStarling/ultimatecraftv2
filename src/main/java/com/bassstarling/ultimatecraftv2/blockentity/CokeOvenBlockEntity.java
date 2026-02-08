@@ -51,7 +51,8 @@ public class CokeOvenBlockEntity extends BlockEntity implements MenuProvider {
                 case 0 -> stack.is(Items.COAL)
                         || stack.is(ModItems.UNFIRED_ELECTRODE.get())
                         || stack.is(ModItems.RAW_NICKEL.get());
-                case 1 -> ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
+                case 1 -> ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0
+                        || stack.is(ModItems.SPARK_STONE.get());
                 case 2 -> true;
                 case 3 -> stack.is(Items.BUCKET);
                 default -> super.isItemValid(slot, stack);
@@ -84,10 +85,29 @@ public class CokeOvenBlockEntity extends BlockEntity implements MenuProvider {
             if (this.burnTime <= 0) {
                 ItemStack fuel = itemHandler.getStackInSlot(1);
                 if (!fuel.isEmpty()) {
-                    this.burnTime = ForgeHooks.getBurnTime(fuel, RecipeType.SMELTING);
-                    this.totalBurnTime = this.burnTime;
-                    fuel.shrink(1);
-                    setChanged();
+                    int time = ForgeHooks.getBurnTime(fuel, RecipeType.SMELTING);
+
+                    // スパークストーン T4 の特殊処理
+                    if (time <= 0 && fuel.is(ModItems.SPARK_STONE.get()) && SparkStone.getTier(fuel) == 4) {
+                        time = 200;
+                    }
+
+                    if (time > 0) {
+                        this.burnTime = time;
+                        this.totalBurnTime = this.burnTime;
+
+                        // 燃料の「残りカス（バケツなど）」を取得しておく
+                        ItemStack containerStack = fuel.getCraftingRemainingItem();
+
+                        // スタックを1減らす
+                        fuel.shrink(1);
+
+                        // もし燃料スロットが空になり、かつ「残りカス（空バケツ）」があるなら、そのスロットにセットする
+                        if (fuel.isEmpty() && !containerStack.isEmpty()) {
+                            itemHandler.setStackInSlot(1, containerStack);
+                        }
+                        setChanged();
+                    }
                 }
             }
 
@@ -139,8 +159,6 @@ public class CokeOvenBlockEntity extends BlockEntity implements MenuProvider {
         return this.data;
     }
 
-// CokeOvenBlockEntity.java
-
     private boolean canProcess() {
         ItemStack input = itemHandler.getStackInSlot(0);
         ItemStack output = itemHandler.getStackInSlot(2);
@@ -148,11 +166,12 @@ public class CokeOvenBlockEntity extends BlockEntity implements MenuProvider {
 
         if (input.isEmpty()) return false;
 
-        // ニッケル精錬の判定: スパークストーン T4 が燃料スロットにあること
         if (input.is(ModItems.RAW_NICKEL.get())) {
-            boolean hasSparkT4 = !fuel.isEmpty() && fuel.is(ModItems.SPARK_STONE.get()) && SparkStone.getTier(fuel) == 4;
-            // スパークストーンがある場合、出力スロットが空かニッケルインゴットであること
-            return hasSparkT4 && (output.isEmpty() || (output.is(ModItems.NICKEL_INGOT.get()) && output.getCount() < 64));
+            // 燃焼中である、または、今から燃やせるスパークストーン T4 がスロットにある
+            boolean hasHeatOrFuel = this.burnTime > 0 ||
+                    (!fuel.isEmpty() && fuel.is(ModItems.SPARK_STONE.get()) && SparkStone.getTier(fuel) == 4);
+
+            return hasHeatOrFuel && (output.isEmpty() || (output.is(ModItems.NICKEL_INGOT.get()) && output.getCount() < 64));
         }
 
         // 既存のコークス・電極の判定
@@ -175,8 +194,6 @@ public class CokeOvenBlockEntity extends BlockEntity implements MenuProvider {
         if (input.is(ModItems.RAW_NICKEL.get())) {
             itemHandler.extractItem(0, 1, false);
             itemHandler.insertItem(2, new ItemStack(ModItems.NICKEL_INGOT.get()), false);
-            // 副産物としてタールを少し出す設定にすると、現実の不純物分離っぽくなります（任意）
-            fluidTank.fill(new FluidStack(ModFluids.SOURCE_TAR.get(), 100), IFluidHandler.FluidAction.EXECUTE);
         }
         // 既存の処理
         else if (input.is(Items.COAL)) {

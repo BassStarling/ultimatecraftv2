@@ -34,6 +34,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Optional;
 
+import static com.bassstarling.ultimatecraftv2.registry.ModItems.MOLD_TAG;
+
 public class CastingMachineBlockEntity extends BlockEntity implements MenuProvider {
     private final ItemStackHandler itemHandler = new ItemStackHandler(3) {
         @Override
@@ -45,7 +47,7 @@ public class CastingMachineBlockEntity extends BlockEntity implements MenuProvid
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             return switch (slot) {
                 case 0 -> true; // 材料スロットは何でもOK
-                case 1 -> stack.is(ModItemTagProvider.MOLD_TAG); // 型スロットはタグ付きのみ！
+                case 1 -> stack.is(MOLD_TAG); // 型スロットはタグ付きのみ！
                 case 2 -> false; // 出力スロットは搬入不可
                 default -> false;
             };

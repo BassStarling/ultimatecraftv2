@@ -54,25 +54,26 @@ public class SparkCompressorBlockEntity extends BlockEntity {
     }
 
     private boolean tryMakeIronPlate(List<ItemEntity> items) {
-        ItemEntity iron = null;
-        ItemEntity spark = null;
+        ItemEntity ironEntity = null;
+        ItemEntity sparkEntity = null;
 
         for (ItemEntity item : items) {
             ItemStack stack = item.getItem();
+            if (stack.isEmpty()) continue;
 
             if (stack.is(Items.IRON_INGOT)) {
-                iron = item;
+                ironEntity = item;
             } else if (stack.getItem() == ModItems.SPARK_STONE.get()
                     && SparkStone.getTier(stack) == 2) {
-                spark = item;
+                sparkEntity = item;
             }
         }
 
-        if (iron == null || spark == null) return false;
+        if (ironEntity == null || sparkEntity == null) return false;
 
-        // 消費
-        iron.discard();
-        spark.discard();
+        // ★ 修正：スタックから1つずつ消費する
+        consumeOneItem(ironEntity);
+        consumeOneItem(sparkEntity);
 
         // 生成
         ItemStack result = new ItemStack(ModItems.IRON_PLATE.get());
@@ -84,38 +85,67 @@ public class SparkCompressorBlockEntity extends BlockEntity {
                 result
         ));
 
-        level.playSound(
-                null,
-                worldPosition,
-                SoundEvents.PISTON_EXTEND,
-                SoundSource.BLOCKS,
-                0.8F,
-                0.9F
-        );
+        level.playSound(null, worldPosition, SoundEvents.PISTON_EXTEND, SoundSource.BLOCKS, 0.8F, 0.9F);
+        startAnimation(); // アニメーション開始（処理自体は止まらない）
 
         return true;
     }
 
+    // 共通の消費メソッド
+    private void consumeOneItem(ItemEntity entity) {
+        ItemStack stack = entity.getItem();
+        stack.shrink(1);
+        if (stack.isEmpty()) {
+            entity.discard();
+        } else {
+            // 重要：中身が減ったことをEntityに再セットして同期させる
+            entity.setItem(stack);
+        }
+    }
+
     private void tryCompressSparkStone(List<ItemEntity> items) {
-        Map<Integer, List<ItemEntity>> byTier = new HashMap<>();
+        // ティアごとの合計個数と、そのエンティティのリストを保持
+        Map<Integer, Integer> totalCountByTier = new HashMap<>();
+        Map<Integer, List<ItemEntity>> entitiesByTier = new HashMap<>();
 
         for (ItemEntity item : items) {
             ItemStack stack = item.getItem();
-            if (stack.getItem() != ModItems.SPARK_STONE.get()) continue;
+            if (stack.isEmpty() || stack.getItem() != ModItems.SPARK_STONE.get()) continue;
 
             int tier = SparkStone.getTier(stack);
-            byTier.computeIfAbsent(tier, t -> new ArrayList<>()).add(item);
+            totalCountByTier.put(tier, totalCountByTier.getOrDefault(tier, 0) + stack.getCount());
+            entitiesByTier.computeIfAbsent(tier, t -> new ArrayList<>()).add(item);
         }
 
-        for (var entry : byTier.entrySet()) {
+        for (var entry : totalCountByTier.entrySet()) {
             int tier = entry.getKey();
-            if (tier >= 7) continue;
+            int count = entry.getValue();
 
-            if (entry.getValue().size() >= 3) {
-                for (int i = 0; i < 3; i++) {
-                    entry.getValue().get(i).discard();
+            // ティア7未満かつ、合計3個以上あれば圧縮
+            if (tier < 7 && count >= 3) {
+                // ★ 修正：合計3個分を消費するロジック
+                int toConsume = 3;
+                List<ItemEntity> targets = entitiesByTier.get(tier);
+
+                for (ItemEntity target : targets) {
+                    if (toConsume <= 0) break;
+
+                    ItemStack stack = target.getItem();
+                    int currentStackSize = stack.getCount();
+
+                    if (currentStackSize <= toConsume) {
+                        // このエンティティを全部使い切る場合
+                        toConsume -= currentStackSize;
+                        target.discard();
+                    } else {
+                        // このエンティティの一部だけ使う場合
+                        stack.shrink(toConsume);
+                        target.setItem(stack); // 見た目とデータを更新
+                        toConsume = 0;
+                    }
                 }
 
+                // 次のティアの石を生成
                 ItemStack result = SparkStone.createWithTier(tier + 1);
                 level.addFreshEntity(new ItemEntity(
                         level,
@@ -125,17 +155,9 @@ public class SparkCompressorBlockEntity extends BlockEntity {
                         result
                 ));
 
-                level.playSound(
-                        null,
-                        worldPosition,
-                        SoundEvents.PISTON_EXTEND,
-                        SoundSource.BLOCKS,
-                        0.8F,
-                        1.0F
-                );
-
+                level.playSound(null, worldPosition, SoundEvents.PISTON_EXTEND, SoundSource.BLOCKS, 0.8F, 1.0F);
                 startAnimation();
-                break;
+                break; // 1回のtickで1回のみ圧縮（高速化したい場合はここを調整）
             }
         }
     }

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "ultimatecraftv2:disposable_arc_furnace",
+          "functions": [
+            {
+              "function": "minecraft:copy_state",
+              "block": "ultimatecraftv2:disposable_arc_furnace",
+              "properties": [ "spent" ]
+            }
+          ]
+        }
+      ],
+      "conditions": [ { "condition": "minecraft:survives_explosion" } ]
+    }
+  ]
+}

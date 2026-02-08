@@ -103,10 +103,18 @@ public class ModBlocks {
                             .of()
                             .strength(3.0F, 3.0F)
                             .requiresCorrectToolForDrops()
+                            .noOcclusion()
                     ));
     public static final RegistryObject<Block> ARC_FURNACE =
             BLOCKS.register("arc_furnace",
                     () -> new ArcFurnaceBlock(BlockBehaviour.Properties
+                            .of()
+                            .strength(3.0F, 3.0F)
+                            .requiresCorrectToolForDrops()
+                    ));
+    public static final RegistryObject<Block> DISPOSABLE_ARC_FURNACE =
+            BLOCKS.register("disposable_arc_furnace",
+                    () -> new DisposableArcFurnaceBlock(BlockBehaviour.Properties
                             .of()
                             .strength(3.0F, 3.0F)
                             .requiresCorrectToolForDrops()

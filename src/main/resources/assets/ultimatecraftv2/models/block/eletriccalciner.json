@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "ultimatecraftv2:block/bauxite_ore"
-  }
-}

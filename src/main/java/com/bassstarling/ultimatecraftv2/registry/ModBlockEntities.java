@@ -75,6 +75,12 @@ public class ModBlockEntities {
                             ArcFurnaceBlockEntity::new,
                             ModBlocks.ARC_FURNACE.get()
                     ).build(null));
+    public static final RegistryObject<BlockEntityType<DisposableArcFurnaceBlockEntity>> DISPOSABLE_ARC__FURNACE =
+            BLOCK_ENTITIES.register("disposable_arc__furnace",
+                    () -> BlockEntityType.Builder.of(
+                            DisposableArcFurnaceBlockEntity::new,
+                            ModBlocks.DISPOSABLE_ARC_FURNACE.get()
+                    ).build(null));
     public static final RegistryObject<BlockEntityType<ElectrolyzerBlockEntity>> ELECTROLYZER_ =
             BLOCK_ENTITIES.register("electrolyzer_",
                     () -> BlockEntityType.Builder.of(

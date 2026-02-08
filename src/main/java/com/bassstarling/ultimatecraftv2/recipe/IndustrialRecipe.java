@@ -24,16 +24,50 @@ public class IndustrialRecipe implements Recipe<SimpleContainer> {
         this.recipeItems = recipeItems;
     }
 
-    // ★重要: 1.20.1ではここに RegistryAccess が必須ではないが、matchesはWorldを見る
     @Override
     public boolean matches(SimpleContainer pContainer, Level pLevel) {
-        // 5x5の盤面を1マスずつチェック
+        // 1. 盤面(5x5)の「実際にアイテムがある範囲」を特定
+        int minCol = 5, maxCol = -1, minRow = 5, maxRow = -1;
         for (int i = 0; i < 25; i++) {
-            Ingredient ingredient = recipeItems.get(i);
-            ItemStack stack = pContainer.getItem(i);
+            if (!pContainer.getItem(i).isEmpty()) {
+                int row = i / 5;
+                int col = i % 5;
+                minCol = Math.min(minCol, col);
+                maxCol = Math.max(maxCol, col);
+                minRow = Math.min(minRow, row);
+                maxRow = Math.max(maxRow, row);
+            }
+        }
 
-            if (!ingredient.test(stack)) {
-                return false;
+        if (maxCol == -1) return false; // 盤面が空
+
+        // 2. レシピ(JSON)の「有効な素材がある範囲」を特定
+        int rMinCol = 5, rMaxCol = -1, rMinRow = 5, rMaxRow = -1;
+        for (int i = 0; i < 25; i++) {
+            if (!recipeItems.get(i).isEmpty()) {
+                int row = i / 5;
+                int col = i % 5;
+                rMinCol = Math.min(rMinCol, col);
+                rMaxCol = Math.max(rMaxCol, col);
+                rMinRow = Math.min(rMinRow, row);
+                rMaxRow = Math.max(rMaxRow, row);
+            }
+        }
+
+        int actualW = maxCol - minCol + 1;
+        int actualH = maxRow - minRow + 1;
+        int recipeW = rMaxCol - rMinCol + 1;
+        int recipeH = rMaxRow - rMinRow + 1;
+
+        // サイズが違えば不一致
+        if (actualW != recipeW || actualH != recipeH) return false;
+
+        // 3. 内容の比較
+        for (int y = 0; y < recipeH; y++) {
+            for (int x = 0; x < recipeW; x++) {
+                Ingredient expected = recipeItems.get((rMinRow + y) * 5 + (rMinCol + x));
+                ItemStack actual = pContainer.getItem((minRow + y) * 5 + (minCol + x));
+                if (!expected.test(actual)) return false;
             }
         }
         return true;

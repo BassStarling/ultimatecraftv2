@@ -2,27 +2,31 @@ package com.bassstarling.ultimatecraftv2.registry;
 
 import com.bassstarling.ultimatecraftv2.UltimateCraftV2;
 import com.bassstarling.ultimatecraftv2.init.ModTiers;
-import com.bassstarling.ultimatecraftv2.item.PipeItem;
-import com.bassstarling.ultimatecraftv2.item.SoBolt;
-import com.bassstarling.ultimatecraftv2.item.SparkStone;
+import com.bassstarling.ultimatecraftv2.item.*;
 import dev.emi.emi.api.stack.EmiStack;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.registries.DeferredRegister;
@@ -275,12 +279,24 @@ public class ModItems {
                     });
     public static final RegistryObject<Item> MOLTEN_CRYOLITE =
             ITEMS.register("molten_cryolite",
-                    () -> new Item(new Item.Properties()
-                    ));
+                    () -> new Item(new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+                            tooltip.add(Component.translatable("tooltip.ultimatecraftv2.molten_cryolite_with_alumina")
+                                    .withStyle(ChatFormatting.YELLOW));
+                            super.appendHoverText(stack, level, tooltip, flag);
+                        }
+                    });
     public static final RegistryObject<Item> MOLTEN_CRYOLITE_WITH_ALUMINA =
             ITEMS.register("molten_cryolite_with_alumina",
-                    () -> new Item(new Item.Properties()
-                    ));
+                    () -> new Item(new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.molten_cryolite_with_alumina")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            super.appendHoverText(stack, level, tooltip, flag);
+                        }
+                    });
     public static final RegistryObject<Item> USED_ELECTROLYTICFURNACE =
             ITEMS.register("used_electrolyticfurnace",
                     () -> new BlockItem(
@@ -326,14 +342,19 @@ public class ModItems {
                     ));
     public static final RegistryObject<Item> TAR_BUCKET =
             ITEMS.register("tar_bucket",
-                    () -> new Item(new Item.Properties()
+                    () -> new TarBucketItem(new Item.Properties()
                             .craftRemainder(Items.BUCKET) // クラフト後に空バケツを返す設定
                             .stacksTo(1)
-                    ));
-    public static final RegistryObject<Item> IRON_PIPE =
-            ITEMS.register("iron_pipe",
-                    () -> new Item(new Item.Properties()
-                    ));
+                    )
+                    {
+                        @Override
+                        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+                            tooltip.add(Component.translatable("tooltip.ultimatecraftv2.tar_bucket")
+                                    .withStyle(ChatFormatting.YELLOW));
+                            super.appendHoverText(stack, level, tooltip, flag);
+                        }
+                    }
+            );
     public static final RegistryObject<Item> COKE =
             ITEMS.register("coke",
                     () -> new Item(new Item.Properties()
@@ -564,30 +585,34 @@ public class ModItems {
             ITEMS.register("quick_lime",
                     () -> new Item(new Item.Properties()) {
                         @Override
-                        public InteractionResult useOn(UseOnContext context) {
-                            Level level = context.getLevel();
-                            BlockPos pos = context.getClickedPos();
-                            BlockState state = level.getBlockState(pos);
-                            Player player = context.getPlayer();
+                        public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+                            ItemStack itemstack = player.getItemInHand(hand);
+                            // 視線の先にある「液体」を探す（重要！）
+                            BlockHitResult hitResult = getPlayerPOVHitResult(level, player, ClipContext.Fluid.SOURCE_ONLY);
 
-                            // 水源ブロック（あるいは水を含むブロック）を右クリックしたか判定
-                            if (state.getFluidState().is(FluidTags.WATER)) {
-                                if (!level.isClientSide) {
-                                    // 1. 生石灰を消費
-                                    context.getItemInHand().shrink(1);
+                            if (hitResult.getType() == HitResult.Type.BLOCK) {
+                                BlockPos pos = hitResult.getBlockPos();
+                                BlockState state = level.getBlockState(pos);
 
-                                    // 2. 消石灰をドロップ
-                                    ItemStack result = new ItemStack(ModItems.SLAKED_LIME.get());
-                                    ItemHandlerHelper.giveItemToPlayer(player, result);
+                                // 水だったら反応開始
+                                if (state.getFluidState().is(FluidTags.WATER)) {
+                                    if (!level.isClientSide) {
+                                        // 1. 消費
+                                        itemstack.shrink(1);
 
-                                    // 3. 演出（湯気とジュッという音）
-                                    level.playSound(null, pos, SoundEvents.LAVA_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
-                                    ((ServerLevel) level).sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE,
-                                            pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, 5, 0.1, 0.1, 0.1, 0.05);
+                                        // 2. 消石灰を付与
+                                        ItemStack result = new ItemStack(ModItems.SLAKED_LIME.get());
+                                        ItemHandlerHelper.giveItemToPlayer(player, result);
+
+                                        // 3. 演出（音とパーティクル）
+                                        level.playSound(null, pos, SoundEvents.LAVA_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
+                                        ((ServerLevel) level).sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE,
+                                                pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 10, 0.2, 0.2, 0.2, 0.05);
+                                    }
+                                    return InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide());
                                 }
-                                return InteractionResult.sidedSuccess(level.isClientSide);
                             }
-                            return InteractionResult.PASS;
+                            return InteractionResultHolder.pass(itemstack);
                         }
                     });
     public static final RegistryObject<Item> SLAKED_LIME =
@@ -677,9 +702,30 @@ public class ModItems {
             ITEMS.register("thermal_control_circuit",
                     () -> new Item(new Item.Properties()
                     ));
+    public static final RegistryObject<Item> DISPOSABLE_ARC_FURNACE =
+            ITEMS.register("disposable_arc_furnace",
+                    () -> new DisposableArcFurnaceBlockItem(
+                            ModBlocks.DISPOSABLE_ARC_FURNACE.get(),
+                            new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+                            if (Screen.hasShiftDown()) {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.disposable_arc_furnace.details")
+                                        .withStyle(ChatFormatting.AQUA));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.disposable_arc_furnace.usage")
+                                        .withStyle(ChatFormatting.GRAY));
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.wiki")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            } else {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.hold_shift")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            }
+                            super.appendHoverText(stack, level, tooltip, flag);
+                        }
+                    });
 
-    // --- 型（Mold）の自動登録システム ---
-    // 生成されたアイテムを保存しておくMap（後で他からアクセスするため）
+    public static final TagKey<Item> MOLD_TAG = ItemTags.create(new ResourceLocation("ultimatecraftv2", "mold"));
+
     public static final Map<MoldType, RegistryObject<Item>> MOLDS = new HashMap<>();
 
     static {

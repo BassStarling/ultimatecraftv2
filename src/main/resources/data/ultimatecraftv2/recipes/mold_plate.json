@@ -1,0 +1,14 @@
+{
+  "type": "ultimatecraftv2:industrial_crafting",
+  "ingredients": [
+    { "item": "minecraft:clay_ball" }, { "item": "minecraft:clay_ball" }, { "item": "minecraft:clay_ball" }, { "item": "minecraft:clay_ball" }, { "item": "minecraft:clay_ball" },
+    { "item": "minecraft:clay_ball" }, { "item": "minecraft:clay_ball" }, { "item": "minecraft:clay_ball" }, { "item": "minecraft:clay_ball" }, { "item": "minecraft:clay_ball" },
+    { "item": "minecraft:clay_ball" }, {}, {}, {}, { "item": "minecraft:clay_ball" },
+    { "item": "minecraft:clay_ball" }, {}, {}, {}, { "item": "minecraft:clay_ball" },
+    { "item": "minecraft:clay_ball" }, { "item": "minecraft:clay_ball" }, { "item": "minecraft:clay_ball" }, { "item": "minecraft:clay_ball" }, { "item": "minecraft:clay_ball" }
+  ],
+  "result": {
+    "item": "ultimatecraftv2:mold_plate",
+    "count": 1
+  }
+}
