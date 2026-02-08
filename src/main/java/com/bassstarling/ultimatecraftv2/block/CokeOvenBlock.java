@@ -69,9 +69,4 @@ public class CokeOvenBlock extends BaseEntityBlock {
             super.onRemove(state, level, pos, newState, isMoving);
         }
     }
-    @Override
-    public RenderShape getRenderShape(BlockState pState) {
-        // これを MODEL にしないと、ブロックモデルのJSONを読み込んでくれません
-        return RenderShape.MODEL;
-    }
 }

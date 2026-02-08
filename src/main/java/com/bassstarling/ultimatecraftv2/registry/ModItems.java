@@ -275,12 +275,24 @@ public class ModItems {
                     });
     public static final RegistryObject<Item> MOLTEN_CRYOLITE =
             ITEMS.register("molten_cryolite",
-                    () -> new Item(new Item.Properties()
-                    ));
+                    () -> new Item(new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+                            tooltip.add(Component.translatable("tooltip.ultimatecraftv2.molten_cryolite_with_alumina")
+                                    .withStyle(ChatFormatting.YELLOW));
+                            super.appendHoverText(stack, level, tooltip, flag);
+                        }
+                    });
     public static final RegistryObject<Item> MOLTEN_CRYOLITE_WITH_ALUMINA =
             ITEMS.register("molten_cryolite_with_alumina",
-                    () -> new Item(new Item.Properties()
-                    ));
+                    () -> new Item(new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.molten_cryolite_with_alumina")
+                                        .withStyle(ChatFormatting.YELLOW));
+                            super.appendHoverText(stack, level, tooltip, flag);
+                        }
+                    });
     public static final RegistryObject<Item> USED_ELECTROLYTICFURNACE =
             ITEMS.register("used_electrolyticfurnace",
                     () -> new BlockItem(
@@ -329,10 +341,6 @@ public class ModItems {
                     () -> new Item(new Item.Properties()
                             .craftRemainder(Items.BUCKET) // クラフト後に空バケツを返す設定
                             .stacksTo(1)
-                    ));
-    public static final RegistryObject<Item> IRON_PIPE =
-            ITEMS.register("iron_pipe",
-                    () -> new Item(new Item.Properties()
                     ));
     public static final RegistryObject<Item> COKE =
             ITEMS.register("coke",

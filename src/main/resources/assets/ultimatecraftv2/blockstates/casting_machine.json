@@ -1,7 +1,7 @@
 {
   "variants": {
     "":{
-      "model": "ultimatecraftv2:block/bauxite_ore"
+      "model": "ultimatecraftv2:block/casting_machine"
     }
   }
 }
