@@ -46,8 +46,8 @@ public class ElectrolyzerEmiRecipe implements EmiRecipe {
     @Override public @Nullable ResourceLocation getId() { return id; }
     @Override public List<EmiIngredient> getInputs() { return inputs; }
     @Override public List<EmiStack> getOutputs() { return outputs; }
-    @Override public int getDisplayWidth() { return 110; }
-    @Override public int getDisplayHeight() { return 40; }
+    @Override public int getDisplayWidth() { return 140; }
+    @Override public int getDisplayHeight() { return 60; }
 
     @Override
     public void addWidgets(WidgetHolder widgets) {
@@ -64,5 +64,7 @@ public class ElectrolyzerEmiRecipe implements EmiRecipe {
 
         // 結果
         widgets.addSlot(outputs.get(0), 85, 12).recipeContext(this);
+        widgets.addText(Component.literal("スパークストーンTier4"), 8, 35, 0xFFD700, true);
+        widgets.addText(Component.literal("[スパークストーンの塊]を要求"), 8, 45, 0xFFD700, true);
     }
 }

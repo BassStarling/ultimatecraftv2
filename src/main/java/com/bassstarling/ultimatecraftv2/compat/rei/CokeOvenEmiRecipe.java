@@ -46,7 +46,7 @@ public class CokeOvenEmiRecipe implements EmiRecipe {
     @Override
     public List<EmiStack> getOutputs() { return outputs; }
     @Override
-    public int getDisplayWidth() { return 110; }
+    public int getDisplayWidth() { return 120; }
     @Override
     public int getDisplayHeight() { return 42; }
 
@@ -94,8 +94,7 @@ public class CokeOvenEmiRecipe implements EmiRecipe {
             // --- 電極レシピ (液体が EMPTY の場合) ---
             // 液体スロットの代わりに、焼成中であることを示すテキストやアイコンを表示
             widgets.addTexture(EmiTexture.FULL_FLAME, 11, 24); // 入力の下に炎を表示
-            widgets.addText(Component.literal("Baking"), 84, 12, 0xFF6600, false);
-            widgets.addText(Component.literal("No Fluid"), 82, 24, 0x888888, false);
+            widgets.addText(Component.literal("Baking"), 82, 12, 0xFF6600, false);
         }
     }
 

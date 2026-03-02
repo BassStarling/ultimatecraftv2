@@ -26,8 +26,10 @@ public class IndustrialRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public boolean matches(SimpleContainer pContainer, Level pLevel) {
-        // 1. 盤面(5x5)の「実際にアイテムがある範囲」を特定
+        // 1. 盤面の中で実際にアイテムがある最小/最大座標を探す
         int minCol = 5, maxCol = -1, minRow = 5, maxRow = -1;
+        boolean empty = true;
+
         for (int i = 0; i < 25; i++) {
             if (!pContainer.getItem(i).isEmpty()) {
                 int row = i / 5;
@@ -36,21 +38,20 @@ public class IndustrialRecipe implements Recipe<SimpleContainer> {
                 maxCol = Math.max(maxCol, col);
                 minRow = Math.min(minRow, row);
                 maxRow = Math.max(maxRow, row);
+                empty = false;
             }
         }
 
-        if (maxCol == -1) return false; // 盤面が空
+        if (empty) return false;
 
-        // 2. レシピ(JSON)の「有効な素材がある範囲」を特定
+        // 2. レシピ(JSON)の中でアイテムがある最小/最大座標を探す
         int rMinCol = 5, rMaxCol = -1, rMinRow = 5, rMaxRow = -1;
         for (int i = 0; i < 25; i++) {
-            if (!recipeItems.get(i).isEmpty()) {
-                int row = i / 5;
-                int col = i % 5;
-                rMinCol = Math.min(rMinCol, col);
-                rMaxCol = Math.max(rMaxCol, col);
-                rMinRow = Math.min(rMinRow, row);
-                rMaxRow = Math.max(rMaxRow, row);
+            if (!recipeItems.get(i).isEmpty()) { // recipeItemsはNonNullList<Ingredient>
+                rMinCol = Math.min(rMinCol, i % 5);
+                rMaxCol = Math.max(rMaxCol, i % 5);
+                rMinRow = Math.min(rMinRow, i / 5);
+                rMaxRow = Math.max(rMaxRow, i / 5);
             }
         }
 
@@ -59,14 +60,17 @@ public class IndustrialRecipe implements Recipe<SimpleContainer> {
         int recipeW = rMaxCol - rMinCol + 1;
         int recipeH = rMaxRow - rMinRow + 1;
 
-        // サイズが違えば不一致
+        // サイズが違うなら不一致
         if (actualW != recipeW || actualH != recipeH) return false;
 
-        // 3. 内容の比較
+        // 3. 形状の比較 (相対座標で比較)
         for (int y = 0; y < recipeH; y++) {
             for (int x = 0; x < recipeW; x++) {
+                // レシピ上のアイテム
                 Ingredient expected = recipeItems.get((rMinRow + y) * 5 + (rMinCol + x));
+                // 盤面上のアイテム (最小座標からのオフセットで取得)
                 ItemStack actual = pContainer.getItem((minRow + y) * 5 + (minCol + x));
+
                 if (!expected.test(actual)) return false;
             }
         }

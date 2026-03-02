@@ -58,7 +58,7 @@ public class SlakedLimeEmiRecipe implements EmiRecipe {
 
     @Override
     public int getDisplayHeight() {
-        return 35;
+        return 45;
     }
 
     @Override
@@ -79,6 +79,6 @@ public class SlakedLimeEmiRecipe implements EmiRecipe {
         widgets.addSlot(outputs.get(0), 95, 12).recipeContext(this);
 
         // 説明テキスト（多言語対応のため翻訳キー推奨）
-        widgets.addText(Component.translatable("tooltip.ultimatecraftv2.water_interaction"), 10, 2, 0xAAAAAA, false);
+        widgets.addText(Component.translatable("tooltip.ultimatecraftv2.water_interaction"), 10, 32, 0xAAAAAA, false);
     }
 }

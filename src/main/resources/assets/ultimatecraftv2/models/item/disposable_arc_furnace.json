@@ -3,8 +3,8 @@
   "credit": "Made with Blockbench",
   "texture_size": [64, 64],
   "textures": {
-    "0": "ultimatecraftv2:block/arc_furnace",
-    "particle": "ultimatecraftv2:block/arc_furnace"
+    "0": "ultimatecraftv2:block/disposable_arc_furnace",
+    "particle": "ultimatecraftv2:block/disposable_arc_furnace"
   },
   "elements": [
     {

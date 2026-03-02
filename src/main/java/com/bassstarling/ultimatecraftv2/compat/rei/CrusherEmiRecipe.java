@@ -36,8 +36,8 @@ public class CrusherEmiRecipe implements EmiRecipe {
     @Override public @Nullable ResourceLocation getId() { return id; }
     @Override public List<EmiIngredient> getInputs() { return inputs; }
     @Override public List<EmiStack> getOutputs() { return outputs; }
-    @Override public int getDisplayWidth() { return 100; }
-    @Override public int getDisplayHeight() { return 40; }
+    @Override public int getDisplayWidth() { return 130; }
+    @Override public int getDisplayHeight() { return 50; }
 
     @Override
     public void addWidgets(WidgetHolder widgets) {
@@ -46,13 +46,13 @@ public class CrusherEmiRecipe implements EmiRecipe {
         widgets.addText(Component.literal("+"), 20, 16, 0xFFFFFF, true);
         widgets.addSlot(inputs.get(1), 30, 12);
 
-        // 粉砕をイメージした矢印
         widgets.addTexture(EmiTexture.EMPTY_ARROW, 54, 12);
 
         // 出力スロット
         widgets.addSlot(outputs.get(0), 80, 12).recipeContext(this);
 
         // Tier条件の注釈
-        widgets.addText(Component.literal("Tier 1 Required"), 0, 32, 0xAAAAAA, false);
+        widgets.addText(Component.literal("スパークストーンTier2"), 0, 32, 0xAAAAAA, false);
+        widgets.addText(Component.literal("[スパークストーンの粒]を要求"), 0, 42, 0xAAAAAA, false);
     }
 }

@@ -35,8 +35,8 @@ public class ElectricCalcinerEmiRecipe implements EmiRecipe {
     @Override public @Nullable ResourceLocation getId() { return id; }
     @Override public List<EmiIngredient> getInputs() { return inputs; }
     @Override public List<EmiStack> getOutputs() { return outputs; }
-    @Override public int getDisplayWidth() { return 100; }
-    @Override public int getDisplayHeight() { return 44; }
+    @Override public int getDisplayWidth() { return 110; }
+    @Override public int getDisplayHeight() { return 54; }
 
     @Override
     public void addWidgets(WidgetHolder widgets) {
@@ -56,6 +56,7 @@ public class ElectricCalcinerEmiRecipe implements EmiRecipe {
         widgets.addSlot(outputs.get(0), 80, 10).recipeContext(this);
 
         // Tier 4 指定のテキスト
-        widgets.addText(Component.literal("Tier 4 Required"), 0, 32, 0xFF5555, false);
+        widgets.addText(Component.literal("スパークストーンTier5"), 0, 32, 0xFF5555, false);
+        widgets.addText(Component.literal("[スパークストーン]を要求"), 0, 42, 0xFF5555, false);
     }
 }

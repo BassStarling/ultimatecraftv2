@@ -43,8 +43,8 @@ public class MoltenAluminumExtractionEmiRecipe implements EmiRecipe {
     @Override public @Nullable ResourceLocation getId() { return id; }
     @Override public List<EmiIngredient> getInputs() { return inputs; }
     @Override public List<EmiStack> getOutputs() { return outputs; }
-    @Override public int getDisplayWidth() { return 120; }
-    @Override public int getDisplayHeight() { return 50; }
+    @Override public int getDisplayWidth() { return 140; }
+    @Override public int getDisplayHeight() { return 60; }
 
     @Override
     public void addWidgets(WidgetHolder widgets) {
@@ -61,7 +61,7 @@ public class MoltenAluminumExtractionEmiRecipe implements EmiRecipe {
         widgets.addSlot(outputs.get(1), 94, 25);
 
         // 日本語説明
-        widgets.addText(Component.literal("右クリックで回収"), 10, 2, 0xAAAAAA, false);
-        widgets.addText(Component.literal("⚠ 注意: 素手で触ると火傷します"), 10, 40, 0xFF5555, false);
+        widgets.addText(Component.literal("右クリックで回収"), 2, 2, 0xAAAAAA, false);
+        widgets.addText(Component.literal("⚠ 注意: 素手で触ると火傷します"), 2, 47, 0xFF5555, false);
     }
 }

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "key": {
+    "S": {
+      "item": "ultimatecraftv2:salt"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:salt_block",
+    "count": 1
+  }
+}

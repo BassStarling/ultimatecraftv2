@@ -57,7 +57,7 @@ public class OxygenConverterEmiRecipe implements EmiRecipe {
     @Override
     public int getDisplayHeight() {
         // 縦幅を少し詰めると余白が消えて締まります
-        return 35;
+        return 45;
     }
 
     @Override
@@ -74,6 +74,7 @@ public class OxygenConverterEmiRecipe implements EmiRecipe {
         widgets.addSlot(outputs.get(1), 112, 4);
 
         // テキストを少し下に離す
-        widgets.addText(Component.literal("Drop on Converter"), 22, 26, 0x888888, false);
+        widgets.addText(Component.literal("スパークストーンTier4"), 0, 26, 0x888888, false);
+        widgets.addText(Component.literal("[スパークストーンの塊]を要求"), 10, 36, 0x888888, false);
     }
 }

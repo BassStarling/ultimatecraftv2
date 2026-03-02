@@ -46,8 +46,8 @@ public class ElectrolyticFurnaceEmiRecipe implements EmiRecipe {
     @Override public @Nullable ResourceLocation getId() { return id; }
     @Override public List<EmiIngredient> getInputs() { return inputs; }
     @Override public List<EmiStack> getOutputs() { return outputs; }
-    @Override public int getDisplayWidth() { return 144; }
-    @Override public int getDisplayHeight() { return 80; }
+    @Override public int getDisplayWidth() { return 194; }
+    @Override public int getDisplayHeight() { return 120; }
 
     @Override
     public void addWidgets(WidgetHolder widgets) {
@@ -67,11 +67,12 @@ public class ElectrolyticFurnaceEmiRecipe implements EmiRecipe {
 
         // 日本語での工程説明
         int y = 45;
-        widgets.addText(Component.literal("① 氷晶石とTier 5で融解を開始"), 2, y, 0xAAAAAA, false);
-        widgets.addText(Component.literal("② アルミナ投入後、Tier 6で電解"), 2, y + 10, 0xAAAAAA, false);
-        widgets.addText(Component.literal("③ 完了後、ブロックが「使用済み」へ変化"), 2, y + 20, 0xFF5555, false);
-
-        // 警告マーク
-        widgets.addText(Component.literal("⚠ 再利用不可"), 110, 14, 0xFF0000, false);
+        widgets.addText(Component.literal("① 氷晶石とスパークストーンTier5"), 2, y, 0xAAAAAA, false);
+        widgets.addText(Component.literal("  [スパークストーンブロック]で融解を開始"), 2, y + 10, 0xAAAAAA, false);
+        widgets.addText(Component.literal("② アルミナ投入後、"), 2, y + 20, 0xAAAAAA, false);
+        widgets.addText(Component.literal("  スパークストーンTier7"), 2, y + 30, 0xAAAAAA, false);
+        widgets.addText(Component.literal("  [超高密度スパークストーンブロック]で電解"), 2, y + 40, 0xAAAAAA, false);
+        widgets.addText(Component.literal("③ 完了後、ブロックが"), 2, y + 50, 0xFF5555, false);
+        widgets.addText(Component.literal("  「使用済み」へ変化"), 2, y + 60, 0xFF5555, false);
     }
 }

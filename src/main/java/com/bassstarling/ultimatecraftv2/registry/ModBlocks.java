@@ -145,13 +145,12 @@ public class ModBlocks {
                     () -> new Block(BlockBehaviour.Properties
                             .of().mapColor(MapColor.STONE)
                             .requiresCorrectToolForDrops()
-                            .strength(1.5F, 6.0F)));
-
+                            .strength(1.5F, 6.0F)
+                    ));
     public static final RegistryObject<Block> SALT_BLOCK =
             BLOCKS.register("salt_block",
                     () -> new Block(BlockBehaviour.Properties
                             .of().mapColor(MapColor.QUARTZ)
-                            .requiresCorrectToolForDrops()
                             .strength(0.5F, 0.5F)
                             .sound(SoundType.SAND)));
     public static final RegistryObject<Block> POROUS_INSULATION_BLOCK =
@@ -174,5 +173,26 @@ public class ModBlocks {
                             .of()
                             .strength(2.0F, 2.0F)
                             .requiresCorrectToolForDrops()
+                    ));
+    public static final RegistryObject<Block> STEEL_BLOCK =
+            BLOCKS.register("steel_block",
+                    () -> new Block(BlockBehaviour.Properties
+                            .of().mapColor(MapColor.STONE)
+                            .requiresCorrectToolForDrops()
+                            .strength(2.0F, 2.0F)
+                    ));
+    public static final RegistryObject<Block> ALUMINIUM_BLOCK =
+            BLOCKS.register("aluminium_block",
+                    () -> new Block(BlockBehaviour.Properties
+                            .of().mapColor(MapColor.STONE)
+                            .requiresCorrectToolForDrops()
+                            .strength(2.0F, 2.0F)
+                    ));
+    public static final RegistryObject<Block> NICKEL_BLOCK =
+            BLOCKS.register("nickel_block",
+                    () -> new Block(BlockBehaviour.Properties
+                            .of().mapColor(MapColor.STONE)
+                            .requiresCorrectToolForDrops()
+                            .strength(2.0F, 2.0F)
                     ));
 }

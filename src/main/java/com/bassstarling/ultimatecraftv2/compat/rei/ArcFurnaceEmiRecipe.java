@@ -41,8 +41,8 @@ public class ArcFurnaceEmiRecipe implements EmiRecipe {
     @Override public @Nullable ResourceLocation getId() { return id; }
     @Override public List<EmiIngredient> getInputs() { return inputs; }
     @Override public List<EmiStack> getOutputs() { return outputs; }
-    @Override public int getDisplayWidth() { return 120; }
-    @Override public int getDisplayHeight() { return 40; }
+    @Override public int getDisplayWidth() { return 140; }
+    @Override public int getDisplayHeight() { return 56; }
 
     @Override
     public void addWidgets(WidgetHolder widgets) {
@@ -60,6 +60,6 @@ public class ArcFurnaceEmiRecipe implements EmiRecipe {
         widgets.addSlot(inputs.get(1), 46, 22).drawBack(false);
 
         // 雷マークなどのテクスチャがあればここに追加すると雰囲気が出ます
-        widgets.addText(Component.literal("⚡"), 50, 2, 0xFFD700, true);
+        widgets.addText(Component.literal("⚡任意のスパークストーンを大量"), 4, 37, 0xFFD700, true);
     }
 }

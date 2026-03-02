@@ -33,7 +33,7 @@ public class WashingMachineEmiRecipe implements EmiRecipe {
     @Override public List<EmiIngredient> getInputs() { return inputs; }
     @Override public List<EmiStack> getOutputs() { return outputs; }
     @Override public int getDisplayWidth() { return 100; }
-    @Override public int getDisplayHeight() { return 40; }
+    @Override public int getDisplayHeight() { return 52; }
 
     @Override
     public void addWidgets(WidgetHolder widgets) {
@@ -48,6 +48,7 @@ public class WashingMachineEmiRecipe implements EmiRecipe {
         // 出力スロット
         widgets.addSlot(outputs.get(0), 74, 12).recipeContext(this);
 
-        widgets.addText(Component.literal("Requires Water Below"), 0, 32, 0x44AAFF, false);
+        widgets.addText(Component.literal("⚠ブロックの下に"), 0, 32, 0x44AAFF, false);
+        widgets.addText(Component.literal("水源が必要"), 0, 42, 0x44AAFF, false);
     }
 }

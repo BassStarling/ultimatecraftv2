@@ -723,6 +723,24 @@ public class ModItems {
                             super.appendHoverText(stack, level, tooltip, flag);
                         }
                     });
+    public static final RegistryObject<Item> STEEL_BLOCK =
+            ITEMS.register("steel_block",
+                    () -> new BlockItem(
+                            ModBlocks.STEEL_BLOCK.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> ALUMINIUM_BLOCK =
+            ITEMS.register("aluminium_block",
+                    () -> new BlockItem(
+                            ModBlocks.ALUMINIUM_BLOCK.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> NICKEL_BLOCK =
+            ITEMS.register("nickel_block",
+                    () -> new BlockItem(
+                            ModBlocks.NICKEL_BLOCK.get(),
+                            new Item.Properties()
+                    ));
 
     public static final TagKey<Item> MOLD_TAG = ItemTags.create(new ResourceLocation("ultimatecraftv2", "mold"));
 
@@ -745,3 +763,5 @@ public class ModItems {
 }
 //電解機の材料に必要とする電極でチタンやプラチナを使用するらしい。
 //プラチナのレア度はダイヤの4万倍ほど。
+
+//後にアルミニウムインゴットのレシピでアルミナの洗浄に専用の水溶液を用いらせる予定

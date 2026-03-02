@@ -53,15 +53,15 @@ public class IndustrialEmiPlugin implements EmiPlugin {
                     EmiStack.of(ModBlocks.COKEOVEN.get()));
 
     public static final EmiRecipeCategory ELECTROLYZER_CATEGORY =
-            new EmiRecipeCategory(new ResourceLocation("ultimatecraftv2", "electrolyzer.json"),
+            new EmiRecipeCategory(new ResourceLocation("ultimatecraftv2", "electrolyzer"),
                     EmiStack.of(ModBlocks.ELECTROLYZER.get()));
 
     public static final EmiRecipeCategory ARC_FURNACE_CATEGORY =
             new EmiRecipeCategory(new ResourceLocation("ultimatecraftv2", "arc_furnace"),
                     EmiStack.of(ModBlocks.ARC_FURNACE.get()));
 
-    public static final EmiRecipeCategory DISPOSABLE_ARC_FURNACE_CATEGORY = new EmiRecipeCategory(
-            new ResourceLocation("ultimatecraftv2", "disposable_arc_furnace"),
+    public static final EmiRecipeCategory DISPOSABLE_ARC_FURNACE_CATEGORY =
+            new EmiRecipeCategory(new ResourceLocation("ultimatecraftv2", "disposable_arc_furnace"),
             EmiStack.of(ModBlocks.DISPOSABLE_ARC_FURNACE.get())
     );
 
@@ -138,7 +138,7 @@ public class IndustrialEmiPlugin implements EmiPlugin {
         registry.addWorkstation(ELECTROLYZER_CATEGORY, EmiStack.of(ModBlocks.ELECTROLYZER.get()));
 
         registry.addRecipe(new ElectrolyzerEmiRecipe(
-                new ResourceLocation("ultimatecraftv2", "electrolyzer.json/oxygen_bottle")
+                new ResourceLocation("ultimatecraftv2", "electrolyzer/oxygen_bottle")
         ));
 
         registry.addCategory(ARC_FURNACE_CATEGORY);
@@ -275,12 +275,14 @@ public class IndustrialEmiPlugin implements EmiPlugin {
 
             @Override
             public List<Slot> getInputSources(IndustrialWorkbenchMenu menu) {
-                return menu.slots.subList(25, menu.slots.size());
+                // アイテムを持ってくる場所：プレイヤーインベントリ (0 ～ 35)
+                return menu.slots.subList(0, 36);
             }
 
             @Override
             public List<Slot> getCraftingSlots(IndustrialWorkbenchMenu menu) {
-                return menu.slots.subList(0, 25);
+                // アイテムを置く場所：作業台の5x5グリッド (36 ～ 60)
+                return menu.slots.subList(36, 61);
             }
 
             @Override

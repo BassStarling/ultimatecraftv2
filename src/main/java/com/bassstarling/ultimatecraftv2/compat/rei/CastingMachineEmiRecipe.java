@@ -39,7 +39,7 @@ public class CastingMachineEmiRecipe implements EmiRecipe {
     @Override public List<EmiIngredient> getInputs() { return inputs; }
     @Override public List<EmiStack> getOutputs() { return outputs; }
     @Override public int getDisplayWidth() { return 110; }
-    @Override public int getDisplayHeight() { return 40; }
+    @Override public int getDisplayHeight() { return 50; }
 
     @Override
     public void addWidgets(WidgetHolder widgets) {
@@ -55,6 +55,6 @@ public class CastingMachineEmiRecipe implements EmiRecipe {
         widgets.addSlot(outputs.get(1), 70, 22);
 
         // 説明テキスト
-        widgets.addText(Component.literal("ブロックに右クリック"), 10, 2, 0xAAAAAA, false);
+        widgets.addText(Component.literal("ブロックに右クリック"), 10, 42, 0xAAAAAA, false);
     }
 }
