@@ -1,6 +1,7 @@
 package com.bassstarling.ultimatecraftv2.blockentity;
 
 import com.bassstarling.ultimatecraftv2.block.ArcFurnaceBlock;
+import com.bassstarling.ultimatecraftv2.item.SparkStone;
 import com.bassstarling.ultimatecraftv2.menu.ArcFurnaceMenu;
 import com.bassstarling.ultimatecraftv2.registry.ModBlockEntities;
 import com.bassstarling.ultimatecraftv2.registry.ModBlocks;
@@ -52,12 +53,11 @@ public class ArcFurnaceBlockEntity extends BlockEntity implements MenuProvider {
         // ここでスロット2（電力スロット）からアイテムを取得し、sparkStack と名付けます
         ItemStack sparkStack = itemHandler.getStackInSlot(2);
 
-        // バッファが空で、かつアイテムがスパークストーンの場合
+        // 修正後
         if (energyBuffer <= 0 && !sparkStack.isEmpty() && sparkStack.is(ModItems.SPARK_STONE.get())) {
 
-            // NBTタグ（Tier）を読み取る
-            CompoundTag tag = sparkStack.getTag();
-            int tier = (tag != null && tag.contains("Tier")) ? tag.getInt("Tier") : 0;
+            // SparkStoneクラスのgetTierメソッドを再利用するのが一番確実です
+            int tier = SparkStone.getTier(sparkStack);
 
             // 指定したエネルギー量を代入
             int energyToAdd = switch (tier) {
@@ -67,7 +67,8 @@ public class ArcFurnaceBlockEntity extends BlockEntity implements MenuProvider {
                 case 4  -> 160;
                 case 5  -> 320;
                 case 6  -> 640;
-                default -> 10;   // Tier 0 または NBTなし
+                case 7  -> 1280; // Tier 7 も追加しておきましょう
+                default -> 10;
             };
 
             this.energyBuffer = energyToAdd;

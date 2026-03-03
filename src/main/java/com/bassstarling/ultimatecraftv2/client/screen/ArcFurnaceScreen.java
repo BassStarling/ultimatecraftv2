@@ -20,22 +20,20 @@ public class ArcFurnaceScreen extends AbstractContainerScreen<ArcFurnaceMenu> {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        // 1. 背景テクスチャの描画
+        // 背景テクスチャの描画
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
 
-        // 2. スパークエネルギーゲージの描画 (画像左端の細い棒)
-        // 座標: x+21, y+16 から 高さ46px想定
+        // スパークエネルギーゲージの描画
         int bufferHeight = (int)((float)menu.data.get(0) / menu.data.get(1) * 46);
         if (bufferHeight > 0) {
             // 色: スパークらしい水色 (0xFF00E5FF)
-            guiGraphics.fill(x + 50, y + 57 - bufferHeight, x + 53, y + 70, 0xFF00E5FF);
+            guiGraphics.fill(x + 50, y + 57 - bufferHeight, x + 53, y + 69, 0xFF00E5FF);
         }
 
-        // 3. 進捗矢印の描画 (中央のグレー矢印に重ねる)
+        // 進捗矢印
         int progressWidth = menu.getScaledProgress();
         if (progressWidth > 0) {
-            // 矢印のテクスチャ位置 (176, 0) はテクスチャ画像の右側余白に描いておく必要があります
-            guiGraphics.blit(TEXTURE, x + 79, y + 29, 176, 0, progressWidth, 17);
+            guiGraphics.blit(TEXTURE, x + 79, y + 33, 176, 12, progressWidth, 17);
         }
     }
 
