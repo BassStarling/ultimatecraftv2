@@ -1,0 +1,23 @@
+{
+  "parent": "ultimatecraftv2:ultimatecraftv2/steel_ingot",
+  "display": {
+    "icon": {
+      "item": "ultimatecraftv2:digester"
+    },
+    "title": { "translate": "advancements.ultimatecraftv2.ultimatecraftv2.digester.title" },
+    "description": { "translate": "advancements.ultimatecraftv2.ultimatecraftv2.digester.description" },
+    "frame": "goal"
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["ultimatecraftv2:digester"]
+          }
+        ]
+      }
+    }
+  }
+}

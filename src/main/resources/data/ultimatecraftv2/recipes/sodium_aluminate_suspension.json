@@ -1,0 +1,19 @@
+{
+  "type": "ultimatecraftv2:universalelectrolyzer",
+  "inputFluid": {
+    "fluid": "ultimatecraftv2:sodium_hydroxide",
+    "amount": 500
+  },
+  "inputItem": {
+    "item": "ultimatecraftv2:washed_bauxite"
+  },
+  "outputFluid": {
+    "fluid": "ultimatecraftv2:sodium_aluminate_suspension",
+    "amount": 1000
+  },
+  "outputItem": {
+    "item": "minecraft:air"
+  },
+  "processTime": 200,
+  "energyUsage": 4000
+}

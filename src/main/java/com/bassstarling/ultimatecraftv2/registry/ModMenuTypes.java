@@ -5,6 +5,7 @@ import com.bassstarling.ultimatecraftv2.blockentity.CokeOvenBlockEntity;
 import com.bassstarling.ultimatecraftv2.menu.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.extensions.IForgeMenuType;
@@ -47,4 +48,28 @@ public class ModMenuTypes {
             MENUS.register("arc_furnace_menu",
                     () -> IForgeMenuType.create(ArcFurnaceMenu::new));
 
+    public static final RegistryObject<MenuType<DigesterMenu>> DIGESTER_MENU =
+            MENUS.register("digester_menu",
+                    () -> IForgeMenuType.create((windowId, inv, data) -> {
+                        BlockPos pos = data.readBlockPos();
+                        Level level = inv.player.level();
+                        BlockEntity entity = level.getBlockEntity(pos);
+                        // クライアント側では新しい SimpleContainerData を渡す
+                        return new DigesterMenu(windowId, inv, entity, new SimpleContainerData(4));
+                    }));
+
+    public static final RegistryObject<MenuType<FilterMenu>>
+            FILTER_MENU =
+            MENUS.register("filter_menu",
+                    () -> IForgeMenuType.create(FilterMenu::new));
+
+    public static final RegistryObject<MenuType<PrecipitatorMenu>>
+            PRECIPITATOR_MENU =
+            MENUS.register("precipitator_menu",
+                    () -> IForgeMenuType.create(PrecipitatorMenu::new));
+
+    public static final RegistryObject<MenuType<UniversalElectrolyzerMenu>>
+            UNIVERSALELECTROLYZER_MENU =
+            MENUS.register("universalelectrolyzer_menu",
+                    () -> IForgeMenuType.create(UniversalElectrolyzerMenu::new));
 }

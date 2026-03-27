@@ -355,6 +355,30 @@ public class ModItems {
                         }
                     }
             );
+    public static final RegistryObject<Item> SODIUM_HYDROXIDE_BUCKET =
+            ITEMS.register("sodium_hydroxide_bucket",
+                    () -> new TarBucketItem(new Item.Properties()
+                            .craftRemainder(Items.BUCKET) // クラフト後に空バケツを返す設定
+                            .stacksTo(1)
+                    ));
+    public static final RegistryObject<Item> SODIUM_ALUMINATE_SUSPENSION_BUCKET =
+            ITEMS.register("sodium_aluminate_suspension_bucket",
+                    () -> new Item(new Item.Properties()
+                            .craftRemainder(Items.BUCKET) // クラフト後に空バケツを返す設定
+                            .stacksTo(1)
+                    ));
+    public static final RegistryObject<Item> SODIUM_ALUMINATE_BUCKET =
+            ITEMS.register("sodium_aluminate_bucket",
+                    () -> new Item(new Item.Properties()
+                            .craftRemainder(Items.BUCKET) // クラフト後に空バケツを返す設定
+                            .stacksTo(1)
+                    ));
+    public static final RegistryObject<Item> RED_MUD_BUCKET =
+            ITEMS.register("red_mud_bucket",
+                    () -> new Item(new Item.Properties()
+                            .craftRemainder(Items.BUCKET) // クラフト後に空バケツを返す設定
+                            .stacksTo(1)
+                    ));
     public static final RegistryObject<Item> COKE =
             ITEMS.register("coke",
                     () -> new Item(new Item.Properties()
@@ -739,6 +763,63 @@ public class ModItems {
             ITEMS.register("nickel_block",
                     () -> new BlockItem(
                             ModBlocks.NICKEL_BLOCK.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> DIGESTER =
+            ITEMS.register("digester",
+                    () -> new BlockItem(
+                            ModBlocks.DIGESTER.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> FIRE_CLAY_BALL =
+            ITEMS.register("fire_clay_ball",
+            () -> new Item(new Item.Properties()
+            ));
+    public static final RegistryObject<Item> FIREBRICK =
+            ITEMS.register("firebrick",
+            () -> new Item(new Item.Properties()
+            ));
+    public static final RegistryObject<Item> RED_MUD_CHUNK =
+            ITEMS.register("red_mud_chunk",
+                    () -> new Item(new Item.Properties()
+                            .craftRemainder(Items.IRON_NUGGET)
+                    ));
+    public static final RegistryObject<Item> SILICA =
+            ITEMS.register("silica",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> FILTER =
+            ITEMS.register("filter",
+                    () -> new BlockItem(
+                            ModBlocks.FILTER.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> PRECIPITATOR =
+            ITEMS.register("precipitator",
+                    () -> new BlockItem(
+                            ModBlocks.PRECIPITATOR.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> UNIVERSAL_ELECTROLYZER =
+            ITEMS.register("universal_electrolyzer",
+                    () -> new BlockItem(
+                            ModBlocks.UNIVERSAL_ELECTROLYZER.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> WHITE_FLUFFY_SOLID_OF_ALUMINIUM_HYDROXIDE =
+            ITEMS.register("white_fluffy_solid_of_aluminum_hydroxide",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> PUMP =
+            ITEMS.register("pump",
+                    () -> new BlockItem(
+                            ModBlocks.PUMP.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> THROWER =
+            ITEMS.register("thrower",
+                    () -> new BlockItem(
+                            ModBlocks.THROWER.get(),
                             new Item.Properties()
                     ));
 

@@ -27,7 +27,7 @@ public class EletricCalcinerBlockEntity extends BlockEntity {
     public static void tick(Level level, BlockPos pos, BlockState state, EletricCalcinerBlockEntity be) {
         if (level.isClientSide) return;
 
-        // 判定範囲
+        // 判定範囲（ブロックの直上 0.5マスの高さ）
         AABB box = new AABB(
                 pos.getX(), pos.getY() + 1, pos.getZ(),
                 pos.getX() + 1, pos.getY() + 1.5, pos.getZ() + 1
@@ -35,25 +35,24 @@ public class EletricCalcinerBlockEntity extends BlockEntity {
 
         List<ItemEntity> items = level.getEntitiesOfClass(ItemEntity.class, box);
 
-        ItemEntity sparkStone = null;
+        ItemEntity sparkStoneEntity = null;
         ItemEntity inputEntity = null;
         ItemStack resultStack = ItemStack.EMPTY;
 
-        // 1. まずスパークストーン(T4)を探す
+        // 1. スパークストーンの判定 (Tier 4 以上が必要な高熱処理と想定)
         for (ItemEntity item : items) {
             ItemStack stack = item.getItem();
-            if (stack.is(ModItems.SPARK_STONE.get()) && SparkStone.getTier(stack) == 4) {
-                sparkStone = item;
+            if (stack.is(ModItems.SPARK_STONE.get()) && SparkStone.getTier(stack) >= 4) {
+                sparkStoneEntity = item;
                 break;
             }
         }
 
-        // スパークストーンがないなら終了
-        if (sparkStone == null) return;
+        if (sparkStoneEntity == null) return;
 
-        // 2. 他のアイテム（入力物）を判定
+        // 2. 入力アイテムの判定
         for (ItemEntity item : items) {
-            if (item == sparkStone) continue; // スパークストーン自身は除外
+            if (item == sparkStoneEntity) continue;
 
             ItemStack stack = item.getItem();
 
@@ -69,18 +68,30 @@ public class EletricCalcinerBlockEntity extends BlockEntity {
                 resultStack = new ItemStack(ModBlocks.POROUS_INSULATION_BLOCK.get().asItem());
                 break;
             }
+            // パターンC: 耐火粘土 → 耐火煉瓦
+            else if (stack.is(ModItems.FIRE_CLAY_BALL.get())) {
+                inputEntity = item;
+                resultStack = new ItemStack(ModItems.FIREBRICK.get());
+                break;
+            }
+            // ★新規追加★ パターンD: 水酸化アルミニウム(白色綿毛状固体) → アルミナ
+            else if (stack.is(ModItems.WHITE_FLUFFY_SOLID_OF_ALUMINIUM_HYDROXIDE.get())) {
+                inputEntity = item;
+                resultStack = new ItemStack(ModItems.ALUMINA.get());
+                break;
+            }
         }
 
-        // 入力物が見つかれば処理実行
+        // 3. 処理実行
         if (inputEntity != null && !resultStack.isEmpty()) {
-            // 消費（1つずつ減らす）
-            sparkStone.getItem().shrink(1);
+            // 消費処理
+            sparkStoneEntity.getItem().shrink(1);
             inputEntity.getItem().shrink(1);
 
-            if (sparkStone.getItem().isEmpty()) sparkStone.discard();
+            if (sparkStoneEntity.getItem().isEmpty()) sparkStoneEntity.discard();
             if (inputEntity.getItem().isEmpty()) inputEntity.discard();
 
-            // 出力生成
+            // 成果物のドロップ
             level.addFreshEntity(new ItemEntity(
                     level,
                     pos.getX() + 0.5,
@@ -89,12 +100,12 @@ public class EletricCalcinerBlockEntity extends BlockEntity {
                     resultStack
             ));
 
-            // 共通の効果音
+            // 演出
             level.playSound(null, pos, SoundEvents.BLASTFURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 0.8F, 1.0F);
-
-            // サーバー側で演出パーティクル（任意）
             if (level instanceof ServerLevel serverLevel) {
-                serverLevel.sendParticles(ParticleTypes.FLAME, pos.getX() + 0.5, pos.getY() + 1.1, pos.getZ() + 0.5, 3, 0.1, 0.1, 0.1, 0.02);
+                serverLevel.sendParticles(ParticleTypes.FLAME, pos.getX() + 0.5, pos.getY() + 1.1, pos.getZ() + 0.5, 5, 0.1, 0.1, 0.1, 0.05);
+                // 精錬中っぽい煙も追加
+                serverLevel.sendParticles(ParticleTypes.SMOKE, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.05, 0.05, 0.05, 0.02);
             }
         }
     }

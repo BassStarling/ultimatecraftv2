@@ -1,8 +1,5 @@
 package com.bassstarling.ultimatecraftv2;
 
-import com.bassstarling.ultimatecraftv2.client.ModItemProperties;
-import com.bassstarling.ultimatecraftv2.client.screen.IndustrialWorkbenchScreen;
-import com.bassstarling.ultimatecraftv2.datagen.ModItemModelProvider;
 import com.bassstarling.ultimatecraftv2.datagen.ModItemTagProvider;
 import com.bassstarling.ultimatecraftv2.fluid.ModFluids;
 import com.bassstarling.ultimatecraftv2.init.ModCreativeTabs;
@@ -10,38 +7,25 @@ import com.bassstarling.ultimatecraftv2.recipe.ModRecipes;
 import com.bassstarling.ultimatecraftv2.registry.ModBlockEntities;
 import com.bassstarling.ultimatecraftv2.registry.ModBlocks;
 import com.bassstarling.ultimatecraftv2.registry.ModItems;
-import com.bassstarling.ultimatecraftv2.client.screen.ElectrolyticFurnaceScreen;
 import com.bassstarling.ultimatecraftv2.registry.ModMenuTypes;
 import com.mojang.logging.LogUtils;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MapColor;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
 import java.util.concurrent.CompletableFuture;
@@ -128,3 +112,11 @@ public class UltimateCraftV2
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
 }
+
+//[汎用電解機][浸出器]
+//[ポンプ]   [濾過機][分解層]←タンク1から搬入される
+//[水源]     [分解層]←タンク2から搬入される
+//
+//[分解層]←タンク1から搬入される
+//[空気]←分解層からアイテムがドロップされる
+//

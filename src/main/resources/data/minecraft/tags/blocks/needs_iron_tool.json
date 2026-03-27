@@ -6,6 +6,7 @@
     "ultimatecraftv2:arc_furnace",
     "ultimatecraftv2:casting_machine",
     "ultimatecraftv2:cokeoven",
+    "ultimatecraftv2:filter",
     "ultimatecraftv2:crusher_block",
     "ultimatecraftv2:electrolyzer",
     "ultimatecraftv2:eletriccalciner",
@@ -17,6 +18,8 @@
     "ultimatecraftv2:spark_generator",
     "ultimatecraftv2:used_electrolyticfurnace",
     "ultimatecraftv2:disposable_arc_furnace",
-    "ultimatecraftv2:washing_machine"
+    "ultimatecraftv2:precipitator",
+    "ultimatecraftv2:washing_machine",
+    "ultimatecraftv2:digester"
   ]
 }

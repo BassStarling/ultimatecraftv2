@@ -39,6 +39,22 @@ public class ClientModEvents {
                     ModMenuTypes.CASTING_MACHINE_MENU.get(),
                     CastingMachineScreen::new
             );
+            MenuScreens.register(
+                    ModMenuTypes.DIGESTER_MENU.get(),
+                    DigesterScreen::new
+            );
+            MenuScreens.register(
+                    ModMenuTypes.FILTER_MENU.get(),
+                    FilterScreen::new
+            );
+            MenuScreens.register(
+                    ModMenuTypes.PRECIPITATOR_MENU.get(),
+                    PrecipitatorScreen::new
+            );
+            MenuScreens.register(
+                    ModMenuTypes.UNIVERSALELECTROLYZER_MENU.get(),
+                    UniversalElectrolyzerScreen::new
+            );
         });
     }
 }

@@ -4,6 +4,7 @@ import com.bassstarling.ultimatecraftv2.fluid.ModFluids;
 import com.bassstarling.ultimatecraftv2.item.SparkStone;
 import com.bassstarling.ultimatecraftv2.menu.IndustrialWorkbenchMenu;
 import com.bassstarling.ultimatecraftv2.recipe.CastingRecipe;
+import com.bassstarling.ultimatecraftv2.recipe.DigestingRecipe;
 import com.bassstarling.ultimatecraftv2.recipe.IndustrialRecipe;
 import com.bassstarling.ultimatecraftv2.recipe.ModRecipes;
 import com.bassstarling.ultimatecraftv2.registry.ModBlocks;
@@ -88,6 +89,10 @@ public class IndustrialEmiPlugin implements EmiPlugin {
     public static final EmiRecipeCategory SPARK_COMPRESSOR_CATEGORY =
             new EmiRecipeCategory(new ResourceLocation("ultimatecraftv2", "spark_compressor"),
                     EmiStack.of(ModBlocks.SPARK_COMPRESSOR.get()));
+
+    public static final EmiRecipeCategory DIGESTER_CATEGORY =
+            new EmiRecipeCategory(new ResourceLocation("ultimatecraftv2", "digesting"),
+                    EmiStack.of(ModBlocks.DIGESTER.get()));
 
     @Override
     public void register(EmiRegistry registry) {
@@ -193,6 +198,12 @@ public class IndustrialEmiPlugin implements EmiPlugin {
                 new ResourceLocation("ultimatecraftv2", "calciner/alumina"),
                 EmiStack.of(ModItems.WASHED_BAUXITE_POWDER.get()),
                 EmiStack.of(ModItems.ALUMINA.get())
+        ));
+
+        registry.addRecipe(new ElectricCalcinerEmiRecipe(
+                new ResourceLocation("ultimatecraftv2", "calciner/alumina"),
+                EmiStack.of(ModItems.FIRE_CLAY_BALL.get()),
+                EmiStack.of(ModItems.FIREBRICK.get())
         ));
 
         registry.addCategory(ELECTROLYTIC_CATEGORY);
@@ -304,5 +315,15 @@ public class IndustrialEmiPlugin implements EmiPlugin {
         ));
 
         registry.addWorkstation(VanillaEmiRecipeCategories.CRAFTING, EmiStack.of(ModBlocks.INDUSTRIAL_WORKBENCH.get()));
+
+        registry.addCategory(DIGESTER_CATEGORY);
+        // このブロックを「作業台」として登録
+        registry.addWorkstation(DIGESTER_CATEGORY, EmiStack.of(ModBlocks.DIGESTER.get()));
+
+        // レシピマネージャーから「浸出レシピ」をすべて取得して登録
+        RecipeManager rm = registry.getRecipeManager();
+        for (DigestingRecipe recipe : rm.getAllRecipesFor(DigestingRecipe.Type.INSTANCE)) {
+            registry.addRecipe(new DigesterEmiRecipe(recipe));
+        }
     }
 }

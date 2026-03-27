@@ -25,6 +25,9 @@
     "ultimatecraftv2:spark_compressor",
     "ultimatecraftv2:spark_generator",
     "ultimatecraftv2:used_electrolyticfurnace",
-    "ultimatecraftv2:washing_machine"
+    "ultimatecraftv2:washing_machine",
+    "ultimatecraftv2:filter",
+    "ultimatecraftv2:precipitator",
+    "ultimatecraftv2:digester"
   ]
 }

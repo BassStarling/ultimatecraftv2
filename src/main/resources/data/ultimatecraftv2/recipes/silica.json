@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "ultimatecraftv2:red_mud_chunk" }
+  ],
+  "result": {
+    "item": "ultimatecraftv2:silica"
+  }
+}

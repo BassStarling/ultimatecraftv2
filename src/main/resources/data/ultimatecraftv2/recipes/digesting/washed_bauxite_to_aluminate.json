@@ -1,0 +1,15 @@
+{
+  "type": "ultimatecraftv2:digesting",
+  "ingredient": {
+    "item": "ultimatecraftv2:washed_bauxite_powder"
+  },
+  "fluid_input": {
+    "fluid": "ultimatecraftv2:sodium_hydroxide",
+    "amount": 250
+  },
+  "output": {
+    "fluid": "ultimatecraftv2:sodium_aluminate_suspension",
+    "amount": 500
+  },
+  "time": 100
+}

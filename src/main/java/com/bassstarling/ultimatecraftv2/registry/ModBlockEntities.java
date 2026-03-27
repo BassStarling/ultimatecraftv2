@@ -99,4 +99,40 @@ public class ModBlockEntities {
                             CastingMachineBlockEntity::new,
                             ModBlocks.CASTING_MACHINE.get()
                     ).build(null));
+    public static final RegistryObject<BlockEntityType<DigesterBlockEntity>> DIGESTER_BE =
+            BLOCK_ENTITIES.register("digester_be",
+                    () -> BlockEntityType.Builder.of(
+                            DigesterBlockEntity::new,
+                            ModBlocks.DIGESTER.get()
+                    ).build(null));
+    public static final RegistryObject<BlockEntityType<FilterBlockEntity>> FILTERBE =
+            BLOCK_ENTITIES.register("filterbe",
+                    () -> BlockEntityType.Builder.of(
+                            FilterBlockEntity::new,
+                            ModBlocks.FILTER.get()
+                    ).build(null));
+    public static final RegistryObject<BlockEntityType<PrecipitatorBlockEntity>> PRECIPITATOR_BE =
+            BLOCK_ENTITIES.register("precipitator_be",
+                    () -> BlockEntityType.Builder.of(
+                            PrecipitatorBlockEntity::new,
+                            ModBlocks.PRECIPITATOR.get()
+                    ).build(null));
+    public static final RegistryObject<BlockEntityType<UniversalElectrolyzerBlockEntity>> UNIVERSAL_ELECTROLYZER_BE =
+            BLOCK_ENTITIES.register("universal_electrolyzer_be",
+                    () -> BlockEntityType.Builder.of(
+                            UniversalElectrolyzerBlockEntity::new,
+                            ModBlocks.UNIVERSAL_ELECTROLYZER.get()
+                    ).build(null));
+    public static final RegistryObject<BlockEntityType<PumpBlockEntity>> PUMP_BE =
+            BLOCK_ENTITIES.register("pump_be",
+                    () -> BlockEntityType.Builder.of(
+                            PumpBlockEntity::new,
+                            ModBlocks.PUMP.get()
+                    ).build(null));
+    public static final RegistryObject<BlockEntityType<ThrowerBlockEntity>> THROWER_BE =
+            BLOCK_ENTITIES.register("thrower_be",
+                    () -> BlockEntityType.Builder.of(
+                            ThrowerBlockEntity::new,
+                            ModBlocks.THROWER.get()
+                    ).build(null));
 }
