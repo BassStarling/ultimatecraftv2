@@ -27,6 +27,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.RangedWrapper;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.jetbrains.annotations.NotNull;
 
@@ -194,34 +195,51 @@ public class PrecipitatorBlockEntity extends BlockEntity implements MenuProvider
         progress = nbt.getInt("precipitator.progress");
     }
 
-    // Capability
-    private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
-    private LazyOptional<IFluidHandler> lazyInputTank = LazyOptional.empty();
-    private LazyOptional<IFluidHandler> lazyOutputTank = LazyOptional.empty();
+    // Capability用のLazyOptionalを定義
+    private LazyOptional<IItemHandler> itemHandlerCap = LazyOptional.empty();
+    private LazyOptional<IFluidHandler> inputFluidCap = LazyOptional.empty();
+    private LazyOptional<IFluidHandler> outputFluidCap = LazyOptional.empty();
 
     @Override
     public void onLoad() {
         super.onLoad();
-        lazyItemHandler = LazyOptional.of(() -> itemHandler);
-        lazyInputTank = LazyOptional.of(() -> inputTank);
-        lazyOutputTank = LazyOptional.of(() -> outputTank);
+        // アイテンハンドラーを「抽出のみ」に制限するカスタムラッパー
+        itemHandlerCap = LazyOptional.of(() -> new RangedWrapper(itemHandler, 0, 1) {
+            @Override
+            public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+                // 外部からの挿入を常に拒否（そのままのスタックを返す）
+                return stack;
+            }
+        });
+
+        inputFluidCap = LazyOptional.of(() -> inputTank);
+        outputFluidCap = LazyOptional.of(() -> outputTank);
     }
 
     @Override
     public void invalidateCaps() {
         super.invalidateCaps();
-        lazyItemHandler.invalidate();
-        lazyInputTank.invalidate();
-        lazyOutputTank.invalidate();
+        itemHandlerCap.invalidate();
+        inputFluidCap.invalidate();
+        outputFluidCap.invalidate();
     }
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == ForgeCapabilities.ITEM_HANDLER) return lazyItemHandler.cast();
-        if (cap == ForgeCapabilities.FLUID_HANDLER) {
-            if (side == Direction.DOWN) return lazyOutputTank.cast(); // 下から苛性ソーダ搬出
-            return lazyInputTank.cast(); // それ以外から材料搬入
+        // アイテム：全方向から抽出のみ可能
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
+            return itemHandlerCap.cast();
         }
+
+        // 液体：下からは搬出、それ以外（上・横）からは搬入
+        if (cap == ForgeCapabilities.FLUID_HANDLER) {
+            if (side == Direction.DOWN) {
+                return outputFluidCap.cast(); // 苛性ソーダ
+            }
+            // side == null (内部処理) や Direction.UP/NORTH/SOUTH/EAST/WEST
+            return inputFluidCap.cast(); // アルミ酸ナトリウム
+        }
+
         return super.getCapability(cap, side);
     }
 

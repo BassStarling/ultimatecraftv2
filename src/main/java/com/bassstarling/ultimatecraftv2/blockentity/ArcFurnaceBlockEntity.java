@@ -25,6 +25,7 @@ import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.RangedWrapper;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.jetbrains.annotations.NotNull;
 
@@ -139,23 +140,44 @@ public class ArcFurnaceBlockEntity extends BlockEntity implements MenuProvider {
         inventoryOptional = LazyOptional.of(() -> itemHandler);
     }
 
+    // --- Capability 用の LazyOptional 定義 ---
+    // スロット0（入力：コークス電極）：上からの搬入用
+    private final LazyOptional<IItemHandler> inputOptional = LazyOptional.of(() -> new RangedWrapper(itemHandler, 0, 1));
+    // スロット1（出力：グラファイト電極）：下からの搬出用
+    private final LazyOptional<IItemHandler> outputOptional = LazyOptional.of(() -> new RangedWrapper(itemHandler, 1, 2));
+    // スロット2（燃料：スパークストーン）：横からの搬入用
+    private final LazyOptional<IItemHandler> fuelOptional = LazyOptional.of(() -> new RangedWrapper(itemHandler, 2, 3));
+
+    @Override
+    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+        // アイテムハンドラーの処理
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
+            if (side == null) return inventoryOptional.cast();
+
+            return switch (side) {
+                case UP -> inputOptional.cast();    // 上：コークス電極
+                case DOWN -> outputOptional.cast(); // 下：グラファイト電極
+                default -> fuelOptional.cast();     // 横：スパークストーン
+            };
+        }
+
+        // エネルギー(FE)の処理
+        if (cap == ForgeCapabilities.ENERGY) {
+            return energyOptional.cast();
+        }
+
+        return super.getCapability(cap, side);
+    }
+
     @Override
     public void invalidateCaps() {
         super.invalidateCaps();
-        energyOptional.invalidate();
+        inputOptional.invalidate();
+        outputOptional.invalidate();
+        fuelOptional.invalidate();
+        // 既存の inventoryOptional と energyOptional も忘れずに
         inventoryOptional.invalidate();
-    }
-
-    @NotNull
-    @Override
-    public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            return inventoryOptional.cast(); // アイテムスロットを返す
-        }
-        if (cap == ForgeCapabilities.ENERGY) {
-            return energyOptional.cast(); // エネルギー(FE)を返す
-        }
-        return super.getCapability(cap, side);
+        energyOptional.invalidate();
     }
 
     @Override

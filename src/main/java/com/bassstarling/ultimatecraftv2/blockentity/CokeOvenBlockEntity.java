@@ -7,6 +7,7 @@ import com.bassstarling.ultimatecraftv2.registry.ModBlockEntities;
 import com.bassstarling.ultimatecraftv2.registry.ModBlocks;
 import com.bassstarling.ultimatecraftv2.registry.ModItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -24,11 +25,16 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.CombinedInvWrapper;
+import net.minecraftforge.items.wrapper.RangedWrapper;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.jetbrains.annotations.NotNull;
 
@@ -252,6 +258,62 @@ public class CokeOvenBlockEntity extends BlockEntity implements MenuProvider {
             container.setItem(i, itemHandler.getStackInSlot(i));
         }
         return container;
+    }
+
+    // --- Capability 用の LazyOptional 定義 ---
+    // 1. 全スロット（GUI/内部用）
+    private LazyOptional<IItemHandler> inventoryOptional = LazyOptional.empty();
+    // 2. 液体タンク用
+    private LazyOptional<IFluidHandler> fluidOptional = LazyOptional.empty();
+
+    // 3. 方向別スロット制限用
+    // 上：材料（Slot 0）のみ
+    private final LazyOptional<IItemHandler> inputOptional = LazyOptional.of(() -> new RangedWrapper(itemHandler, 0, 1));
+    // 横：燃料（Slot 1）とバケツ（Slot 3）
+    private final LazyOptional<IItemHandler> sideOptional = LazyOptional.of(() -> new CombinedInvWrapper(
+            new RangedWrapper(itemHandler, 1, 2),
+            new RangedWrapper(itemHandler, 3, 4)
+    ));
+    // 下：完成品（Slot 2）とタールバケツ（Slot 3）※スロワー回収用
+    private final LazyOptional<IItemHandler> outputOptional = LazyOptional.of(() -> new CombinedInvWrapper(
+            new RangedWrapper(itemHandler, 2, 3),
+            new RangedWrapper(itemHandler, 3, 4)
+    ));
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        this.inventoryOptional = LazyOptional.of(() -> itemHandler);
+        this.fluidOptional = LazyOptional.of(() -> fluidTank);
+    }
+
+    @Override
+    public void invalidateCaps() {
+        super.invalidateCaps();
+        inventoryOptional.invalidate();
+        fluidOptional.invalidate();
+        inputOptional.invalidate();
+        sideOptional.invalidate();
+        outputOptional.invalidate();
+    }
+
+    @Override
+    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
+            if (side == null) return inventoryOptional.cast();
+
+            return switch (side) {
+                case UP -> inputOptional.cast();    // 上：石炭、ニッケル
+                case DOWN -> outputOptional.cast(); // 下：コークス、タールバケツ
+                default -> sideOptional.cast();     // 横：燃料、空バケツ
+            };
+        }
+
+        if (cap == ForgeCapabilities.FLUID_HANDLER) {
+            return fluidOptional.cast();
+        }
+
+        return super.getCapability(cap, side);
     }
 
     public void writeMenuGuideData(FriendlyByteBuf buffer) {

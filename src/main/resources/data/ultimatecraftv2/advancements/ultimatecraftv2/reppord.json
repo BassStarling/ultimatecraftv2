@@ -1,0 +1,23 @@
+{
+  "parent": "ultimatecraftv2:ultimatecraftv2/root",
+  "display": {
+    "icon": {
+      "item": "ultimatecraftv2:reppord"
+    },
+    "title": { "translate": "advancements.ultimatecraftv2.ultimatecraftv2.reppord.title" },
+    "description": { "translate": "advancements.ultimatecraftv2.ultimatecraftv2.reppord.description" },
+    "frame": "goal"
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["ultimatecraftv2:reppord"]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -6,6 +6,7 @@ import com.bassstarling.ultimatecraftv2.registry.ModBlockEntities;
 import com.bassstarling.ultimatecraftv2.registry.ModBlocks;
 import com.bassstarling.ultimatecraftv2.registry.ModItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
@@ -19,8 +20,15 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.RangedWrapper;
+import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nullable;
 
 public class ElectrolyticFurnaceBlockEntity extends BlockEntity implements MenuProvider {
 
@@ -269,5 +277,51 @@ public class ElectrolyticFurnaceBlockEntity extends BlockEntity implements MenuP
         PREPARING,
         RESETTING,
         PROCESSING
+    }
+
+    // --- Capability 用の LazyOptional 定義 ---
+
+    // 全スロット（内部/GUI用）
+    private LazyOptional<IItemHandler> inventoryOptional = LazyOptional.empty();
+
+    // 1. 上から：入力スロット (Slot 0) のみ。搬入専用。
+    private final LazyOptional<IItemHandler> topOptional = LazyOptional.of(() -> new RangedWrapper(items, 0, 1));
+
+    // 2. 横から：スパークスロット (Slot 1) のみ。搬入専用。
+    private final LazyOptional<IItemHandler> sideOptional = LazyOptional.of(() -> new RangedWrapper(items, 1, 2));
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        this.inventoryOptional = LazyOptional.of(() -> items);
+    }
+
+    @Override
+    public void invalidateCaps() {
+        super.invalidateCaps();
+        inventoryOptional.invalidate();
+        topOptional.invalidate();
+        sideOptional.invalidate();
+    }
+
+    @Override
+    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
+            // side が null なら全スロットへのアクセスを許可（内部処理用）
+            if (side == null) return inventoryOptional.cast();
+
+            return switch (side) {
+                // 上から：材料（氷晶石・アルミナ）の搬入
+                case UP -> topOptional.cast();
+
+                // 横から：スパークストーンの搬入
+                case NORTH, SOUTH, EAST, WEST -> sideOptional.cast();
+
+                // 下（DOWN）からは一切のアクセス（搬出入）を拒否
+                // これによりスロワーやホッパーが下に設置されても何も起きません
+                default -> LazyOptional.empty();
+            };
+        }
+        return super.getCapability(cap, side);
     }
 }

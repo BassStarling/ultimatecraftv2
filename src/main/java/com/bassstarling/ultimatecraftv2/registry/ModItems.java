@@ -822,6 +822,18 @@ public class ModItems {
                             ModBlocks.THROWER.get(),
                             new Item.Properties()
                     ));
+    public static final RegistryObject<Item> REPPORD =
+            ITEMS.register("reppord",
+                    () -> new BlockItem(
+                            ModBlocks.REPPORD.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> AUTOCASTER =
+            ITEMS.register("autocaster",
+                    () -> new BlockItem(
+                            ModBlocks.AUTOCASTER.get(),
+                            new Item.Properties()
+                    ));
 
     public static final TagKey<Item> MOLD_TAG = ItemTags.create(new ResourceLocation("ultimatecraftv2", "mold"));
 

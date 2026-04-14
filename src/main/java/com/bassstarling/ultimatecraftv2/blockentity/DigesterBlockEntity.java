@@ -32,6 +32,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.RangedWrapper;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.jetbrains.annotations.NotNull;
 
@@ -206,7 +207,7 @@ public class DigesterBlockEntity extends BlockEntity implements MenuProvider {
         if (outputTank.isEmpty()) return;
 
         for (Direction direction : Direction.values()) {
-            // ★ 修正：上下方向（UP, DOWN）ならスキップする
+            // 上下方向（UP, DOWN）ならスキップする
             if (direction.getAxis().isVertical()) continue;
 
             BlockPos neighborPos = worldPosition.relative(direction);
@@ -318,24 +319,36 @@ public class DigesterBlockEntity extends BlockEntity implements MenuProvider {
         lazyOutputTank.invalidate();
     }
 
+    // --- Capability 関連の修正 ---
+
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         // 1. アイテムハンドラーの処理
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            return lazyItemHandler.cast();
+            if (side == null) return lazyItemHandler.cast();
+
+            return switch (side) {
+                // 上から：液体瓶スロット (Slot 1) のみアクセス可能
+                case UP -> LazyOptional.of(() -> new RangedWrapper(itemHandler, 1, 2)).cast();
+
+                // 下から：空瓶スロット (Slot 2) のみアクセス可能（搬出用）
+                case DOWN -> LazyOptional.of(() -> new RangedWrapper(itemHandler, 2, 3)).cast();
+
+                // 横から：粉スロット (Slot 0) のみアクセス可能
+                default -> LazyOptional.of(() -> new RangedWrapper(itemHandler, 0, 1)).cast();
+            };
         }
 
         // 2. 流体（液体）ハンドラーの処理
         if (cap == ForgeCapabilities.FLUID_HANDLER) {
-            // side == null（内部処理や一部のMod）の場合は入力タンクを返す
             if (side == null) return lazyInputTank.cast();
 
-            // 縦（上下）からは搬出（outputTank）のみ
-            if (side.getAxis().isVertical()) {
+            // 下（DOWN）からは出力タンク（アルミ酸ナトリウム溶液）の搬出のみ
+            if (side == Direction.DOWN) {
                 return lazyOutputTank.cast();
             }
 
-            // 横（前後左右）からは搬入（inputTank）のみ
+            // 上・横からは入力タンク（苛性ソーダ溶液）の搬入のみ
             return lazyInputTank.cast();
         }
 

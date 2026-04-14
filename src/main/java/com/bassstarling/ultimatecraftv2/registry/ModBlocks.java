@@ -237,4 +237,18 @@ public class ModBlocks {
                             .requiresCorrectToolForDrops()
                             .strength(2.0F, 2.0F)
                     ));
+    public static final RegistryObject<Block> REPPORD =
+            BLOCKS.register("reppord",
+                    () -> new ReppordBlock(BlockBehaviour.Properties
+                            .of().mapColor(MapColor.STONE)
+                            .requiresCorrectToolForDrops()
+                            .strength(2.0F, 2.0F)
+                    ));
+    public static final RegistryObject<Block> AUTOCASTER =
+            BLOCKS.register("autocaster",
+                    () -> new AutoCasterBlock(BlockBehaviour.Properties
+                            .of().mapColor(MapColor.STONE)
+                            .requiresCorrectToolForDrops()
+                            .strength(2.0F, 2.0F)
+                    ));
 }

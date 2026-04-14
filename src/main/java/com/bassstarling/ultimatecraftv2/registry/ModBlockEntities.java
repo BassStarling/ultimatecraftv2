@@ -135,4 +135,16 @@ public class ModBlockEntities {
                             ThrowerBlockEntity::new,
                             ModBlocks.THROWER.get()
                     ).build(null));
+    public static final RegistryObject<BlockEntityType<ReppordBlockEntity>> REPPORD_BE =
+            BLOCK_ENTITIES.register("reppord_be",
+                    () -> BlockEntityType.Builder.of(
+                            ReppordBlockEntity::new,
+                            ModBlocks.REPPORD.get()
+                    ).build(null));
+    public static final RegistryObject<BlockEntityType<AutoCasterBlockEntity>> AUTO_CASTER_BE =
+            BLOCK_ENTITIES.register("auto_caster_be",
+                    () -> BlockEntityType.Builder.of(
+                            AutoCasterBlockEntity::new,
+                            ModBlocks.AUTOCASTER.get()
+                    ).build(null));
 }

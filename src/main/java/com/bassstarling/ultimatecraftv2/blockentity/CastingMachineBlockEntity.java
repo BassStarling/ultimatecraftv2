@@ -28,6 +28,7 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.RangedWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -80,11 +81,6 @@ public class CastingMachineBlockEntity extends BlockEntity implements MenuProvid
 
                 // まず上のスロット(0)を試す
                 reminder = be.itemHandler.insertItem(0, reminder, false);
-
-                // 余りがあれば下のスロット(1)を試す
-                if (!reminder.isEmpty()) {
-                    reminder = be.itemHandler.insertItem(1, reminder, false);
-                }
 
                 // アイテムのEntityを更新または削除
                 if (reminder.isEmpty()) {
@@ -167,14 +163,28 @@ public class CastingMachineBlockEntity extends BlockEntity implements MenuProvid
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
-    // インベントリ機能のキャッシュ（動作を軽くするため）
-    private final LazyOptional<IItemHandler> optional = LazyOptional.of(() -> this.itemHandler);
+    // --- Capability 用の LazyOptional 定義 ---
+    // スロット0（材料）のみ：上・横からの搬入用
+    private final LazyOptional<IItemHandler> inputOptional = LazyOptional.of(() -> new RangedWrapper(itemHandler, 0, 1));
+    // スロット2（製品）のみ：下からの搬出用
+    private final LazyOptional<IItemHandler> outputOptional = LazyOptional.of(() -> new RangedWrapper(itemHandler, 2, 3));
+    // 全スロット（内部処理/GUI用）
+    private final LazyOptional<IItemHandler> internalOptional = LazyOptional.of(() -> itemHandler);
 
     @Override
-    public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        // 「アイテムハンドラー機能ある？」と聞かれたら「あるよ」と答える
+    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            return optional.cast();
+            // side が null（内部処理や一部のMod）の場合は全スロットを返す
+            if (side == null) return internalOptional.cast();
+
+            return switch (side) {
+                // 下（DOWN）からはスロット2（完成品）の搬出のみ許可
+                case DOWN -> outputOptional.cast();
+
+                // 上（UP）および横（水平方向）からはスロット0（材料）の搬入のみ許可
+                // ※スロット1（型）はここに含まれていないため、外部からは触れなくなります
+                default -> inputOptional.cast();
+            };
         }
         return super.getCapability(cap, side);
     }
@@ -182,7 +192,9 @@ public class CastingMachineBlockEntity extends BlockEntity implements MenuProvid
     @Override
     public void invalidateCaps() {
         super.invalidateCaps();
-        optional.invalidate();
+        inputOptional.invalidate();
+        outputOptional.invalidate();
+        internalOptional.invalidate();
     }
 
     @Override
