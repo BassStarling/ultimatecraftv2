@@ -1,7 +1,8 @@
 {
   "variants": {
-    "":{
-      "model": "ultimatecraftv2:block/aluminium_block"
-    }
+    "facing=north": { "model": "ultimatecraftv2:block/digester" },
+    "facing=south": { "model": "ultimatecraftv2:block/digester", "y": 180 },
+    "facing=east":  { "model": "ultimatecraftv2:block/digester", "y": 90 },
+    "facing=west":  { "model": "ultimatecraftv2:block/digester", "y": 270 }
   }
 }

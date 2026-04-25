@@ -201,6 +201,7 @@ public class ModBlocks {
                             .of().mapColor(MapColor.STONE)
                             .requiresCorrectToolForDrops()
                             .strength(2.0F, 2.0F)
+                            .noOcclusion()
                     ));
     public static final RegistryObject<Block> FILTER =
             BLOCKS.register("filter",
@@ -222,6 +223,7 @@ public class ModBlocks {
                             .of().mapColor(MapColor.STONE)
                             .requiresCorrectToolForDrops()
                             .strength(2.0F, 2.0F)
+                            .noOcclusion()
                     ));
     public static final RegistryObject<Block> PUMP =
             BLOCKS.register("pump",
@@ -236,6 +238,7 @@ public class ModBlocks {
                             .of().mapColor(MapColor.STONE)
                             .requiresCorrectToolForDrops()
                             .strength(2.0F, 2.0F)
+                            .noOcclusion()
                     ));
     public static final RegistryObject<Block> REPPORD =
             BLOCKS.register("reppord",
@@ -243,6 +246,7 @@ public class ModBlocks {
                             .of().mapColor(MapColor.STONE)
                             .requiresCorrectToolForDrops()
                             .strength(2.0F, 2.0F)
+                            .noOcclusion()
                     ));
     public static final RegistryObject<Block> AUTOCASTER =
             BLOCKS.register("autocaster",
