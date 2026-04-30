@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ultimatecraftv2:precipitator"
+          "name": "ultimatecraftv2:crystallizer"
         }
       ],
       "conditions": [

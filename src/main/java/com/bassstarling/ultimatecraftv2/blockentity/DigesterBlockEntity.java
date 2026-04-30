@@ -284,7 +284,7 @@ public class DigesterBlockEntity extends BlockEntity implements MenuProvider {
     @Override
     protected void saveAdditional(CompoundTag nbt) {
         super.saveAdditional(nbt);
-        nbt.putInt("digester.progress", progress);
+        nbt.putInt("digester.json.progress", progress);
         nbt.put("InputTank", inputTank.writeToNBT(new CompoundTag()));
         nbt.put("OutputTank", outputTank.writeToNBT(new CompoundTag()));
         nbt.put("Inventory", itemHandler.serializeNBT());
@@ -293,7 +293,7 @@ public class DigesterBlockEntity extends BlockEntity implements MenuProvider {
     @Override
     public void load(CompoundTag nbt) {
         super.load(nbt);
-        progress = nbt.getInt("digester.progress");
+        progress = nbt.getInt("digester.json.progress");
         inputTank.readFromNBT(nbt.getCompound("InputTank"));
         outputTank.readFromNBT(nbt.getCompound("OutputTank"));
         itemHandler.deserializeNBT(nbt.getCompound("Inventory"));

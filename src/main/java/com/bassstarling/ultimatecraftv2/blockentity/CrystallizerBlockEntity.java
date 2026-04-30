@@ -1,7 +1,7 @@
 package com.bassstarling.ultimatecraftv2.blockentity;
 
 import com.bassstarling.ultimatecraftv2.fluid.ModFluids;
-import com.bassstarling.ultimatecraftv2.menu.PrecipitatorMenu;
+import com.bassstarling.ultimatecraftv2.menu.CrystallizerMenu;
 import com.bassstarling.ultimatecraftv2.registry.ModBlockEntities;
 import com.bassstarling.ultimatecraftv2.registry.ModItems;
 import net.minecraft.core.BlockPos;
@@ -31,7 +31,7 @@ import net.minecraftforge.items.wrapper.RangedWrapper;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.jetbrains.annotations.NotNull;
 
-public class PrecipitatorBlockEntity extends BlockEntity implements MenuProvider {
+public class CrystallizerBlockEntity extends BlockEntity implements MenuProvider {
     // 1. 入力タンク (sodium_aluminate または red_mud)
     private final FluidTank inputTank = new FluidTank(10000);
     // 2. 出力タンク (回収用 sodium_hydroxide)
@@ -49,22 +49,22 @@ public class PrecipitatorBlockEntity extends BlockEntity implements MenuProvider
     private int progress = 0;
     private int maxProgress = 200; // 結晶化プロセス用の時間
 
-    public PrecipitatorBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.PRECIPITATOR_BE.get(), pos, state);
+    public CrystallizerBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.CRYSTALLIZER_BE.get(), pos, state);
         this.data = new ContainerData() {
             @Override
             public int get(int index) {
                 return switch (index) {
-                    case 0 -> PrecipitatorBlockEntity.this.progress;
-                    case 1 -> PrecipitatorBlockEntity.this.maxProgress;
+                    case 0 -> CrystallizerBlockEntity.this.progress;
+                    case 1 -> CrystallizerBlockEntity.this.maxProgress;
                     default -> 0;
                 };
             }
             @Override
             public void set(int index, int value) {
                 switch (index) {
-                    case 0 -> PrecipitatorBlockEntity.this.progress = value;
-                    case 1 -> PrecipitatorBlockEntity.this.maxProgress = value;
+                    case 0 -> CrystallizerBlockEntity.this.progress = value;
+                    case 1 -> CrystallizerBlockEntity.this.maxProgress = value;
                 }
             }
             @Override
@@ -166,13 +166,13 @@ public class PrecipitatorBlockEntity extends BlockEntity implements MenuProvider
     // --- GUI & Network 関連 ---
     @Override
     public Component getDisplayName() {
-        return Component.translatable("block.ultimatecraftv2.precipitator");
+        return Component.translatable("block.ultimatecraftv2.crystallizer");
     }
 
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int id, Inventory inv, Player player) {
-        return new PrecipitatorMenu(id, inv, this, this.data);
+        return new CrystallizerMenu(id, inv, this, this.data);
     }
 
     // NBT保存
@@ -182,7 +182,7 @@ public class PrecipitatorBlockEntity extends BlockEntity implements MenuProvider
         nbt.put("InputTank", inputTank.writeToNBT(new CompoundTag()));
         nbt.put("OutputTank", outputTank.writeToNBT(new CompoundTag()));
         nbt.put("Inventory", itemHandler.serializeNBT());
-        nbt.putInt("precipitator.progress", progress);
+        nbt.putInt("crystallizer.progress", progress);
     }
 
     // NBT読み込み
@@ -192,7 +192,7 @@ public class PrecipitatorBlockEntity extends BlockEntity implements MenuProvider
         inputTank.readFromNBT(nbt.getCompound("InputTank"));
         outputTank.readFromNBT(nbt.getCompound("OutputTank"));
         itemHandler.deserializeNBT(nbt.getCompound("Inventory"));
-        progress = nbt.getInt("precipitator.progress");
+        progress = nbt.getInt("crystallizer.progress");
     }
 
     // Capability用のLazyOptionalを定義

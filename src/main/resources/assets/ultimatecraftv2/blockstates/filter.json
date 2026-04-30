@@ -1,7 +1,7 @@
 {
   "variants": {
     "":{
-      "model": "ultimatecraftv2:block/aluminium_block"
+      "model": "ultimatecraftv2:block/filter"
     }
   }
 }

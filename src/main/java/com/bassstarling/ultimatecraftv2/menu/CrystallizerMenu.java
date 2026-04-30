@@ -1,6 +1,6 @@
 package com.bassstarling.ultimatecraftv2.menu;
 
-import com.bassstarling.ultimatecraftv2.blockentity.PrecipitatorBlockEntity;
+import com.bassstarling.ultimatecraftv2.blockentity.CrystallizerBlockEntity;
 import com.bassstarling.ultimatecraftv2.registry.ModBlocks;
 import com.bassstarling.ultimatecraftv2.registry.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
@@ -13,19 +13,19 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class PrecipitatorMenu extends AbstractContainerMenu {
-    private final PrecipitatorBlockEntity blockEntity;
+public class CrystallizerMenu extends AbstractContainerMenu {
+    private final CrystallizerBlockEntity blockEntity;
     private final Level level;
     private final ContainerData data;
 
-    public PrecipitatorMenu(int containerId, Inventory inv, FriendlyByteBuf extraData) {
+    public CrystallizerMenu(int containerId, Inventory inv, FriendlyByteBuf extraData) {
         this(containerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
 
-    public PrecipitatorMenu(int containerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(ModMenuTypes.PRECIPITATOR_MENU.get(), containerId);
+    public CrystallizerMenu(int containerId, Inventory inv, BlockEntity entity, ContainerData data) {
+        super(ModMenuTypes.CRYSTALLIZER_MENU.get(), containerId);
         checkContainerSize(inv, 1);
-        this.blockEntity = (PrecipitatorBlockEntity) entity;
+        this.blockEntity = (CrystallizerBlockEntity) entity;
         this.level = inv.player.level();
         this.data = data;
 
@@ -87,7 +87,7 @@ public class PrecipitatorMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player player) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                player, ModBlocks.PRECIPITATOR.get());
+                player, ModBlocks.CRYSTALLIZER.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {
@@ -106,7 +106,7 @@ public class PrecipitatorMenu extends AbstractContainerMenu {
         }
     }
 
-    public PrecipitatorBlockEntity getBlockEntity() {
+    public CrystallizerBlockEntity getBlockEntity() {
         return this.blockEntity;
     }
 }

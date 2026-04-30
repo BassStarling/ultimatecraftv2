@@ -27,12 +27,13 @@
     "ultimatecraftv2:used_electrolyticfurnace",
     "ultimatecraftv2:washing_machine",
     "ultimatecraftv2:filter",
-    "ultimatecraftv2:precipitator",
+    "ultimatecraftv2:crystallizer",
     "ultimatecraftv2:digester",
     "ultimatecraftv2:reppord",
     "ultimatecraftv2:autocaster",
     "ultimatecraftv2:thrower",
     "ultimatecraftv2:pump",
-    "ultimatecraftv2:universal_electrolyzer"
+    "ultimatecraftv2:universal_electrolyzer",
+    "ultimatecraftv2:sulfur_ore"
   ]
 }

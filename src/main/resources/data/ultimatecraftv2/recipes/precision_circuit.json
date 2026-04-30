@@ -1,0 +1,14 @@
+{
+  "type": "ultimatecraftv2:industrial_crafting",
+  "ingredients": [
+    { "item": "ultimatecraftv2:aluminum_wire" }, { "item": "ultimatecraftv2:aluminum_wire" }, { "item": "ultimatecraftv2:aluminum_wire" }, { "item": "ultimatecraftv2:aluminum_wire" }, { "item": "ultimatecraftv2:aluminum_wire" },
+    { "item": "ultimatecraftv2:aluminum_wire" }, { "item": "minecraft:lapis_lazuli" }, { "item": "minecraft:diamond" }, { "item": "minecraft:lapis_lazuli" }, { "item": "ultimatecraftv2:aluminum_wire" },
+    { "item": "ultimatecraftv2:aluminum_wire" }, { "item": "minecraft:diamond" }, { "item": "minecraft:comparator" }, { "item": "minecraft:diamond" }, { "item": "ultimatecraftv2:aluminum_wire" },
+    { "item": "ultimatecraftv2:aluminum_wire" }, { "item": "minecraft:lapis_lazuli" }, { "item": "minecraft:diamond" }, { "item": "minecraft:lapis_lazuli" }, { "item": "ultimatecraftv2:aluminum_wire" },
+    { "item": "minecraft:quartz" }, { "item": "minecraft:quartz" }, { "item": "minecraft:quartz" }, { "item": "minecraft:quartz" }, { "item": "minecraft:quartz" }
+  ],
+  "result": {
+    "item": "ultimatecraftv2:precision_circuit",
+    "count": 1
+  }
+}

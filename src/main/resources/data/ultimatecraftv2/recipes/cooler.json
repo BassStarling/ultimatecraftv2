@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "PMP",
+    "SSS"
+  ],
+  "key": {
+    "A": { "item": "ultimatecraftv2:aluminum_plate" },
+    "P": { "item": "ultimatecraftv2:pipe" },
+    "M": { "item": "ultimatecraftv2:motor" },
+    "S": { "item": "ultimatecraftv2:steel_plate" }
+  },
+  "result": {
+    "item": "ultimatecraftv2:cooler",
+    "count": 1
+  }
+}

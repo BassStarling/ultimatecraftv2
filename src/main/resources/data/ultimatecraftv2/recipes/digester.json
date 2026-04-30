@@ -1,0 +1,14 @@
+{
+  "type": "ultimatecraftv2:industrial_crafting",
+  "ingredients": [
+    {"item": "ultimatecraftv2:aluminum_plate"}, {"item": "ultimatecraftv2:aluminum_plate"}, {"item": "ultimatecraftv2:aluminum_plate"}, {"item": "ultimatecraftv2:aluminum_plate"}, {"item": "ultimatecraftv2:aluminum_plate"},
+    {"item": "ultimatecraftv2:aluminum_plate"}, {}, {"item": "ultimatecraftv2:steel_tank"}, {"item": "ultimatecraftv2:pressure_gauge"}, {"item": "ultimatecraftv2:aluminum_plate"},
+    {"item": "ultimatecraftv2:aluminum_plate"}, {"item": "ultimatecraftv2:steel_tank"}, {"item": "ultimatecraftv2:pipe"}, {"item": "ultimatecraftv2:valve"}, {"item": "ultimatecraftv2:aluminum_plate"},
+    {"item": "ultimatecraftv2:aluminum_plate"}, {"item": "ultimatecraftv2:steel_plate"}, {"item": "ultimatecraftv2:steel_plate"}, {"item": "ultimatecraftv2:steel_plate"}, {"item": "ultimatecraftv2:aluminum_plate"},
+    {"item": "ultimatecraftv2:steel_ingot"}, {}, {}, {}, {"item": "ultimatecraftv2:steel_ingot"}
+  ],
+  "result": {
+    "item": "ultimatecraftv2:digester",
+    "count": 1
+  }
+}

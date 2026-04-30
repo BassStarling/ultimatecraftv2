@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "ITI",
+    " I "
+  ],
+  "key": {
+    "G": { "item": "minecraft:glass_pane" },
+    "I": { "item": "ultimatecraftv2:steel_plate" },
+    "T": { "item": "minecraft:clock" }
+  },
+  "result": {
+    "item": "ultimatecraftv2:pressure_gauge",
+    "count": 1
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "S S",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "item": "ultimatecraftv2:steel_plate"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:steel_tank",
+    "count": 1
+  }
+}

@@ -41,7 +41,7 @@
   "block.ultimatecraftv2.oxygen_converter": "Oxygen Converter",
   "block.ultimatecraftv2.porous_inslation_block": "泡状断熱材",
   "block.ultimatecraftv2.porous_insulation_block": "多孔質断熱ブロック",
-  "block.ultimatecraftv2.precipitator": "分解層",
+  "block.ultimatecraftv2.crystallizer": "",
   "block.ultimatecraftv2.salt_block": "塩ブロック",
   "block.ultimatecraftv2.spark_compressor": "Spark Compressor",
   "block.ultimatecraftv2.spark_generator": "Spark Generator",
@@ -168,6 +168,7 @@
   "tooltip.ultimatecraftv2.power_supply.details": "",
   "block.ultimatecraftv2.pump": "ポンプ",
   "block.ultimatecraftv2.autocaster": "",
+  "block.ultimatecraftv2.distiller": "Distiller",
   "block.ultimatecraftv2.thrower": "スロワー",
   "block.ultimatecraftv2.reppord": "レポード",
   "tooltip.ultimatecraftv2.power_supply.usage": "",
@@ -185,5 +186,6 @@
   "tooltip.ultimatecraftv2.water_interaction": "水源に投げ入れて加工",
   "tooltip.ultimatecraftv2.welding_machine.details": "",
   "tooltip.ultimatecraftv2.welding_machine.usage": "",
-  "tooltip.ultimatecraftv2.wiki": "§7さらなる詳細は §eWiki §7と §eEMIのレシピ §7に記載"
+  "tooltip.ultimatecraftv2.wiki": "§7さらなる詳細は §eWiki §7と §eEMIのレシピ §7に記載",
+  "item.ultimatecraftv2.aluminium_wire":"Aluminium Wire"
 }

@@ -210,12 +210,13 @@ public class ModBlocks {
                             .requiresCorrectToolForDrops()
                             .strength(2.0F, 2.0F)
                     ));
-    public static final RegistryObject<Block> PRECIPITATOR =
-            BLOCKS.register("precipitator",
-                    () -> new PrecipitatorBlock(BlockBehaviour.Properties
+    public static final RegistryObject<Block> CRYSTALLIZER =
+            BLOCKS.register("crystallizer",
+                    () -> new CrystallizerBlock(BlockBehaviour.Properties
                             .of().mapColor(MapColor.STONE)
                             .requiresCorrectToolForDrops()
                             .strength(2.0F, 2.0F)
+                            .noOcclusion()
                     ));
     public static final RegistryObject<Block> UNIVERSAL_ELECTROLYZER =
             BLOCKS.register("universal_electrolyzer",
@@ -231,6 +232,7 @@ public class ModBlocks {
                             .of().mapColor(MapColor.STONE)
                             .requiresCorrectToolForDrops()
                             .strength(2.0F, 2.0F)
+                            .noOcclusion()
                     ));
     public static final RegistryObject<Block> THROWER =
             BLOCKS.register("thrower",
@@ -251,6 +253,21 @@ public class ModBlocks {
     public static final RegistryObject<Block> AUTOCASTER =
             BLOCKS.register("autocaster",
                     () -> new AutoCasterBlock(BlockBehaviour.Properties
+                            .of().mapColor(MapColor.STONE)
+                            .requiresCorrectToolForDrops()
+                            .strength(2.0F, 2.0F)
+                            .noOcclusion()
+                    ));
+    public static final RegistryObject<Block> SULFUR_ORE =
+            BLOCKS.register("sulfur_ore",
+                    () -> new Block(BlockBehaviour.Properties
+                            .of().mapColor(MapColor.STONE)
+                            .requiresCorrectToolForDrops()
+                            .strength(2.0F, 2.0F)
+                    ));
+    public static final RegistryObject<Block> DISTILLER =
+            BLOCKS.register("distiller",
+                    () -> new DistillerBlock(BlockBehaviour.Properties
                             .of().mapColor(MapColor.STONE)
                             .requiresCorrectToolForDrops()
                             .strength(2.0F, 2.0F)

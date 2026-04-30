@@ -12,7 +12,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class DigesterScreen extends AbstractContainerScreen<DigesterMenu> {
     private static final ResourceLocation TEXTURE =
-            new ResourceLocation("ultimatecraftv2", "textures/gui/digester.png");
+            new ResourceLocation("ultimatecraftv2", "textures/gui/digester.json.png");
 
     public DigesterScreen(DigesterMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);

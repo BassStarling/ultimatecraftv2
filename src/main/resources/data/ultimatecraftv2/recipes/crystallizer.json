@@ -1,0 +1,14 @@
+{
+  "type": "ultimatecraftv2:industrial_crafting",
+  "ingredients": [
+    {}, {"item": "ultimatecraftv2:monitor_panel"}, {}, {"item": "ultimatecraftv2:keyboard"}, {},
+    {}, {"item": "ultimatecraftv2:steel_tank"}, {"item": "ultimatecraftv2:pipe"}, {"item": "ultimatecraftv2:steel_tank"}, {},
+    {}, {"item": "ultimatecraftv2:electric_cable"}, {"item": "ultimatecraftv2:precision_circuit"}, {"item": "ultimatecraftv2:electric_cable"}, {},
+    {"item": "minecraft:polished_blackstone_pressure_plate"}, {"item": "ultimatecraftv2:cooler"}, {"item": "minecraft:polished_blackstone_stairs"}, {"item": "ultimatecraftv2:cooler"}, {"item": "minecraft:polished_blackstone_pressure_plate"},
+    {"item": "minecraft:smooth_stone_slab"}, {"item": "minecraft:smooth_stone_slab"}, {"item": "minecraft:smooth_stone_slab"}, {"item": "minecraft:smooth_stone_slab"}, {"item": "minecraft:smooth_stone_slab"}
+  ],
+  "result": {
+    "item": "ultimatecraftv2:crystallizer",
+    "count": 1
+  }
+}

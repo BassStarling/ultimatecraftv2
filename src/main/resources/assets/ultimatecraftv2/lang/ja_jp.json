@@ -44,8 +44,7 @@
   "block.ultimatecraftv2.oxygen_converter": "酸素転炉",
   "block.ultimatecraftv2.porous_inslation_block": "多孔質断熱ブロック",
   "block.ultimatecraftv2.autocaster": "自動鋳造機",
-  "block.ultimatecraftv2.porous_insulation_block": "多孔質断熱ブロック",
-  "block.ultimatecraftv2.precipitator": "分解層",
+  "block.ultimatecraftv2.crystallizer": "晶析機",
   "block.ultimatecraftv2.salt_block": "塩ブロック",
   "block.ultimatecraftv2.spark_compressor": "スパーク圧縮機",
   "block.ultimatecraftv2.spark_generator": "スパーク生成機",
@@ -185,5 +184,7 @@
   "tooltip.ultimatecraftv2.water_interaction": "水源に投げ入れて加工",
   "tooltip.ultimatecraftv2.welding_machine.details": "溶接機の概要",
   "tooltip.ultimatecraftv2.welding_machine.usage": "このアイテムの正式名称はMIG溶接機であるが、詳しいレシピは省略されている",
-  "tooltip.ultimatecraftv2.wiki": "§7さらなる詳細は §eWiki §7と §eEMIのレシピ §7に記載"
+  "tooltip.ultimatecraftv2.wiki": "§7さらなる詳細は §eWiki §7と §eEMIのレシピ §7に記載",
+  "item.ultimatecraftv2.aluminium_wire":"アルミニウムの導線",
+  "block.ultimatecraftv2.distiller": "蒸留器"
 }

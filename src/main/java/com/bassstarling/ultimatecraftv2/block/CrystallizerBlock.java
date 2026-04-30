@@ -1,6 +1,6 @@
 package com.bassstarling.ultimatecraftv2.block;
 
-import com.bassstarling.ultimatecraftv2.blockentity.PrecipitatorBlockEntity;
+import com.bassstarling.ultimatecraftv2.blockentity.CrystallizerBlockEntity;
 import com.bassstarling.ultimatecraftv2.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -24,10 +24,10 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-public class PrecipitatorBlock extends BaseEntityBlock {
+public class CrystallizerBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    public PrecipitatorBlock(Properties properties) {
+    public CrystallizerBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
@@ -37,8 +37,8 @@ public class PrecipitatorBlock extends BaseEntityBlock {
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!level.isClientSide) {
             BlockEntity entity = level.getBlockEntity(pos);
-            if (entity instanceof PrecipitatorBlockEntity precipitatorEntity) {
-                NetworkHooks.openScreen((ServerPlayer) player, precipitatorEntity, pos);
+            if (entity instanceof CrystallizerBlockEntity crystallizerEntity) {
+                NetworkHooks.openScreen((ServerPlayer) player, crystallizerEntity, pos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
@@ -50,14 +50,14 @@ public class PrecipitatorBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new PrecipitatorBlockEntity(pos, state);
+        return new CrystallizerBlockEntity(pos, state);
     }
 
     // 毎チックのロジック実行を許可
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return createTickerHelper(type, ModBlockEntities.PRECIPITATOR_BE.get(),
+        return createTickerHelper(type, ModBlockEntities.CRYSTALLIZER_BE.get(),
                 (content, pos, state1, be) -> be.tick());
     }
 
@@ -66,8 +66,8 @@ public class PrecipitatorBlock extends BaseEntityBlock {
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof PrecipitatorBlockEntity precipitatorEntity) {
-                precipitatorEntity.drops();
+            if (blockEntity instanceof CrystallizerBlockEntity crystallizerEntity) {
+                crystallizerEntity.drops();
             }
         }
         super.onRemove(state, level, pos, newState, isMoving);

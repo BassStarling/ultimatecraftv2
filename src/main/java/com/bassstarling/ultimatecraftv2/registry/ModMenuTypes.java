@@ -63,10 +63,10 @@ public class ModMenuTypes {
             MENUS.register("filter_menu",
                     () -> IForgeMenuType.create(FilterMenu::new));
 
-    public static final RegistryObject<MenuType<PrecipitatorMenu>>
-            PRECIPITATOR_MENU =
-            MENUS.register("precipitator_menu",
-                    () -> IForgeMenuType.create(PrecipitatorMenu::new));
+    public static final RegistryObject<MenuType<CrystallizerMenu>>
+            CRYSTALLIZER_MENU =
+            MENUS.register("crystallizer_menu",
+                    () -> IForgeMenuType.create(CrystallizerMenu::new));
 
     public static final RegistryObject<MenuType<UniversalElectrolyzerMenu>>
             UNIVERSALELECTROLYZER_MENU =

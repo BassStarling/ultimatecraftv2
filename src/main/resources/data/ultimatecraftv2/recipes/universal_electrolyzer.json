@@ -1,0 +1,14 @@
+{
+  "type": "ultimatecraftv2:industrial_crafting",
+  "ingredients": [
+    {"item": "ultimatecraftv2:steel_plate"}, {"item": "ultimatecraftv2:aluminum_wire"}, {"item": "ultimatecraftv2:steel_plate"}, {"item": "ultimatecraftv2:aluminum_wire"}, {"item": "ultimatecraftv2:steel_plate"},
+    {"item": "ultimatecraftv2:steel_plate"}, {"item": "ultimatecraftv2:graphite_electrode"}, {"item": "ultimatecraftv2:porous_insulation_block"}, {"item": "ultimatecraftv2:graphite_electrode"}, {"item": "ultimatecraftv2:steel_plate"},
+    {"item": "ultimatecraftv2:steel_plate"}, {"item": "ultimatecraftv2:graphite_electrode"}, {}, {"item": "ultimatecraftv2:graphite_electrode"}, {"item": "ultimatecraftv2:steel_plate"},
+    {"item": "ultimatecraftv2:steel_plate"}, {}, {"item": "ultimatecraftv2:firebrick"}, {}, {"item": "ultimatecraftv2:steel_plate"},
+    {"item": "ultimatecraftv2:steel_plate"}, {"item": "ultimatecraftv2:porous_insulation_block"}, {"item": "ultimatecraftv2:firebrick"}, {"item": "ultimatecraftv2:porous_insulation_block"}, {"item": "ultimatecraftv2:steel_plate"}
+  ],
+  "result": {
+    "item": "ultimatecraftv2:universal_electrolyzer",
+    "count": 1
+  }
+}

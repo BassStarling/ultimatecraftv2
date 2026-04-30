@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " H ",
+    " S ",
+    " P "
+  ],
+  "key": {
+    "H": { "item": "minecraft:iron_ingot" },
+    "S": { "item": "ultimatecraftv2:steel_ingot" },
+    "P": { "item": "ultimatecraftv2:pipe" }
+  },
+  "result": {
+    "item": "ultimatecraftv2:valve",
+    "count": 1
+  }
+}

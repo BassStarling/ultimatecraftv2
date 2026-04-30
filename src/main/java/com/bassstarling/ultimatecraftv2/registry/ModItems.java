@@ -766,7 +766,7 @@ public class ModItems {
                             new Item.Properties()
                     ));
     public static final RegistryObject<Item> DIGESTER =
-            ITEMS.register("digester",
+            ITEMS.register("digester.json",
                     () -> new BlockItem(
                             ModBlocks.DIGESTER.get(),
                             new Item.Properties()
@@ -794,10 +794,10 @@ public class ModItems {
                             ModBlocks.FILTER.get(),
                             new Item.Properties()
                     ));
-    public static final RegistryObject<Item> PRECIPITATOR =
-            ITEMS.register("precipitator",
+    public static final RegistryObject<Item> CRYSTALLIZER =
+            ITEMS.register("crystallizer",
                     () -> new BlockItem(
-                            ModBlocks.PRECIPITATOR.get(),
+                            ModBlocks.CRYSTALLIZER.get(),
                             new Item.Properties()
                     ));
     public static final RegistryObject<Item> UNIVERSAL_ELECTROLYZER =
@@ -833,6 +833,77 @@ public class ModItems {
                     () -> new BlockItem(
                             ModBlocks.AUTOCASTER.get(),
                             new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> ALUMINIUM_WIRE =
+            ITEMS.register("aluminium_wire",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> PRESSURE_GAUGE =
+            ITEMS.register("pressure_gauge",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> STEEL_TANK =
+            ITEMS.register("steel_tank",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> VALVE =
+            ITEMS.register("valve",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> SULFUR_ORE =
+            ITEMS.register("sulfur_ore",
+                    () -> new BlockItem(
+                            ModBlocks.SULFUR_ORE.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> HAZMAT_MASK =
+            ITEMS.register("hazmat_mask",
+            () -> new ArmorItem(ModArmorMaterials.HAZMAT, ArmorItem.Type.HELMET,
+                    new Item.Properties()
+            ));
+    public static final RegistryObject<Item> HAZMAT_SUIT =
+            ITEMS.register("hazmat_suit",
+            () -> new ArmorItem(
+                    ModArmorMaterials.HAZMAT, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties()
+            ));
+    public static final RegistryObject<Item> HAZMAT_LEGGINGS =
+            ITEMS.register("hazmat_leggings",
+            () -> new ArmorItem(
+                    ModArmorMaterials.HAZMAT, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties()
+            ));
+    public static final RegistryObject<Item> HAZMAT_BOOTS =
+            ITEMS.register("hazmat_boots",
+            () -> new ArmorItem(
+                    ModArmorMaterials.HAZMAT, ArmorItem.Type.BOOTS,
+                    new Item.Properties()
+            ));
+    public static final RegistryObject<Item> RUBBER =
+            ITEMS.register("rubber",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> BENZENE_BUCKET =
+            ITEMS.register("benzene_bucket",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> NAPHTHA_BUCKET =
+            ITEMS.register("naphtha_bucket",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> WASTE_OIL_BUCKET =
+            ITEMS.register("waste_oil_bucket",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> DISTILLER =
+            ITEMS.register("distiller",
+                    () -> new BlockItem(
+                            ModBlocks.DISTILLER.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> SULFUR_DUST =
+            ITEMS.register("sulfur_dust",
+                    () -> new Item(new Item.Properties()
                     ));
 
     public static final TagKey<Item> MOLD_TAG = ItemTags.create(new ResourceLocation("ultimatecraftv2", "mold"));

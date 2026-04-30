@@ -1,7 +1,7 @@
 package com.bassstarling.ultimatecraftv2.client.screen;
 
-import com.bassstarling.ultimatecraftv2.blockentity.PrecipitatorBlockEntity;
-import com.bassstarling.ultimatecraftv2.menu.PrecipitatorMenu;
+import com.bassstarling.ultimatecraftv2.blockentity.CrystallizerBlockEntity;
+import com.bassstarling.ultimatecraftv2.menu.CrystallizerMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -11,11 +11,11 @@ import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
-public class PrecipitatorScreen extends AbstractContainerScreen<PrecipitatorMenu> {
+public class CrystallizerScreen extends AbstractContainerScreen<CrystallizerMenu> {
     private static final ResourceLocation TEXTURE =
-            new ResourceLocation("ultimatecraftv2", "textures/gui/precipitator.png");
+            new ResourceLocation("ultimatecraftv2", "textures/gui/crystallizer.png");
 
-    public PrecipitatorScreen(PrecipitatorMenu menu, Inventory inventory, Component title) {
+    public CrystallizerScreen(CrystallizerMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
         this.imageWidth = 176;
         this.imageHeight = 170;
@@ -31,7 +31,7 @@ public class PrecipitatorScreen extends AbstractContainerScreen<PrecipitatorMenu
         // 背景描画 (256x256テクスチャ)
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight, 256, 256);
 
-        PrecipitatorBlockEntity be = menu.getBlockEntity();
+        CrystallizerBlockEntity be = menu.getBlockEntity();
 
         // --- 1. 液体タンクの描画 ---
 

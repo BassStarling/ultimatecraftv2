@@ -48,8 +48,8 @@ public class ClientModEvents {
                     FilterScreen::new
             );
             MenuScreens.register(
-                    ModMenuTypes.PRECIPITATOR_MENU.get(),
-                    PrecipitatorScreen::new
+                    ModMenuTypes.CRYSTALLIZER_MENU.get(),
+                    CrystallizerScreen::new
             );
             MenuScreens.register(
                     ModMenuTypes.UNIVERSALELECTROLYZER_MENU.get(),

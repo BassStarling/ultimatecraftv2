@@ -111,11 +111,11 @@ public class ModBlockEntities {
                             FilterBlockEntity::new,
                             ModBlocks.FILTER.get()
                     ).build(null));
-    public static final RegistryObject<BlockEntityType<PrecipitatorBlockEntity>> PRECIPITATOR_BE =
-            BLOCK_ENTITIES.register("precipitator_be",
+    public static final RegistryObject<BlockEntityType<CrystallizerBlockEntity>> CRYSTALLIZER_BE =
+            BLOCK_ENTITIES.register("crystallizer_be",
                     () -> BlockEntityType.Builder.of(
-                            PrecipitatorBlockEntity::new,
-                            ModBlocks.PRECIPITATOR.get()
+                            CrystallizerBlockEntity::new,
+                            ModBlocks.CRYSTALLIZER.get()
                     ).build(null));
     public static final RegistryObject<BlockEntityType<UniversalElectrolyzerBlockEntity>> UNIVERSAL_ELECTROLYZER_BE =
             BLOCK_ENTITIES.register("universal_electrolyzer_be",
@@ -146,5 +146,11 @@ public class ModBlockEntities {
                     () -> BlockEntityType.Builder.of(
                             AutoCasterBlockEntity::new,
                             ModBlocks.AUTOCASTER.get()
+                    ).build(null));
+    public static final RegistryObject<BlockEntityType<DistillerBlockEntity>> DISTILLER_BE =
+            BLOCK_ENTITIES.register("distiller_be",
+                    () -> BlockEntityType.Builder.of(
+                            DistillerBlockEntity::new,
+                            ModBlocks.DISTILLER.get()
                     ).build(null));
 }

@@ -65,7 +65,7 @@ public class DigesterEmiRecipe implements EmiRecipe {
 
     @Override
     public void addWidgets(WidgetHolder widgets) {
-        ResourceLocation GUI_TEXTURE = new ResourceLocation("ultimatecraftv2", "textures/gui/digester.png");
+        ResourceLocation GUI_TEXTURE = new ResourceLocation("ultimatecraftv2", "textures/gui/digester.json.png");
 
         // 矢印のアニメーション (cookTimeをミリ秒に変換するために係数を調整)
         widgets.addFillingArrow(80, 42, cookTime * 50);
