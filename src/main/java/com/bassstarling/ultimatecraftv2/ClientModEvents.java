@@ -55,6 +55,10 @@ public class ClientModEvents {
                     ModMenuTypes.UNIVERSALELECTROLYZER_MENU.get(),
                     UniversalElectrolyzerScreen::new
             );
+            MenuScreens.register(
+                    ModMenuTypes.BATTERY_CHARGER_MENU.get(),
+                    BatteryChargerScreen::new
+            );
         });
     }
 }

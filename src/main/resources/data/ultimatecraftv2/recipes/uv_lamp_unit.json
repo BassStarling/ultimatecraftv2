@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "WMW",
+    "GGG"
+  ],
+  "key": {
+    "M": {
+      "item": "ultimatecraftv2:mercy_container"
+    },
+    "G": {
+      "item": "minecraft:grass_plate"
+    },
+    "W": {
+      "item": "ultimatecraftv2:wire"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:uv_lamp_unit",
+    "count": 1
+  }
+}

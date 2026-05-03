@@ -72,4 +72,9 @@ public class ModMenuTypes {
             UNIVERSALELECTROLYZER_MENU =
             MENUS.register("universalelectrolyzer_menu",
                     () -> IForgeMenuType.create(UniversalElectrolyzerMenu::new));
+
+    public static final RegistryObject<MenuType<BatteryChargerMenu>>
+            BATTERY_CHARGER_MENU =
+            MENUS.register("battery_charger_menu",
+                    () -> IForgeMenuType.create(BatteryChargerMenu::new));
 }

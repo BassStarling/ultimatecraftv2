@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "pattern": [
+    "R"
+  ],
+  "key": {
+    "R": {
+      "item": "ultimatecraftv2:rubber_block"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:rubber_ball",
+    "count": 9
+  }
+}

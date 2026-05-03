@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "   ",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:white_carpet"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:non_woven_fabric",
+    "count": 1
+  }
+}

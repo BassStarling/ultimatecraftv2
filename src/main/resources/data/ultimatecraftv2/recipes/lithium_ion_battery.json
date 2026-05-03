@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "ultimatecraftv2:activated_carbon" },
+    { "item": "ultimatecraftv2:lithium_crystal" },
+    { "item": "ultimatecraftv2:iron_plate" },
+    { "item": "ultimatecraftv2:wire" }
+  ],
+  "result": {
+    "item": "ultimatecraftv2:lithium_ion_battery"
+  }
+}

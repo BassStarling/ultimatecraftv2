@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_badlands",
+  "features": "ultimatecraftv2:lithium_ore",
+  "step": "underground_ores"
+}

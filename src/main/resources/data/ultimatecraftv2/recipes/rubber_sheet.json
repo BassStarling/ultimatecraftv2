@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "   ",
+    "RRR"
+  ],
+  "key": {
+    "C": {
+      "item": "ultimatecraftv2:rubber_ball"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:rubber_sheet",
+    "count": 6
+  }
+}

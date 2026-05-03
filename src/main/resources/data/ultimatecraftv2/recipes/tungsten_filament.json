@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    " T ",
+    "  T"
+  ],
+  "key": {
+    "T": {
+      "item": "ultimatecraftv2:tungsten_ingot"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:tungsten_filament",
+    "count": 4
+  }
+}

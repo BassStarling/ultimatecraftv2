@@ -272,4 +272,53 @@ public class ModBlocks {
                             .requiresCorrectToolForDrops()
                             .strength(2.0F, 2.0F)
                     ));
+    public static final RegistryObject<Block> LITHIUM_ORE =
+            BLOCKS.register("lithium_ore",
+                    () -> new Block(BlockBehaviour.Properties
+                            .of().mapColor(MapColor.STONE)
+                            .requiresCorrectToolForDrops()
+                            .strength(2.0F, 2.0F)
+                    ));
+    public static final RegistryObject<Block> NAPHTHA_CAULDRON =
+            BLOCKS.register("naphtha_cauldron",
+                    () -> new NaphthaCauldronBlock(BlockBehaviour.Properties
+                            .of().mapColor(MapColor.STONE)
+                            .requiresCorrectToolForDrops()
+                            .strength(2.0F, 2.0F)
+                    ));
+    public static final RegistryObject<Block> RAW_RUBBER_BLOCK =
+            BLOCKS.register("raw_rubber_block",
+                    () -> new Block(BlockBehaviour.Properties
+                            .of().mapColor(MapColor.STONE)
+                            .requiresCorrectToolForDrops()
+                            .strength(1.0F, 1.0F)
+                    ));
+    public static final RegistryObject<Block> RUBBER_BLOCK =
+            BLOCKS.register("rubber_block",
+                    () -> new Block(BlockBehaviour.Properties
+                            .of().mapColor(MapColor.STONE)
+                            .requiresCorrectToolForDrops()
+                            .strength(1.0F, 1.0F)
+                    ));
+    public static final RegistryObject<Block> CINNABAR_ORE =
+            BLOCKS.register("cinnabar_ore",
+                    () -> new Block(BlockBehaviour.Properties
+                            .of().mapColor(MapColor.STONE)
+                            .requiresCorrectToolForDrops()
+                            .strength(2.0F, 2.0F)
+                    ));
+    public static final RegistryObject<Block> BATTERYCHARGER =
+            BLOCKS.register("batterycharger",
+                    () -> new BatteryChargerBlock(BlockBehaviour.Properties
+                            .of().mapColor(MapColor.STONE)
+                            .requiresCorrectToolForDrops()
+                            .strength(2.0F, 2.0F)
+                    ));
+    public static final RegistryObject<Block> SCHEELITE_ORE =
+            BLOCKS.register("scheelite_ore",
+                    () -> new Block(BlockBehaviour.Properties
+                            .of().mapColor(MapColor.STONE)
+                            .requiresCorrectToolForDrops()
+                            .strength(2.0F, 2.0F)
+                    ));
 }

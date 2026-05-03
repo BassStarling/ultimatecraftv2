@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " I ",
+    " W ",
+    "W W"
+  ],
+  "key": {
+    "W": {
+      "item": "ultimatecraftv2:wire"
+    },
+    "I": {
+      "item": "ultimatecraftv2:iron_plate"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:slide_switch",
+    "count": 3
+  }
+}

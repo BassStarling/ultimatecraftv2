@@ -1,0 +1,23 @@
+{
+  "parent": "ultimatecraftv2:ultimatecraftv2/root",
+  "display": {
+    "icon": {
+      "item": "ultimatecraftv2:rubber_block"
+    },
+    "title": { "translate": "advancements.ultimatecraftv2.ultimatecraftv2.rubber_block.title" },
+    "description": { "translate": "advancements.ultimatecraftv2.ultimatecraftv2.rubber_block.description" },
+    "frame": "goal"
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["ultimatecraftv2:rubber_block"]
+          }
+        ]
+      }
+    }
+  }
+}

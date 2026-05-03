@@ -43,6 +43,7 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, UltimateCraftV2.MOD_ID);
 
     public enum MoldType {
+        INGOT("ingot"),
         PLATE("plate");
 
         private final String name;
@@ -766,7 +767,7 @@ public class ModItems {
                             new Item.Properties()
                     ));
     public static final RegistryObject<Item> DIGESTER =
-            ITEMS.register("digester.json",
+            ITEMS.register("digester",
                     () -> new BlockItem(
                             ModBlocks.DIGESTER.get(),
                             new Item.Properties()
@@ -879,17 +880,13 @@ public class ModItems {
                     ModArmorMaterials.HAZMAT, ArmorItem.Type.BOOTS,
                     new Item.Properties()
             ));
-    public static final RegistryObject<Item> RUBBER =
-            ITEMS.register("rubber",
-                    () -> new Item(new Item.Properties()
-                    ));
     public static final RegistryObject<Item> BENZENE_BUCKET =
             ITEMS.register("benzene_bucket",
                     () -> new Item(new Item.Properties()
                     ));
     public static final RegistryObject<Item> NAPHTHA_BUCKET =
             ITEMS.register("naphtha_bucket",
-                    () -> new Item(new Item.Properties()
+                    () -> new NaphthaBucketItem(new Item.Properties()
                     ));
     public static final RegistryObject<Item> WASTE_OIL_BUCKET =
             ITEMS.register("waste_oil_bucket",
@@ -905,7 +902,144 @@ public class ModItems {
             ITEMS.register("sulfur_dust",
                     () -> new Item(new Item.Properties()
                     ));
-
+    public static final RegistryObject<Item> LITHIUM_ORE =
+            ITEMS.register("lithium_ore",
+                    () -> new BlockItem(
+                            ModBlocks.LITHIUM_ORE.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> LITHIUM_CRYSTAL =
+            ITEMS.register("lithium_crystal",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> NAPHTHA_CAULDRON =
+            ITEMS.register("naphtha_cauldron",
+                    () -> new BlockItem(
+                            ModBlocks.NAPHTHA_CAULDRON.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> RUBBER_SHEET =
+            ITEMS.register("rubber_sheet",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> CHARCOAL_DUST =
+            ITEMS.register("charcoal_dust",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> ACTIVATED_CARBON =
+            ITEMS.register("activated_carbon",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> DUST_MASK =
+            ITEMS.register("dust_mask",
+                    () -> new ArmorItem(ModArmorMaterials.DUST, ArmorItem.Type.HELMET,
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> RUBBER_BALL =
+            ITEMS.register("rubber_ball",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> NON_WOVEN_FABRIC =
+            ITEMS.register("non_woven_fabric",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> RAW_RUBBER_BLOCK =
+            ITEMS.register("raw_rubber_block",
+                    () -> new BlockItem(
+                            ModBlocks.RAW_RUBBER_BLOCK.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> RUBBER_BLOCK =
+            ITEMS.register("rubber_block",
+                    () -> new BlockItem(
+                            ModBlocks.RUBBER_BLOCK.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> CINNABAR =
+            ITEMS.register("cinnabar",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> CINNABAR_ORE =
+            ITEMS.register("cinnabar_ore",
+                    () -> new BlockItem(
+                            ModBlocks.CINNABAR_ORE.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> IRON_CONTAINER =
+            ITEMS.register("iron_container",
+                    () -> new Item(new Item.Properties()
+                            .stacksTo(16)
+                    ));
+    public static final RegistryObject<Item> MERCURY_CONTAINER =
+            ITEMS.register("mercy_container",
+                    () -> new Item(new Item.Properties()
+                            .stacksTo(1)
+                        .craftRemainder(ModItems.IRON_CONTAINER.get())
+                    ));
+    public static final RegistryObject<Item> LITHIUM_ION_BATTERY =
+            ITEMS.register("lithium_ion_battery",
+                    () -> new LithiumIonBatteryItem(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> SLIDE_SWITCH =
+            ITEMS.register("slide_switch",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> UV_LAMP_UNIT =
+            ITEMS.register("uv_lamp_unit",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> UV_LIGHT =
+            ITEMS.register("uv_light",
+                    () -> new UVLightItem(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> BATTERYCHARGER =
+            ITEMS.register("batterycharger",
+                    () -> new BlockItem(
+                            ModBlocks.BATTERYCHARGER.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> SCHEELITE_ORE =
+            ITEMS.register("scheelite_ore",
+                    () -> new BlockItem(
+                            ModBlocks.SCHEELITE_ORE.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> SULFUR_DIOXIDE_DUST =
+            ITEMS.register("sulfur_dioxide_dust",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> SULFURIC_ACID_BUCKET =
+            ITEMS.register("sulfuric_acid_bucket",
+                    () -> new Item(new Item.Properties()
+                            .craftRemainder(Items.BUCKET) // クラフト後に空バケツを返す設定
+                    ));
+    public static final RegistryObject<Item> TUNGSTIC_ACID_BUCKET =
+            ITEMS.register("tungstic_acid_bucket",
+                    () -> new Item(new Item.Properties()
+                            .craftRemainder(Items.BUCKET) // クラフト後に空バケツを返す設定
+                    ));
+    public static final RegistryObject<Item> TUNGSTEN_OXIDE_BUCKET =
+            ITEMS.register("tungsten_oxide_bucket",
+                    () -> new Item(new Item.Properties()
+                            .craftRemainder(Items.BUCKET) // クラフト後に空バケツを返す設定
+                    ));
+    public static final RegistryObject<Item> TUNGSTEN_BUCKET =
+            ITEMS.register("tungsten_bucket",
+                    () -> new Item(new Item.Properties()
+                            .craftRemainder(Items.BUCKET) // クラフト後に空バケツを返す設定
+                    ));
+    public static final RegistryObject<Item> TUNGSTEN_LUMP =
+            ITEMS.register("tungsten_lump",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> TUNGSTEN_INGOT =
+            ITEMS.register("tungsten_ingot",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> TUNGSTEN_FILAMENT =
+            ITEMS.register("tungsten_filament",
+                    () -> new Item(new Item.Properties()
+                    ));
     public static final TagKey<Item> MOLD_TAG = ItemTags.create(new ResourceLocation("ultimatecraftv2", "mold"));
 
     public static final Map<MoldType, RegistryObject<Item>> MOLDS = new HashMap<>();

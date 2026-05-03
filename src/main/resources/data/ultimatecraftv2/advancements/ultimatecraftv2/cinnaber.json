@@ -1,0 +1,23 @@
+{
+  "parent": "ultimatecraftv2:ultimatecraftv2/rubber_block",
+  "display": {
+    "icon": {
+      "item": "ultimatecraftv2:cinnabar"
+    },
+    "title": { "translate": "advancements.ultimatecraftv2.ultimatecraftv2.cinnabar.title" },
+    "description": { "translate": "advancements.ultimatecraftv2.ultimatecraftv2.cinnabar.description" },
+    "frame": "goal"
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["ultimatecraftv2:cinnabar"]
+          }
+        ]
+      }
+    }
+  }
+}

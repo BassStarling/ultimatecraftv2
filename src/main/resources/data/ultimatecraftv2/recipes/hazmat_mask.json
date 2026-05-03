@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SGS",
+    "RAR"
+  ],
+  "key": {
+    "S": {
+      "item": "ultimatecraftv2:rubber_sheet"
+    },
+    "R": {
+      "item": "ultimatecraftv2:rubber_ball"
+    },
+    "G": {
+      "item": "minecraft:grass_plate"
+    },
+    "A": {
+      "item": "ultimatecraftv2:activated_carbon"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:hazmat_mask",
+    "count": 1
+  }
+}

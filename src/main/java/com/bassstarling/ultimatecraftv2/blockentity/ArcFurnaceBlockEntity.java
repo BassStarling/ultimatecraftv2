@@ -51,16 +51,13 @@ public class ArcFurnaceBlockEntity extends BlockEntity implements MenuProvider {
     public void tick() {
         if (level == null || level.isClientSide) return;
 
-        // ここでスロット2（電力スロット）からアイテムを取得し、sparkStack と名付けます
         ItemStack sparkStack = itemHandler.getStackInSlot(2);
 
-        // 修正後
-        if (energyBuffer <= 0 && !sparkStack.isEmpty() && sparkStack.is(ModItems.SPARK_STONE.get())) {
+        if (!sparkStack.isEmpty() && sparkStack.getItem() instanceof SparkStone) {
 
-            // SparkStoneクラスのgetTierメソッドを再利用するのが一番確実です
+            // スパークストーンのTierを取得
             int tier = SparkStone.getTier(sparkStack);
 
-            // 指定したエネルギー量を代入
             int energyToAdd = switch (tier) {
                 case 1  -> 20;
                 case 2  -> 40;
@@ -68,14 +65,21 @@ public class ArcFurnaceBlockEntity extends BlockEntity implements MenuProvider {
                 case 4  -> 160;
                 case 5  -> 320;
                 case 6  -> 640;
-                case 7  -> 1280; // Tier 7 も追加しておきましょう
+                case 7  -> 1280;
                 default -> 10;
             };
 
-            this.energyBuffer = energyToAdd;
+            // 【重要】エネルギーが「空」の時だけでなく、
+            // 「補充しても最大容量(36,000)を超えない」時に補充を開始する
+            if (this.energyBuffer + energyToAdd <= maxEnergy) {
+                this.energyBuffer += energyToAdd;
 
-            sparkStack.shrink(1);
-            setChanged();
+                // アイテムを1つ消費
+                sparkStack.shrink(1);
+
+                // データの変更を保存
+                setChanged();
+            }
         }
 
         if (canProcess() && energyBuffer > 0) {

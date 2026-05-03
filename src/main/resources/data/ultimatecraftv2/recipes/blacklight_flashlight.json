@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IBI",
+    "SUI",
+    "ICI"
+  ],
+  "key": {
+    "S": {
+      "item": "ultimatecraftv2:slide_switch"
+    },
+    "I": {
+      "item": "ultimatecraftv2:iron_plate"
+    },
+    "C": {
+      "item": "ultimatecraftv2:iron_container"
+    },
+    "U": {
+      "item": "ultimatecraftv2:uv_light_unit"
+    },
+    "B": {
+      "item": "minecraft:black_stained_glass_pane"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:uv_light",
+    "count": 1
+  }
+}

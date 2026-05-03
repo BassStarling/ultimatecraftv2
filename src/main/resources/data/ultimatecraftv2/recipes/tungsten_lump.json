@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "ultimatecraftv2:tungsten_bucket" }
+  ],
+  "result": {
+    "item": "ultimatecraftv2:tungsten_lump"
+  }
+}

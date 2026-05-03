@@ -1,0 +1,9 @@
+{
+  "type": "ultimatecraftv2:casting_crafting",
+  "inputA": { "item": "ultimatecraftv2:tungsten_lump" },
+  "inputB": { "item": "ultimatecraftv2:mold_ingot" },
+  "output": {
+    "item": "ultimatecraftv2:tungsten_ingot",
+    "count": 1
+  }
+}

@@ -153,4 +153,16 @@ public class ModBlockEntities {
                             DistillerBlockEntity::new,
                             ModBlocks.DISTILLER.get()
                     ).build(null));
+    public static final RegistryObject<BlockEntityType<NaphthaCauldronBlockEntity>> NAPHTHA_CAULDRON =
+            BLOCK_ENTITIES.register("naphtha_cauldron",
+                    () -> BlockEntityType.Builder.of(
+                            NaphthaCauldronBlockEntity::new,
+                            ModBlocks.NAPHTHA_CAULDRON.get()
+                    ).build(null));
+    public static final RegistryObject<BlockEntityType<BatteryChargerBlockEntity>> BATTERY_CHARGER =
+            BLOCK_ENTITIES.register("battery_charger",
+                    () -> BlockEntityType.Builder.of(
+                            BatteryChargerBlockEntity::new,
+                            ModBlocks.BATTERYCHARGER.get()
+                    ).build(null));
 }

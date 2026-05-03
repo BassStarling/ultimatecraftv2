@@ -29,7 +29,21 @@ public enum ModArmorMaterials implements ArmorMaterial {
             0.0F, // ノックバック耐性なし
             // 修理素材 (遅延評価にするため Supplier を使用)
             // ModItems.RUBBER はご自身で追加したゴム系のアイテム名に置き換えてください
-            () -> Ingredient.of(ModItems.RUBBER.get()));
+            () -> Ingredient.of(ModItems.RUBBER_BALL.get())),
+
+    DUST("dust_mask",
+                 5, // 耐久倍率: かなり低め（簡易的なので）
+         Util.make(new EnumMap<>(ArmorItem.Type.class), (map) -> {
+        map.put(ArmorItem.Type.BOOTS, 0);      // マスク用なので他は0でOK
+        map.put(ArmorItem.Type.LEGGINGS, 0);
+        map.put(ArmorItem.Type.CHESTPLATE, 0);
+        map.put(ArmorItem.Type.HELMET, 1);     // マスク本体の防御力
+    }),
+            15, // エンチャントのしやすさ: 布製なので高め
+    SoundEvents.ARMOR_EQUIP_LEATHER,
+            0.0F, 0.0F,
+            // 修理素材: 不織布などで修理できるように設定
+            () -> Ingredient.of(ModItems.NON_WOVEN_FABRIC.get()));
 
     // バニラ準拠の部位ごとの基本耐久値マップ
     // この値に上記の耐久値倍率(15)を掛けたものが実際の耐久値になります

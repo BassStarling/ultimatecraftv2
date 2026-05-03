@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " I ",
+    "SNS",
+    " N "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:string"
+    },
+    "N": {
+      "item": "ultimatecraftv2:non_woven_fabric"
+    },
+    "I": {
+      "item": "ultimatecraftv2:iron_plate"
+    }
+  },
+  "result": {
+    "item": "ultimatecraftv2:hazmat_mask",
+    "count": 1
+  }
+}
