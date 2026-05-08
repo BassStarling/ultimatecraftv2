@@ -1,0 +1,11 @@
+{
+  "pipe_hit": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "ultimatecraftv2:pipe_hit",
+        "stream": false
+      }
+    ]
+  }
+}

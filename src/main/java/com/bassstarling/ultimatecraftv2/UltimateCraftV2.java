@@ -4,10 +4,7 @@ import com.bassstarling.ultimatecraftv2.datagen.ModItemTagProvider;
 import com.bassstarling.ultimatecraftv2.fluid.ModFluids;
 import com.bassstarling.ultimatecraftv2.init.ModCreativeTabs;
 import com.bassstarling.ultimatecraftv2.recipe.ModRecipes;
-import com.bassstarling.ultimatecraftv2.registry.ModBlockEntities;
-import com.bassstarling.ultimatecraftv2.registry.ModBlocks;
-import com.bassstarling.ultimatecraftv2.registry.ModItems;
-import com.bassstarling.ultimatecraftv2.registry.ModMenuTypes;
+import com.bassstarling.ultimatecraftv2.registry.*;
 import com.mojang.logging.LogUtils;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -43,6 +40,8 @@ public class UltimateCraftV2
     public UltimateCraftV2(FMLJavaModLoadingContext context)
     {
         IEventBus modEventBus = context.getModEventBus();
+
+        ModSounds.SOUND_EVENTS.register(modEventBus);
 
         ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
 
