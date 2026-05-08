@@ -44,7 +44,7 @@ public class UltimateCraftV2
     {
         IEventBus modEventBus = context.getModEventBus();
 
-        ModBlockEntities.BLOCK_ENTITIES.register(modEventBus); // ★これ
+        ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -97,16 +97,13 @@ public class UltimateCraftV2
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
-        // 1. まずブロックタグプロバイダーを作成（アイテムタグがこれを利用するため）
         BlockTagsProvider blockTags = new BlockTagsProvider(output, lookupProvider, "ultimatecraftv2", existingFileHelper) {
             @Override
             protected void addTags(HolderLookup.Provider pProvider) {
-                // ブロックタグが必要なければ空でOK
             }
         };
         generator.addProvider(event.includeServer(), blockTags);
 
-        // 2. アイテムタグプロバイダーを登録（blockTags.contentsGetter() を渡すのがコツ）
         generator.addProvider(event.includeServer(), new ModItemTagProvider(output, lookupProvider, blockTags.contentsGetter(), existingFileHelper));
     }
 

@@ -9,19 +9,10 @@ import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
 
 public class PipeItem extends SwordItem {
-    // コンストラクタ
     public PipeItem(Tier tier, int attackDamageModifier, float attackSpeedModifier, Properties properties) {
         super(tier, attackDamageModifier, attackSpeedModifier, properties);
     }
-    /*
-     * ステータスの計算式解説:
-     * * 最終攻撃力 = 1 (素手) + 素材の攻撃力 (2.0) + ここで指定する追加攻撃力
-     * 最終攻撃速度 = 4.0 (基本) + ここで指定する補正値 (マイナスにする)
-     */
 
-    /**
-     * エンティティを左クリック（攻撃）した時に呼ばれる
-     */
     @Override
     public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
         // 攻撃した瞬間に音を鳴らす
@@ -32,8 +23,6 @@ public class PipeItem extends SwordItem {
                 0.5f,  // 音量
                 1.5f   // ピッチ（高いほど鋭い音になる）
         );
-
-        // falseを返すと、通常のダメージ処理もそのまま継続される
         return false;
     }
 }
