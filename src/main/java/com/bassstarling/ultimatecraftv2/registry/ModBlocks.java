@@ -321,4 +321,11 @@ public class ModBlocks {
                             .requiresCorrectToolForDrops()
                             .strength(2.0F, 2.0F)
                     ));
+    public static final RegistryObject<Block> AGITATEDTANKRECRYSTALLIZER =
+            BLOCKS.register("agitatedtankrecrystallizer",
+                    () -> new AgitatedTankRecrystallizerBlock(BlockBehaviour.Properties
+                            .of().mapColor(MapColor.STONE)
+                            .requiresCorrectToolForDrops()
+                            .strength(2.0F, 2.0F)
+                    ));
 }

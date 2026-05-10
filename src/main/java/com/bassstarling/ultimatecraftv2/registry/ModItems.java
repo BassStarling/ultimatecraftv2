@@ -1040,6 +1040,12 @@ public class ModItems {
             ITEMS.register("tungsten_filament",
                     () -> new Item(new Item.Properties()
                     ));
+    public static final RegistryObject<Item> AGITATEDTANKRECRYSTALLIZERR =
+            ITEMS.register("agitatedtankrecrystallizer",
+                    () -> new BlockItem(
+                            ModBlocks.AGITATEDTANKRECRYSTALLIZER.get(),
+                            new Item.Properties()
+                    ));
     public static final TagKey<Item> MOLD_TAG = ItemTags.create(new ResourceLocation("ultimatecraftv2", "mold"));
 
     public static final Map<MoldType, RegistryObject<Item>> MOLDS = new HashMap<>();

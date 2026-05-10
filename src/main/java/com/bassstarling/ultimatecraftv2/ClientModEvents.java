@@ -59,6 +59,10 @@ public class ClientModEvents {
                     ModMenuTypes.BATTERY_CHARGER_MENU.get(),
                     BatteryChargerScreen::new
             );
+            MenuScreens.register(
+                    ModMenuTypes.AGITATEDTANKRECRYSTALLIZER_MENU.get(),
+                    AgitatedTankRecrystallizerScreen::new
+            );
         });
     }
 }

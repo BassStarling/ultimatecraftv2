@@ -165,4 +165,10 @@ public class ModBlockEntities {
                             BatteryChargerBlockEntity::new,
                             ModBlocks.BATTERYCHARGER.get()
                     ).build(null));
+    public static final RegistryObject<BlockEntityType<AgitatedTankRecrystallizerBlockEntity>> AGITATEDTANK_RECRYSTALLIZER =
+            BLOCK_ENTITIES.register("agitatedtank_recrystallizer",
+                    () -> BlockEntityType.Builder.of(
+                            AgitatedTankRecrystallizerBlockEntity::new,
+                            ModBlocks.AGITATEDTANKRECRYSTALLIZER.get()
+                    ).build(null));
 }

@@ -42,6 +42,12 @@ public class ModRecipes {
     public static final RegistryObject<RecipeType<UniversalElectrolyzerRecipe>> UNIVERSALELECTROLYZER_TYPE =
             TYPES.register("universalelectrolyzer", () -> UniversalElectrolyzerRecipe.Type.INSTANCE);
 
+    public static final RegistryObject<RecipeSerializer<RecrystallizingRecipe>> RECRYSTALLIZING_SERIALIZER =
+            SERIALIZERS.register("recrystallizing", () -> RecrystallizingRecipe.Serializer.INSTANCE);
+
+    public static final RegistryObject<RecipeType<RecrystallizingRecipe>> RECRYSTALLIZING_TYPE =
+            TYPES.register("recrystallizing", () -> RecrystallizingRecipe.Type.INSTANCE);
+
 
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);

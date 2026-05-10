@@ -77,4 +77,8 @@ public class ModMenuTypes {
             BATTERY_CHARGER_MENU =
             MENUS.register("battery_charger_menu",
                     () -> IForgeMenuType.create(BatteryChargerMenu::new));
+    public static final RegistryObject<MenuType<AgitatedTankRecrystallizerMenu>>
+            AGITATEDTANKRECRYSTALLIZER_MENU =
+            MENUS.register("agitatedtankrecrystallizer_menu",
+                    () -> IForgeMenuType.create(AgitatedTankRecrystallizerMenu::new));
 }
