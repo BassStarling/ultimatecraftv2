@@ -81,4 +81,8 @@ public class ModMenuTypes {
             AGITATEDTANKRECRYSTALLIZER_MENU =
             MENUS.register("agitatedtankrecrystallizer_menu",
                     () -> IForgeMenuType.create(AgitatedTankRecrystallizerMenu::new));
+    public static final RegistryObject<MenuType<DustCollectorMenu>>
+            DUST_COLLECTOR_MENU =
+            MENUS.register("dust_collector_menu",
+                    () -> IForgeMenuType.create(DustCollectorMenu::new));
 }

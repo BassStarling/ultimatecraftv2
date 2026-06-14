@@ -1,5 +1,6 @@
 package com.bassstarling.ultimatecraftv2.registry;
 
+import com.bassstarling.ultimatecraftv2.C2SUpdateMemoPacket;
 import com.bassstarling.ultimatecraftv2.C2SUpdateRecrystallizerParamPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkDirection;
@@ -26,6 +27,12 @@ public class ModMessages {
                 .decoder(C2SUpdateRecrystallizerParamPacket::new)
                 .encoder(C2SUpdateRecrystallizerParamPacket::toBytes)
                 .consumerMainThread(C2SUpdateRecrystallizerParamPacket::handle)
+                .add();
+
+        net.messageBuilder(C2SUpdateMemoPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(C2SUpdateMemoPacket::new)
+                .encoder(C2SUpdateMemoPacket::toBytes)
+                .consumerMainThread(C2SUpdateMemoPacket::handle)
                 .add();
     }
 

@@ -314,8 +314,8 @@ public class ModBlocks {
                             .requiresCorrectToolForDrops()
                             .strength(2.0F, 2.0F)
                     ));
-    public static final RegistryObject<Block> SCHEELITE_ORE =
-            BLOCKS.register("scheelite_ore",
+    public static final RegistryObject<Block> SCHEELITE =
+            BLOCKS.register("scheelite",
                     () -> new Block(BlockBehaviour.Properties
                             .of().mapColor(MapColor.STONE)
                             .requiresCorrectToolForDrops()
@@ -324,6 +324,13 @@ public class ModBlocks {
     public static final RegistryObject<Block> AGITATEDTANKRECRYSTALLIZER =
             BLOCKS.register("agitatedtankrecrystallizer",
                     () -> new AgitatedTankRecrystallizerBlock(BlockBehaviour.Properties
+                            .of().mapColor(MapColor.STONE)
+                            .requiresCorrectToolForDrops()
+                            .strength(2.0F, 2.0F)
+                    ));
+    public static final RegistryObject<Block> DUSTCOLLECTOR =
+            BLOCKS.register("dustcollector",
+                    () -> new DustCollectorBlock(BlockBehaviour.Properties
                             .of().mapColor(MapColor.STONE)
                             .requiresCorrectToolForDrops()
                             .strength(2.0F, 2.0F)

@@ -998,10 +998,10 @@ public class ModItems {
                             ModBlocks.BATTERYCHARGER.get(),
                             new Item.Properties()
                     ));
-    public static final RegistryObject<Item> SCHEELITE_ORE =
-            ITEMS.register("scheelite_ore",
+    public static final RegistryObject<Item> SCHEELITE =
+            ITEMS.register("scheelite",
                     () -> new BlockItem(
-                            ModBlocks.SCHEELITE_ORE.get(),
+                            ModBlocks.SCHEELITE.get(),
                             new Item.Properties()
                     ));
     public static final RegistryObject<Item> SULFUR_DIOXIDE_DUST =
@@ -1045,6 +1045,46 @@ public class ModItems {
                     () -> new BlockItem(
                             ModBlocks.AGITATEDTANKRECRYSTALLIZER.get(),
                             new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> MEMO =
+            ITEMS.register("memo",
+                    () -> new MemoItem(new Item.Properties()){
+                        @Override
+                        public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+                            tooltip.add(Component.translatable("tooltip.ultimatecraftv2.memo")
+                                    .withStyle(ChatFormatting.YELLOW));
+                            super.appendHoverText(stack, level, tooltip, flag);
+                        }
+                    });
+    public static final RegistryObject<Item> DUSTCOLLECTOR =
+            ITEMS.register("dustcollector",
+                    () -> new BlockItem(
+                            ModBlocks.DUSTCOLLECTOR.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> CRUDE_SULFUR_DIOXIDE_DUST =
+            ITEMS.register("crude_sulfur_dioxide_dust",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> WET_SULFUR_DIOXIDE_DUST =
+            ITEMS.register("wet_sulfur_dioxide_dust",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> PURIFIED_SULFUR_DIOXIDE_DUST =
+            ITEMS.register("purified_sulfur_dioxide_dust",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> DUST_FROM_SULFUR_DIOXIDE =
+            ITEMS.register("dust_from_sulfur_dioxide",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> ARSENIC =
+            ITEMS.register("arsenic",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> GYPSUM =
+            ITEMS.register("gypsum",
+                    () -> new Item(new Item.Properties()
                     ));
     public static final TagKey<Item> MOLD_TAG = ItemTags.create(new ResourceLocation("ultimatecraftv2", "mold"));
 

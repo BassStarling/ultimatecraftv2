@@ -171,4 +171,10 @@ public class ModBlockEntities {
                             AgitatedTankRecrystallizerBlockEntity::new,
                             ModBlocks.AGITATEDTANKRECRYSTALLIZER.get()
                     ).build(null));
+    public static final RegistryObject<BlockEntityType<DustCollectorBlockEntity>> DUST_COLLECTOR =
+            BLOCK_ENTITIES.register("dust_collector",
+                    () -> BlockEntityType.Builder.of(
+                            DustCollectorBlockEntity::new,
+                        ModBlocks.DUSTCOLLECTOR.get()
+                    ).build(null));
 }

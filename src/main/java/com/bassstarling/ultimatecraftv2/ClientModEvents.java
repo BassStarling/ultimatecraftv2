@@ -1,8 +1,11 @@
 package com.bassstarling.ultimatecraftv2;
 
 import com.bassstarling.ultimatecraftv2.client.screen.*;
+import com.bassstarling.ultimatecraftv2.menu.DustCollectorMenu;
 import com.bassstarling.ultimatecraftv2.registry.ModMenuTypes;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -63,6 +66,15 @@ public class ClientModEvents {
                     ModMenuTypes.AGITATEDTANKRECRYSTALLIZER_MENU.get(),
                     AgitatedTankRecrystallizerScreen::new
             );
+            MenuScreens.register(
+                    ModMenuTypes.DUST_COLLECTOR_MENU.get(),
+                    DustCollectorScreen::new
+            );
+
         });
+
+    }
+    public static void openMemoScreen(ItemStack stack, InteractionHand hand) {
+        net.minecraft.client.Minecraft.getInstance().setScreen(new MemoScreen(stack, hand));
     }
 }

@@ -103,7 +103,7 @@ public class UVLightItem extends Item {
         int range = 32;
 
         for (BlockPos pos : BlockPos.betweenClosed(center.offset(-range, -range, -range), center.offset(range, range, range))) {
-            if (level.getBlockState(pos).is(ModBlocks.SCHEELITE_ORE.get())) {
+            if (level.getBlockState(pos).is(ModBlocks.SCHEELITE.get())) {
                 // ブロックの各面に対してパーティクルを出す
                 for (Direction direction : Direction.values()) {
                     // その面が空気などに接している場合のみ出すとより負荷が低い
