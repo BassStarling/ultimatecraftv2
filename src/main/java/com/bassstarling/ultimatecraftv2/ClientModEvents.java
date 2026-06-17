@@ -70,6 +70,13 @@ public class ClientModEvents {
                     ModMenuTypes.DUST_COLLECTOR_MENU.get(),
                     DustCollectorScreen::new
             );
+            MenuScreens.register(
+                    ModMenuTypes.SINTERING_FURNACE_MENU.get(),
+                    SinteringFurnaceScreen::new
+            );
+            MenuScreens.register(
+                    ModMenuTypes.ETHYLENE_PLANT_MENU.get(),
+                    EthylenePlantScreen::new);
 
         });
 

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:quartz" },
+    { "item": "ultimatecraftv2:sodium_carbonate_solution_bottle" },
+    { "item": "ultimatecraftv2:ethylene_capsule" }
+  ],
+  "result": {
+    "item": "ultimatecraftv2:strongly_basic_ion_exchanges_beads"
+  }
+}

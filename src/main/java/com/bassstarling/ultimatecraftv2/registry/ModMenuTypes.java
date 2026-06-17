@@ -85,4 +85,12 @@ public class ModMenuTypes {
             DUST_COLLECTOR_MENU =
             MENUS.register("dust_collector_menu",
                     () -> IForgeMenuType.create(DustCollectorMenu::new));
+    public static final RegistryObject<MenuType<SinteringFurnaceMenu>>
+            SINTERING_FURNACE_MENU =
+            MENUS.register("sintering_furnace_menu",
+                    () -> IForgeMenuType.create(SinteringFurnaceMenu::new));
+    public static final RegistryObject<MenuType<EthylenePlantMenu>>
+            ETHYLENE_PLANT_MENU =
+            MENUS.register("ethylene_plant_menu",
+                    () -> IForgeMenuType.create(EthylenePlantMenu::new));
 }

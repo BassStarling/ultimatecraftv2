@@ -335,4 +335,18 @@ public class ModBlocks {
                             .requiresCorrectToolForDrops()
                             .strength(2.0F, 2.0F)
                     ));
+    public static final RegistryObject<Block> SINTERINGFURNACE =
+            BLOCKS.register("sinteringfurnace",
+                    () -> new SinteringFurnaceBlock(BlockBehaviour.Properties
+                            .of().mapColor(MapColor.STONE)
+                            .requiresCorrectToolForDrops()
+                            .strength(2.0F, 2.0F)
+                    ));
+    public static final RegistryObject<Block> ETHYLENE_PLANT =
+            BLOCKS.register("ethylene_plant",
+                    () -> new EthylenePlantBlock(BlockBehaviour.Properties
+                            .of().mapColor(MapColor.STONE)
+                            .requiresCorrectToolForDrops()
+                            .strength(2.0F, 2.0F)
+                    ));
 }

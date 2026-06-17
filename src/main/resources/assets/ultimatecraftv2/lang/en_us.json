@@ -246,5 +246,10 @@
   "tooltip.ultimatecraftv2.water_interaction": "水源に投げ入れて加工",
   "tooltip.ultimatecraftv2.welding_machine.details": "",
   "tooltip.ultimatecraftv2.welding_machine.usage": "",
-  "tooltip.ultimatecraftv2.wiki": "§7さらなる詳細は §eWiki §7と §eEMIのレシピ §7に記載"
+  "tooltip.ultimatecraftv2.wiki": "§7さらなる詳細は §eWiki §7と §eEMIのレシピ §7に記載",
+  "item.ultimatecraftv2.sintered_iron": "焼結鉄",
+  "item.ultimatecraftv2.iron_concentrate": "鉄精鉱",
+  "block.ultimatecraftv2.ethylene_plant": "エチレンプラント",
+  "item.ultimatecraftv2.ethylene_capsule": "エチレンカプセル",
+  "block.ultimatecraftv2.sinteringfurnace": "焼結炉"
 }

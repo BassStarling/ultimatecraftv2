@@ -1,7 +1,7 @@
 package com.bassstarling.ultimatecraftv2.blockentity;
 
 import com.bassstarling.ultimatecraftv2.item.SparkStone;
-import com.bassstarling.ultimatecraftv2.menu.DustCollectorMenu;
+import com.bassstarling.ultimatecraftv2.menu.EthylenePlantMenu;
 import com.bassstarling.ultimatecraftv2.registry.ModBlockEntities;
 import com.bassstarling.ultimatecraftv2.registry.ModItems;
 import net.minecraft.core.BlockPos;
@@ -31,90 +31,89 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class DustCollectorBlockEntity extends BlockEntity implements MenuProvider, Container {
+public class EthylenePlantBlockEntity extends BlockEntity implements MenuProvider, Container {
 
-    // 3スロット用意 (0:入力, 1:綺麗なガス, 2:粉塵)
-    public final ItemStackHandler inventory = new ItemStackHandler(3);
+    // 5スロット構成 (0:ナフサバケツ, 1:水バケツ, 2:燃料, 3:エチレン, 4:空バケツ搬出)
+    public final ItemStackHandler inventory = new ItemStackHandler(5);
 
-    // 最大36,000 FE貯蔵 / 受け入れ128,000 FE / 出力128,000 FE
+    // 最大36,000 FEのエネルギー貯蔵 (受け入れは128,000 FE対応)
     public final EnergyStorage energyStorage = new EnergyStorage(36000, 128000, 128000);
 
     private final LazyOptional<ItemStackHandler> itemCapability = LazyOptional.of(() -> inventory);
     private final LazyOptional<IEnergyStorage> energyCapability = LazyOptional.of(() -> energyStorage);
 
-    // GUI同期用データのフィールド
     protected final ContainerData data;
 
     private int progress = 0;
-    private final int maxProgress = 160; // 8秒で1回加工 (160tick)
-    private final int energyUsagePerTick = 1; // 1Tickあたり1FE消費
+    private final int maxProgress = 200;    // 10秒で1回クラッキング (200tick)
+    private int burnTime = 0;               // 燃料が燃えている残り時間
+    private int maxBurnTime = 0;            // 燃料の総燃焼時間
 
-    public DustCollectorBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ModBlockEntities.DUST_COLLECTOR.get(), pPos, pBlockState);
+    private final int energyUsagePerTick = 13; // ⚠️毎Tick 13 FE消費
+
+    public EthylenePlantBlockEntity(BlockPos pPos, BlockState pBlockState) {
+        super(ModBlockEntities.ETHYLENE__PLANT.get(), pPos, pBlockState);
 
         this.data = new ContainerData() {
             @Override
             public int get(int index) {
                 return switch (index) {
-                    case 0 -> DustCollectorBlockEntity.this.progress;
-                    case 1 -> DustCollectorBlockEntity.this.energyStorage.getEnergyStored();
+                    case 0 -> EthylenePlantBlockEntity.this.progress;
+                    case 1 -> EthylenePlantBlockEntity.this.energyStorage.getEnergyStored();
+                    case 2 -> EthylenePlantBlockEntity.this.burnTime;
+                    case 3 -> EthylenePlantBlockEntity.this.maxBurnTime;
                     default -> 0;
                 };
             }
-
             @Override
             public void set(int index, int value) {
                 switch (index) {
-                    case 0 -> DustCollectorBlockEntity.this.progress = value;
-                    case 1 -> DustCollectorBlockEntity.this.energyStorage.extractEnergy(DustCollectorBlockEntity.this.energyStorage.getEnergyStored(), false);
+                    case 0 -> EthylenePlantBlockEntity.this.progress = value;
+                    case 1 -> EthylenePlantBlockEntity.this.energyStorage.extractEnergy(EthylenePlantBlockEntity.this.energyStorage.getEnergyStored(), false);
+                    case 2 -> EthylenePlantBlockEntity.this.burnTime = value;
+                    case 3 -> EthylenePlantBlockEntity.this.maxBurnTime = value;
                 }
-                if (index == 1) {
-                    DustCollectorBlockEntity.this.energyStorage.receiveEnergy(value, false);
-                }
+                if (index == 1) EthylenePlantBlockEntity.this.energyStorage.receiveEnergy(value, false);
             }
-
             @Override
-            public int getCount() {
-                return 2;
-            }
+            public int getCount() { return 4; }
         };
     }
 
     public void tick() {
         if (level == null || level.isClientSide) return;
 
-        ItemStack input = inventory.getStackInSlot(0);
-
+        boolean isBurning = this.burnTime > 0;
+        if (isBurning) {
+            this.burnTime--;
+        }
         if (level.getGameTime() % 20 == 0) { // 1秒に1回
             suctionSparkStones();
         }
 
-        // レシピ（アイテム条件）の確認
-        if (!input.isEmpty() && input.is(ModItems.SULFUR_DIOXIDE_DUST.get())) {
+        // 1. 動作条件の確認（材料・スロット空き・FE残量）
+        if (hasMaterialsAndSpace() && energyStorage.getEnergyStored() >= energyUsagePerTick) {
 
-            // アイテムの空きスペース、および「必要なエネルギーが貯まっているか」をチェック
-            if (canProcess() && energyStorage.getEnergyStored() >= energyUsagePerTick) {
+            // 燃焼が切れており、かつ燃料（コークスや石炭等）がスロット2にあれば消費
+            if (!isBurning && hasFuel()) {
+                consumeFuel();
+                isBurning = true;
+            }
 
-                // 1Tick分の電力を消費して進行度を進める
+            // プラントが加熱（燃焼）しており、かつ電力が13FE以上あれば進行度を進める
+            if (isBurning) {
                 energyStorage.extractEnergy(energyUsagePerTick, false);
                 this.progress++;
-
                 if (this.progress >= maxProgress) {
-                    completeProcess();
+                    completeCracking();
                 }
                 setChanged();
             } else {
-                // 電力不足、またはスペース不足のときは徐々に作業が冷えていく
-                if (this.progress > 0 && energyStorage.getEnergyStored() < energyUsagePerTick) {
-                    this.progress = Math.max(0, this.progress - 1);
-                    setChanged();
-                }
+                stopProgress();
             }
         } else {
-            this.progress = 0;
+            stopProgress();
         }
-
-        autoPushOutput();
     }
 
     private void suctionSparkStones() {
@@ -151,59 +150,73 @@ public class DustCollectorBlockEntity extends BlockEntity implements MenuProvide
         }
     }
 
-    private boolean canProcess() {
-        ItemStack cleanGasResult = new ItemStack(ModItems.CRUDE_SULFUR_DIOXIDE_DUST.get());
-        ItemStack dustResult = new ItemStack(ModItems.DUST_FROM_SULFUR_DIOXIDE.get());
+    private boolean hasMaterialsAndSpace() {
+        ItemStack naphthaBucket = inventory.getStackInSlot(0);
+        ItemStack waterBucket = inventory.getStackInSlot(1);
 
-        ItemStack remainderGas = inventory.insertItem(1, cleanGasResult, true);
-        ItemStack remainderDust = inventory.insertItem(2, dustResult, true);
+        if (naphthaBucket.isEmpty() || waterBucket.isEmpty()) return false;
 
-        return remainderGas.isEmpty() && remainderDust.isEmpty();
+        // スロット0にナフサ入りバケツ、スロット1に水入りバケツが入っているか厳密チェック
+        // ⚠️「ModItems.NAPHTHA_BUCKET.get()」は実際のナフサバケツのIDに合わせてください
+        if (!naphthaBucket.is(ModItems.NAPHTHA_BUCKET.get()) || !waterBucket.is(Items.WATER_BUCKET)) return false;
+
+        // スロット3（エチレン）とスロット4（空バケツ返却）の受け入れ余裕をシミュレーション
+        ItemStack ethyleneOutput = new ItemStack(ModItems.ETHYLENE_CAPSULE.get());
+        ItemStack emptyBucketOutput = new ItemStack(Items.BUCKET, 2); // ナフサと水で計2個の空バケツ
+
+        ItemStack remEthylene = inventory.insertItem(3, ethyleneOutput, true);
+        ItemStack remBuckets = inventory.insertItem(4, emptyBucketOutput, true);
+
+        return remEthylene.isEmpty() && remBuckets.isEmpty();
     }
 
-    private void completeProcess() {
-        // 二酸化硫黄を1つ消費
-        inventory.getStackInSlot(0).shrink(1);
+    private boolean hasFuel() {
+        ItemStack fuel = inventory.getStackInSlot(2);
+        if (fuel.isEmpty()) return false;
 
-        // スロット1に「粗製二酸化硫黄」を出力
-        inventory.insertItem(1, new ItemStack(ModItems.CRUDE_SULFUR_DIOXIDE_DUST.get()), false);
+        // MOD内のコークス、またはバニラの石炭・木炭を燃料として受け入れる
+        return fuel.is(ModItems.COKE.get()) || fuel.is(Items.COAL) || fuel.is(Items.CHARCOAL);
+    }
 
-        // スロット2に 70% の確率で「亜硫酸の焙焼塵」が溜まる
-        if (level.random.nextFloat() < 0.7f) {
-            inventory.insertItem(2, new ItemStack(ModItems.DUST_FROM_SULFUR_DIOXIDE.get()), false);
+    private void consumeFuel() {
+        inventory.getStackInSlot(2).shrink(1);
+        // コークスや石炭1個あたり 1600 tick (80秒間) 燃焼
+        this.burnTime = 1600;
+        this.maxBurnTime = 1600;
+        setChanged();
+    }
+
+    private void stopProgress() {
+        if (this.progress > 0) {
+            // 条件が切れたらゆっくり冷える
+            this.progress = Math.max(0, this.progress - 1);
+            setChanged();
         }
+    }
+
+    private void completeCracking() {
+        // ナフサバケツと水バケツを1個ずつ消費
+        inventory.getStackInSlot(0).shrink(1);
+        inventory.getStackInSlot(1).shrink(1);
+
+        // スロット3にエチレンボンベ（カプセル）を投入
+        inventory.insertItem(3, new ItemStack(ModItems.ETHYLENE_CAPSULE.get()), false);
+
+        // スロット4に空のバケツを2個返却
+        inventory.insertItem(4, new ItemStack(Items.BUCKET, 2), false);
 
         this.progress = 0;
         setChanged();
     }
 
-    private void autoPushOutput() {
-        BlockEntity belowBe = level.getBlockEntity(worldPosition.below());
-        if (belowBe != null) {
-            belowBe.getCapability(ForgeCapabilities.ITEM_HANDLER, Direction.UP).ifPresent(handler -> {
-                for (int i = 1; i <= 2; i++) {
-                    ItemStack stack = inventory.getStackInSlot(i);
-                    if (!stack.isEmpty()) {
-                        ItemStack toPush = stack.copy();
-                        toPush.setCount(1);
-                        ItemStack left = handler.insertItem(0, toPush, false);
-                        if (left.isEmpty()) {
-                            stack.shrink(1);
-                            setChanged();
-                            break;
-                        }
-                    }
-                }
-            });
-        }
-    }
-
-    // --- NBTセーブ＆ロード ---
+    // --- NBT保存・読み込み処理 ---
     @Override
     protected void saveAdditional(CompoundTag pTag) {
         pTag.put("Inventory", inventory.serializeNBT());
         pTag.putInt("Energy", energyStorage.getEnergyStored());
         pTag.putInt("Progress", progress);
+        pTag.putInt("BurnTime", burnTime);
+        pTag.putInt("MaxBurnTime", maxBurnTime);
         super.saveAdditional(pTag);
     }
 
@@ -211,18 +224,12 @@ public class DustCollectorBlockEntity extends BlockEntity implements MenuProvide
     public void load(CompoundTag pTag) {
         super.load(pTag);
         inventory.deserializeNBT(pTag.getCompound("Inventory"));
-
         int storedEnergy = pTag.getInt("Energy");
         energyStorage.extractEnergy(energyStorage.getMaxEnergyStored(), false);
         energyStorage.receiveEnergy(storedEnergy, false);
-
         progress = pTag.getInt("Progress");
-    }
-
-    @Nullable
-    @Override
-    public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
-        return new DustCollectorMenu(pContainerId, pPlayerInventory, this, this.data);
+        burnTime = pTag.getInt("BurnTime");
+        maxBurnTime = pTag.getInt("MaxBurnTime");
     }
 
     @Override
@@ -232,7 +239,7 @@ public class DustCollectorBlockEntity extends BlockEntity implements MenuProvide
         return super.getCapability(cap, side);
     }
 
-    // --- Container 実装 ---
+    // --- Container用の実装 ---
     @Override public int getContainerSize() { return inventory.getSlots(); }
     @Override public boolean isEmpty() {
         for (int i = 0; i < inventory.getSlots(); i++) {
@@ -260,4 +267,10 @@ public class DustCollectorBlockEntity extends BlockEntity implements MenuProvide
         setChanged();
     }
     @Override public Component getDisplayName() { return Component.translatable(this.getBlockState().getBlock().getDescriptionId()); }
+
+    @Nullable
+    @Override
+    public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
+        return new EthylenePlantMenu(pContainerId, pPlayerInventory, this, this.data);
+    }
 }

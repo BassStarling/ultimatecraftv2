@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "ultimatecraftv2:desulfurized_sintered_pig_iron" }
+  ],
+  "result": {
+    "item": "ultimatecraftv2:vanadium_slag"
+  }
+}

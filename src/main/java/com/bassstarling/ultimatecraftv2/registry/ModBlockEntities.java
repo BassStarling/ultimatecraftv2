@@ -177,4 +177,16 @@ public class ModBlockEntities {
                             DustCollectorBlockEntity::new,
                         ModBlocks.DUSTCOLLECTOR.get()
                     ).build(null));
+    public static final RegistryObject<BlockEntityType<SinteringFurnaceBlockEntity>> SINTERING_FURNACE =
+            BLOCK_ENTITIES.register("sintering_furnace",
+                    () -> BlockEntityType.Builder.of(
+                            SinteringFurnaceBlockEntity::new,
+                            ModBlocks.SINTERINGFURNACE.get()
+                    ).build(null));
+    public static final RegistryObject<BlockEntityType<EthylenePlantBlockEntity>> ETHYLENE__PLANT =
+            BLOCK_ENTITIES.register("ethylene__plant",
+                    () -> BlockEntityType.Builder.of(
+                            EthylenePlantBlockEntity::new,
+                            ModBlocks.ETHYLENE_PLANT.get()
+                    ).build(null));
 }

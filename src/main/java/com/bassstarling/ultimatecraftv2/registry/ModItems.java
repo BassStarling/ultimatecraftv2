@@ -1086,6 +1086,50 @@ public class ModItems {
             ITEMS.register("gypsum",
                     () -> new Item(new Item.Properties()
                     ));
+    public static final RegistryObject<Item> SINTERINGFURNACE =
+            ITEMS.register("sinteringfurnace",
+                    () -> new BlockItem(
+                            ModBlocks.SINTERINGFURNACE.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> IRON_CONCENTRATE =
+            ITEMS.register("iron_concentrate",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> SINTERED_IRON =
+            ITEMS.register("sintered_iron",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> SINTERED_PIG_IRON =
+            ITEMS.register("sintered_pig_iron",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> DESULFURIZED_SINTERED_PIG_IRON =
+            ITEMS.register("desulfurized_sintered_pig_iron",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> VANADIUM_SLAG =
+            ITEMS.register("vanadium_slag",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> VANADATE_ION =
+            ITEMS.register("vanadate_ion",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> STRONGLY_BASIC_ION_EXCHANGE_RESIN_BEADS =
+            ITEMS.register("strongly_basic_ion_exchanges_beads",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> ETHYLENE_PLANT =
+            ITEMS.register("ethylene_plant",
+                    () -> new BlockItem(
+                            ModBlocks.ETHYLENE_PLANT.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> ETHYLENE_CAPSULE =
+            ITEMS.register("ethylene_capsule",
+                    () -> new Item(new Item.Properties()
+                    ));
     public static final TagKey<Item> MOLD_TAG = ItemTags.create(new ResourceLocation("ultimatecraftv2", "mold"));
 
     public static final Map<MoldType, RegistryObject<Item>> MOLDS = new HashMap<>();

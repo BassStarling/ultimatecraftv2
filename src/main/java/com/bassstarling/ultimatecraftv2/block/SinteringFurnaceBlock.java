@@ -1,6 +1,6 @@
 package com.bassstarling.ultimatecraftv2.block;
 
-import com.bassstarling.ultimatecraftv2.blockentity.DustCollectorBlockEntity;
+import com.bassstarling.ultimatecraftv2.blockentity.SinteringFurnaceBlockEntity;
 import com.bassstarling.ultimatecraftv2.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -8,7 +8,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -25,22 +24,22 @@ import net.minecraftforge.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
-public class DustCollectorBlock extends BaseEntityBlock {
+public class SinteringFurnaceBlock extends BaseEntityBlock {
 
-    public DustCollectorBlock(Properties pProperties) {
+    public SinteringFurnaceBlock(Properties pProperties) {
         super(pProperties);
         // 初期状態の向きを北に設定
         this.registerDefaultState(this.stateDefinition.any().setValue(DirectionalBlock.FACING, Direction.NORTH));
     }
 
-    // 【重要】右クリック時に、パケットを送信してプレイヤーの画面にGUI（Menu）を開く
+    // 【最重要】右クリックした時にGUI画面（Menu）を開く処理
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if (entity instanceof DustCollectorBlockEntity collector) {
-                // Forgeのネットワークヘルパーを使い、サーバー側から安全にScreenをトリガーします
-                NetworkHooks.openScreen((ServerPlayer) pPlayer, collector, pPos);
+            if (entity instanceof SinteringFurnaceBlockEntity furnace) {
+                // Forgeの仕様に則り、サーバー側のプレイヤーに対してMenuを開くパケットを送信
+                NetworkHooks.openScreen((ServerPlayer) pPlayer, furnace, pPos);
             } else {
                 throw new IllegalStateException("Our NamedContainerProvider is missing!");
             }
@@ -48,14 +47,14 @@ public class DustCollectorBlock extends BaseEntityBlock {
         return InteractionResult.sidedSuccess(pLevel.isClientSide);
     }
 
-    // 【安全設計】ブロックが壊されたとき、インベントリ内のアイテム（二酸化硫黄など）を周囲にぶちまける
+    // ブロックが破壊されたときに、中に入っていたアイテムを周囲に散らばらせる処理（ホッパー等と同じ仕様）
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof DustCollectorBlockEntity collector) {
-                // コンテナの中身をバニラのチェストや炉と同じようにドロップ
-                net.minecraft.world.Containers.dropContents(pLevel, pPos, collector);
+            if (blockEntity instanceof SinteringFurnaceBlockEntity furnace) {
+                // コンテナの中身をすべてドロップ
+                net.minecraft.world.Containers.dropContents(pLevel, pPos, furnace);
                 pLevel.updateNeighbourForOutputSignal(pPos, this);
             }
             super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
@@ -64,13 +63,13 @@ public class DustCollectorBlock extends BaseEntityBlock {
 
     @Override
     public RenderShape getRenderShape(BlockState pState) {
-        return RenderShape.MODEL; // JSONモデルによる描画を指定
+        return RenderShape.MODEL; // JSONモデルを使用して描画
     }
 
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new DustCollectorBlockEntity(pPos, pState);
+        return new SinteringFurnaceBlockEntity(pPos, pState);
     }
 
     @Override
@@ -81,15 +80,15 @@ public class DustCollectorBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        // 設置したプレイヤーの正面を向くように回転配置
+        // プレイヤーの正面を向くように配置
         return this.defaultBlockState().setValue(DirectionalBlock.FACING, pContext.getNearestLookingDirection().getOpposite());
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        // サーバー側でのみ毎Tickのロジック（DustCollectorBlockEntity.tick()）を稼働させる
-        return createTickerHelper(pBlockEntityType,ModBlockEntities.DUST_COLLECTOR.get(),
+        // サーバー側でのみ毎Tickのロジック（SinteringFurnaceBlockEntity.tick()）を動かすヘルパー
+        return createTickerHelper(pBlockEntityType, ModBlockEntities.SINTERING_FURNACE.get(),
                 (level, pos, state, be) -> be.tick());
     }
 }
