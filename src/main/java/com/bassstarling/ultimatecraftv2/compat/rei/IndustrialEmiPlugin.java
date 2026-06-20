@@ -24,7 +24,6 @@ import dev.emi.emi.api.widget.WidgetHolder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeManager;
@@ -45,9 +44,9 @@ public class IndustrialEmiPlugin implements EmiPlugin {
             new EmiRecipeCategory(new ResourceLocation("ultimatecraftv2", "casting_crafting"),
                     EmiStack.of(ModBlocks.CASTING_MACHINE.get()));
 
-    public static final EmiRecipeCategory OXYGEN_CONVERTER_CATEGORY =
+    public static final EmiRecipeCategory CONVERTER_CATEGORY =
             new EmiRecipeCategory(new ResourceLocation("ultimatecraftv2", "converter"),
-                    EmiStack.of(ModBlocks.OXYGEN_CONVERTER.get()));
+                    EmiStack.of(ModBlocks.CONVERTER.get()));
 
     public static final EmiRecipeCategory COKE_OVEN_CATEGORY =
             new EmiRecipeCategory(new ResourceLocation("ultimatecraftv2", "coke_oven"),
@@ -97,10 +96,10 @@ public class IndustrialEmiPlugin implements EmiPlugin {
     @Override
     public void register(EmiRegistry registry) {
 
-        registry.addCategory(OXYGEN_CONVERTER_CATEGORY);
-        registry.addWorkstation(OXYGEN_CONVERTER_CATEGORY, EmiStack.of(ModBlocks.OXYGEN_CONVERTER.get()));
+        registry.addCategory(CONVERTER_CATEGORY);
+        registry.addWorkstation(CONVERTER_CATEGORY, EmiStack.of(ModBlocks.CONVERTER.get()));
 
-        registry.addRecipe(new OxygenConverterEmiRecipe());
+        registry.addRecipe(new ConverterEmiRecipe());
 
         registry.addCategory(INDUSTRIAL_CATEGORY);
 

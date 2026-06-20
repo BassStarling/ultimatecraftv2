@@ -466,18 +466,18 @@ public class ModItems {
             ITEMS.register("oxygen_bottle",
                     () -> new Item(new Item.Properties()
                     ));
-    public static final RegistryObject<Item> OXYGEN_CONVERTER =
-            ITEMS.register("oxygen_converter",
+    public static final RegistryObject<Item> CONVERTER =
+            ITEMS.register("converter",
                     () -> new BlockItem(
-                            ModBlocks.OXYGEN_CONVERTER.get(),
+                            ModBlocks.CONVERTER.get(),
                             new Item.Properties()) {
                         @Override
                         public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
                             // シフトキーを押している間だけ詳細を表示する設定
                             if (Screen.hasShiftDown()) {
-                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.oxygen_converter.details")
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.converter.details")
                                         .withStyle(ChatFormatting.AQUA));
-                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.oxygen_converter.usage")
+                                tooltip.add(Component.translatable("tooltip.ultimatecraftv2.converter.usage")
                                         .withStyle(ChatFormatting.GRAY));
                                 tooltip.add(Component.translatable("tooltip.ultimatecraftv2.wiki")
                                         .withStyle(ChatFormatting.YELLOW));
@@ -1130,6 +1130,29 @@ public class ModItems {
             ITEMS.register("ethylene_capsule",
                     () -> new Item(new Item.Properties()
                     ));
+    public static final RegistryObject<Item> VANADIUM_PENTOXIDE =
+            ITEMS.register("vanadium_pentoxide",
+                    () -> new Item(new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> POLYSTYRENE_PELLETS =
+            ITEMS.register("polystyrene_pellets",
+            () -> new Item(new Item.Properties()
+            ));
+    public static final RegistryObject<Item> ZEOLITE_CRYSTAL =
+            ITEMS.register("zeolite_crystal",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ZEOLITE_CATALYST =
+            ITEMS.register("zeolite_catalyst",
+            () -> new Item(new Item.Properties().durability(128))); // 128回反応に耐える仕様
+    public static final RegistryObject<Item> OXIDIZER =
+            ITEMS.register("oxidizer",
+                    () -> new BlockItem(
+                            ModBlocks.OXIDIZER.get(),
+                            new Item.Properties()
+                    ));
+    public static final RegistryObject<Item> SULFUR_TRIOXIDE_DUST =
+            ITEMS.register("sulfur_trioxide_dust",
+                    () -> new Item(new Item.Properties()));
     public static final TagKey<Item> MOLD_TAG = ItemTags.create(new ResourceLocation("ultimatecraftv2", "mold"));
 
     public static final Map<MoldType, RegistryObject<Item>> MOLDS = new HashMap<>();

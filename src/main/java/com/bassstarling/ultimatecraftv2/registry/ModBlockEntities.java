@@ -1,10 +1,9 @@
 package com.bassstarling.ultimatecraftv2.registry;
 
 import com.bassstarling.ultimatecraftv2.UltimateCraftV2;
+import com.bassstarling.ultimatecraftv2.block.OxidizerBlock;
 import com.bassstarling.ultimatecraftv2.blockentity.*;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -87,11 +86,11 @@ public class ModBlockEntities {
                             ElectrolyzerBlockEntity::new,
                             ModBlocks.ELECTROLYZER.get()
                     ).build(null));
-    public static final RegistryObject<BlockEntityType<OxygenConverterBlockEntity>> OXYGEN_CONVERTER_BE =
-            BLOCK_ENTITIES.register("oxygen_converter_be",
+    public static final RegistryObject<BlockEntityType<ConverterBlockEntity>> CONVERTER_BE =
+            BLOCK_ENTITIES.register("converter_be",
                     () -> BlockEntityType.Builder.of(
-                            OxygenConverterBlockEntity::new,
-                            ModBlocks.OXYGEN_CONVERTER.get()
+                            ConverterBlockEntity::new,
+                            ModBlocks.CONVERTER.get()
                     ).build(null));
     public static final RegistryObject<BlockEntityType<CastingMachineBlockEntity>> CASTING_MACHINE_BE =
             BLOCK_ENTITIES.register("casting_machine_be",
@@ -188,5 +187,11 @@ public class ModBlockEntities {
                     () -> BlockEntityType.Builder.of(
                             EthylenePlantBlockEntity::new,
                             ModBlocks.ETHYLENE_PLANT.get()
+                    ).build(null));
+    public static final RegistryObject<BlockEntityType<OxidizerBlockEntity>> OXIDIZER_BE =
+            BLOCK_ENTITIES.register("oxidizer_be",
+                    () -> BlockEntityType.Builder.of(
+                            OxidizerBlockEntity::new,
+                            ModBlocks.OXIDIZER.get()
                     ).build(null));
 }

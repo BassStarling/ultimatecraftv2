@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "ultimatecraftv2:vanadate_ion" },
+    { "item": "ultimatecraftv2:strongly_basic_ion_exchanges_beads" }
+  ],
+  "result": {
+    "item": "ultimatecraftv2:vanadium_pentoxide"
+  }
+}

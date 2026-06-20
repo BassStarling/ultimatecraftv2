@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ultimatecraftv2:oxygen_converter"
+          "name": "ultimatecraftv2:converter"
         }
       ],
       "conditions": [

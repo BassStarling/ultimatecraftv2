@@ -77,9 +77,11 @@ public class ClientModEvents {
             MenuScreens.register(
                     ModMenuTypes.ETHYLENE_PLANT_MENU.get(),
                     EthylenePlantScreen::new);
+            MenuScreens.register(
+                    ModMenuTypes.OXIDIZER_MENU.get(),
+                    OxidizerScreen::new);
 
         });
-
     }
     public static void openMemoScreen(ItemStack stack, InteractionHand hand) {
         net.minecraft.client.Minecraft.getInstance().setScreen(new MemoScreen(stack, hand));

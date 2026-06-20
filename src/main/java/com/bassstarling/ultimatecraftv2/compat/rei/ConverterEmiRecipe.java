@@ -15,13 +15,13 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.List;
 
-public class OxygenConverterEmiRecipe implements EmiRecipe {
+public class ConverterEmiRecipe implements EmiRecipe {
     private final ResourceLocation id;
     private final List<EmiIngredient> inputs;
     private final List<EmiStack> outputs;
 
-    public OxygenConverterEmiRecipe() {
-        this.id = new ResourceLocation("ultimatecraftv2", "oxygen_converting/steel");
+    public ConverterEmiRecipe() {
+        this.id = new ResourceLocation("ultimatecraftv2", "converting/steel");
 
         // 入力アイテムをリスト化
         this.inputs = List.of(
@@ -39,7 +39,7 @@ public class OxygenConverterEmiRecipe implements EmiRecipe {
 
     @Override
     public EmiRecipeCategory getCategory() {
-        return IndustrialEmiPlugin.OXYGEN_CONVERTER_CATEGORY;
+        return IndustrialEmiPlugin.CONVERTER_CATEGORY;
     }
 
     @Override

@@ -1,8 +1,6 @@
 package com.bassstarling.ultimatecraftv2.block;
 
-import com.bassstarling.ultimatecraftv2.blockentity.CrusherBlockEntity;
-import com.bassstarling.ultimatecraftv2.blockentity.OxygenConverterBlockEntity;
-import com.bassstarling.ultimatecraftv2.registry.ModBlockEntities;
+import com.bassstarling.ultimatecraftv2.blockentity.ConverterBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -22,10 +20,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-public class OxygenConverterBlock extends BaseEntityBlock {
+public class ConverterBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    public OxygenConverterBlock(Properties props) {
+    public ConverterBlock(Properties props) {
         super(props.noOcclusion());
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
@@ -53,7 +51,7 @@ public class OxygenConverterBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new OxygenConverterBlockEntity(pos, state);
+        return new ConverterBlockEntity(pos, state);
     }
 
     @org.jetbrains.annotations.Nullable
@@ -63,7 +61,7 @@ public class OxygenConverterBlock extends BaseEntityBlock {
 
         return level.isClientSide ? null :
                 (lvl, pos, st, be) -> {
-                    if (be instanceof OxygenConverterBlockEntity converter) {
+                    if (be instanceof ConverterBlockEntity converter) {
                         converter.tick();
                     }
                 };

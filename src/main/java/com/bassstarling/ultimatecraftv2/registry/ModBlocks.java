@@ -126,9 +126,9 @@ public class ModBlocks {
                             .strength(3.0F, 3.0F)
                             .requiresCorrectToolForDrops()
                     ));
-    public static final RegistryObject<Block> OXYGEN_CONVERTER =
-            BLOCKS.register("oxygen_converter",
-                    () -> new OxygenConverterBlock(BlockBehaviour.Properties
+    public static final RegistryObject<Block> CONVERTER =
+            BLOCKS.register("converter",
+                    () -> new ConverterBlock(BlockBehaviour.Properties
                             .of()
                             .strength(3.0F, 3.0F)
                             .requiresCorrectToolForDrops()
@@ -345,6 +345,13 @@ public class ModBlocks {
     public static final RegistryObject<Block> ETHYLENE_PLANT =
             BLOCKS.register("ethylene_plant",
                     () -> new EthylenePlantBlock(BlockBehaviour.Properties
+                            .of().mapColor(MapColor.STONE)
+                            .requiresCorrectToolForDrops()
+                            .strength(2.0F, 2.0F)
+                    ));
+    public static final RegistryObject<Block> OXIDIZER =
+            BLOCKS.register("oxidizer",
+                    () -> new OxidizerBlock(BlockBehaviour.Properties
                             .of().mapColor(MapColor.STONE)
                             .requiresCorrectToolForDrops()
                             .strength(2.0F, 2.0F)

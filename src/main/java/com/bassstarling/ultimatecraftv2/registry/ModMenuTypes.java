@@ -93,4 +93,8 @@ public class ModMenuTypes {
             ETHYLENE_PLANT_MENU =
             MENUS.register("ethylene_plant_menu",
                     () -> IForgeMenuType.create(EthylenePlantMenu::new));
+    public static final RegistryObject<MenuType<OxidizerMenu>>
+            OXIDIZER_MENU =
+            MENUS.register("oxidizer_menu",
+                    () -> IForgeMenuType.create(OxidizerMenu::new));
 }
